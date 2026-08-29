@@ -90,7 +90,7 @@ export default function App() {
         />
 
         {/* Main Center Content View */}
-        <main className="flex-1 max-w-[1400px] w-full mx-auto p-4 sm:p-7 space-y-7">
+        <main className="flex-1 max-w-[1400px] w-full mx-auto p-4 sm:p-7 pb-28 sm:pb-28 space-y-7">
           {/* Error Alert */}
           {error && (
             <div className="bg-rose-950/80 border border-rose-800 text-rose-200 px-4 py-3 rounded-xl flex items-center gap-3 text-sm shadow-lg">

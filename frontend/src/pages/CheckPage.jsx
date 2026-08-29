@@ -291,46 +291,53 @@ export default function CheckPage({ briefing }) {
               .replace(/\bMTOW\b/g, 'AGTOW');
 
             return (
+              /*
+               * Two lines, not three columns. The category badge and the status
+               * pill both want a fixed width, and on a tablet that left the
+               * detail - by far the longest string here - about 70px to work
+               * with, so "EST TOW (568,200 LBS) vs AGTOW..." came out a word per
+               * line. Verdict and label now share the top line where they can be
+               * scanned down the list; the detail runs full width beneath.
+               */
               <div
                 key={idx}
                 className={`bg-slate-950/80 border ${
                   isGoverning ? 'border-amber-500/60 bg-amber-950/10' : 'border-slate-800/90'
-                } px-4 sm:px-5 py-3 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 transition-all`}
+                } px-4 sm:px-5 py-3.5 rounded-2xl space-y-2 transition-all`}
               >
-                {/* Left: Category Badge */}
-                <div className="flex items-center gap-3 shrink-0">
-                  <span className="text-xs sm:text-sm font-bold text-slate-400 w-6 text-right">
-                    {idx + 1}.
-                  </span>
-                  <span className={`text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg min-w-[210px] text-center md:text-left border ${
-                    isGoverning
-                      ? 'bg-slate-900 border-amber-500/70 text-amber-200'
-                      : 'bg-slate-900 border-slate-700 text-slate-200'
-                  }`}>
-                    {cleanCategoryName}
-                  </span>
-                </div>
-
-                {/* Center: Detail */}
-                <div className="text-sm sm:text-base text-slate-200 flex-1 leading-relaxed pl-1 font-medium flex flex-wrap items-center gap-2">
-                  <span>{cleanDetail}</span>
-                  {isGoverning && (
-                    <span className="text-xs font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/60 rounded-lg shrink-0">
-                      ★ 최소 여유 (탑재 제한사항)
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-xs sm:text-sm font-bold text-slate-400 w-5 text-right shrink-0">
+                      {idx + 1}.
                     </span>
-                  )}
-                </div>
+                    <span className={`text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg border ${
+                      isGoverning
+                        ? 'bg-slate-900 border-amber-500/70 text-amber-200'
+                        : 'bg-slate-900 border-slate-700 text-slate-200'
+                    }`}>
+                      {cleanCategoryName}
+                    </span>
+                  </div>
 
-                {/* Right: Status Badge */}
-                <div className="shrink-0 self-end md:self-center">
-                  <span className="text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-slate-700 bg-slate-900 text-slate-300 flex items-center gap-2.5 shadow-sm">
+                  <span className="text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-lg border border-slate-700 bg-slate-900 text-slate-300 flex items-center gap-2 shrink-0">
                     <Check
-                      className={`w-4 h-4 sm:w-5 sm:h-5 stroke-[3.5] ${
+                      className={`w-4 h-4 stroke-[3.5] shrink-0 ${
                         isOk ? 'text-emerald-400' : 'text-rose-400'
                       }`}
                     />
                     <span>{item.status}</span>
                   </span>
+                </div>
+
+                <div className="pl-8 space-y-1.5">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-mono">
+                    {cleanDetail}
+                  </p>
+                  {isGoverning && (
+                    <span className="inline-block text-2xs font-bold px-2 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/60 rounded-lg">
+                      ★ 최소 여유 · 당 비행편 탑재 제한사항
+                    </span>
+                  )}
                 </div>
               </div>
             );
