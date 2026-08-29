@@ -66,7 +66,7 @@ export default function RulesAndMelCard({ briefing }) {
             <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl space-y-1.5 shadow-inner">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-xs sm:text-sm font-bold text-slate-200">{adv.id} : {adv.title}</span>
-                <span className={`text-[10px] px-2 py-0.5 rounded border font-mono font-bold shrink-0 ${
+                <span className={`text-2xs px-2 py-0.5 rounded border font-mono font-bold shrink-0 ${
                   adv.impact === 'CRITICAL'
                     ? 'bg-slate-900 text-rose-300 border-rose-600/50'
                     : adv.impact === 'CAUTION'
@@ -94,7 +94,7 @@ export default function RulesAndMelCard({ briefing }) {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs font-bold text-amber-200">{item.code}</span>
-                  <span className="text-[10px] px-1.5 py-0.5 bg-slate-900 text-slate-400 rounded border border-slate-800 font-mono">
+                  <span className="text-2xs px-1.5 py-0.5 bg-slate-900 text-slate-400 rounded border border-slate-800 font-mono">
                     {item.status}
                   </span>
                 </div>

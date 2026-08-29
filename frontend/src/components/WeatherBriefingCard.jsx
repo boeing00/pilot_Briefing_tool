@@ -38,7 +38,7 @@ export default function WeatherBriefingCard({ data }) {
               <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">
                 Departure Weather
               </span>
-              <span className="text-[10px] px-2 py-0.5 bg-sky-950 text-sky-300 border border-sky-800 rounded font-mono">
+              <span className="text-2xs px-2 py-0.5 bg-sky-950 text-sky-300 border border-sky-800 rounded font-mono">
                 ORIGIN
               </span>
             </div>
@@ -57,7 +57,7 @@ export default function WeatherBriefingCard({ data }) {
             )}
           </div>
           {showRaw && departure?.raw && (
-            <div className="mt-3 pt-2 border-t border-slate-800 font-mono text-[11px] text-slate-400 bg-slate-900/90 p-2 rounded">
+            <div className="mt-3 pt-2 border-t border-slate-800 font-mono text-xs text-slate-400 bg-slate-900/90 p-2 rounded">
               {departure.raw}
             </div>
           )}
@@ -70,7 +70,7 @@ export default function WeatherBriefingCard({ data }) {
               <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
                 Destination Weather
               </span>
-              <span className="text-[10px] px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded font-mono">
+              <span className="text-2xs px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded font-mono">
                 DESTINATION @ ETA
               </span>
             </div>
@@ -94,7 +94,7 @@ export default function WeatherBriefingCard({ data }) {
             )}
           </div>
           {showRaw && destination?.raw && (
-            <div className="mt-3 pt-2 border-t border-slate-800 font-mono text-[11px] text-slate-400 bg-slate-900/90 p-2 rounded">
+            <div className="mt-3 pt-2 border-t border-slate-800 font-mono text-xs text-slate-400 bg-slate-900/90 p-2 rounded">
               {destination.raw}
             </div>
           )}
@@ -123,7 +123,7 @@ export default function WeatherBriefingCard({ data }) {
               {enroute.sigmet_alerts.map((sig, idx) => (
                 <div key={idx} className="flex items-start gap-1.5 text-xs text-rose-300 bg-rose-950/30 p-2 rounded border border-rose-900/50">
                   <CloudLightning className="w-3.5 h-3.5 shrink-0 mt-0.5 text-rose-400" />
-                  <span className="font-mono text-[11px]">{sig}</span>
+                  <span className="font-mono text-xs">{sig}</span>
                 </div>
               ))}
             </div>
@@ -141,7 +141,7 @@ export default function WeatherBriefingCard({ data }) {
             </p>
             {alternate?.suitability && (
               <div className="mt-3">
-                <span className="text-[10px] text-slate-400 block mb-1">SUITABILITY</span>
+                <span className="text-2xs text-slate-400 block mb-1">SUITABILITY</span>
                 <span className="px-2.5 py-1 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded font-semibold text-xs inline-block">
                   {alternate.suitability}
                 </span>
@@ -149,7 +149,7 @@ export default function WeatherBriefingCard({ data }) {
             )}
           </div>
           {showRaw && alternate?.raw && (
-            <div className="mt-2 font-mono text-[10px] text-slate-400 bg-slate-900 p-1.5 rounded">
+            <div className="mt-2 font-mono text-2xs text-slate-400 bg-slate-900 p-1.5 rounded">
               {alternate.raw}
             </div>
           )}

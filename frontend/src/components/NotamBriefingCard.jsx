@@ -5,20 +5,20 @@ function ImpactBadge({ impact }) {
   const imp = (impact || 'low').toLowerCase();
   if (imp === 'high') {
     return (
-      <span className="px-2 py-0.5 bg-rose-950 text-rose-300 border border-rose-800 rounded text-[10px] font-bold uppercase font-mono">
+      <span className="px-2 py-0.5 bg-rose-950 text-rose-300 border border-rose-800 rounded text-2xs font-bold uppercase font-mono">
         CRITICAL
       </span>
     );
   }
   if (imp === 'medium') {
     return (
-      <span className="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded text-[10px] font-bold uppercase font-mono">
+      <span className="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded text-2xs font-bold uppercase font-mono">
         CAUTION
       </span>
     );
   }
   return (
-    <span className="px-2 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded text-[10px] font-mono">
+    <span className="px-2 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded text-2xs font-mono">
       INFO
     </span>
   );
@@ -62,7 +62,7 @@ export default function NotamBriefingCard({ data }) {
                         {item.item}
                       </span>
                       {item.id && (
-                        <span className="text-[10px] text-slate-500 font-mono">[{item.id}]</span>
+                        <span className="text-2xs text-slate-500 font-mono">[{item.id}]</span>
                       )}
                     </div>
                     <p className="text-xs text-slate-300">{item.detail}</p>
@@ -100,7 +100,7 @@ export default function NotamBriefingCard({ data }) {
                         {item.item}
                       </span>
                       {item.id && (
-                        <span className="text-[10px] text-slate-500 font-mono">[{item.id}]</span>
+                        <span className="text-2xs text-slate-500 font-mono">[{item.id}]</span>
                       )}
                     </div>
                     <p className="text-xs text-slate-400">{item.detail}</p>

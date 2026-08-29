@@ -51,7 +51,9 @@ export default function PdfUploader({ onFileUpload, loading, docMeta, onClear, c
                 </span>
               </div>
               <p className="text-xs text-slate-400 mt-0.5">
-                총 {docMeta.page_count}페이지 문서 파싱 및 브리핑 생성 완료
+                {docMeta.page_count
+                  ? `총 ${docMeta.page_count}페이지 문서 파싱 및 브리핑 생성 완료`
+                  : '문서 파싱 및 브리핑 생성 완료'}
               </p>
             </div>
           </div>

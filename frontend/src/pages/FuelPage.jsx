@@ -73,7 +73,7 @@ export default function FuelPage({ briefing }) {
 
         {/* Visual Fuel Bar */}
         <div className="space-y-2.5">
-          <div className="h-6 w-full bg-slate-950 rounded-lg overflow-hidden flex border border-slate-800 text-[10px] text-white font-bold text-center">
+          <div className="h-6 w-full bg-slate-950 rounded-lg overflow-hidden flex border border-slate-800 text-2xs text-white font-bold text-center">
             <div style={{ width: `${segPct[0]}%` }} className="bg-slate-700 flex items-center justify-center truncate" title={`Trip Fuel: ${tripFuel}`}>
               {hasSegments ? `TRIP (${segPct[0]}%)` : 'TRIP'}
             </div>
@@ -116,15 +116,15 @@ export default function FuelPage({ briefing }) {
           </div>
           <div className="grid grid-cols-3 gap-2.5 text-center">
             <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-inner">
-              <span className="text-[10px] text-slate-500 block">FIRST</span>
+              <span className="text-2xs text-slate-500 block">FIRST</span>
               <span className="text-base font-bold text-slate-200 block mt-1">{payload.pax_first}</span>
             </div>
             <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-inner">
-              <span className="text-[10px] text-slate-500 block">BUSINESS</span>
+              <span className="text-2xs text-slate-500 block">BUSINESS</span>
               <span className="text-base font-bold text-white block mt-1">{payload.pax_business}</span>
             </div>
             <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 shadow-inner">
-              <span className="text-[10px] text-slate-500 block">ECONOMY</span>
+              <span className="text-2xs text-slate-500 block">ECONOMY</span>
               <span className="text-base font-bold text-white block mt-1">{payload.pax_economy}</span>
             </div>
           </div>

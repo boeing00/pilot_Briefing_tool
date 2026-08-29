@@ -1,10 +1,50 @@
 @import "tailwindcss";
 
+/*
+ * Typography scale.
+ *
+ * The screen this runs on is an iPad, held at arm's length in a cockpit, and the
+ * default scale was pulling in two directions at once: micro labels bottomed out
+ * at 9px while section headings ran to 37px on the same card. This compresses the
+ * whole range into 12-32px so nothing is unreadable and nothing shouts.
+ *
+ * `text-2xs` is the floor - badges, pill captions, table meta. Never go below it.
+ */
+@theme {
+  --text-2xs: 0.75rem;      /* 12px */
+  --text-2xs--line-height: 1.45;
+  --text-xs: 0.8125rem;     /* 13px */
+  --text-xs--line-height: 1.55;
+  --text-sm: 0.9375rem;     /* 15px */
+  --text-sm--line-height: 1.6;
+  --text-base: 1rem;        /* 16px */
+  --text-base--line-height: 1.65;
+  --text-lg: 1.125rem;      /* 18px */
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.25rem;       /* 20px */
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.5rem;       /* 24px */
+  --text-2xl--line-height: 1.3;
+  --text-3xl: 1.75rem;      /* 28px */
+  --text-3xl--line-height: 1.25;
+  --text-4xl: 2rem;         /* 32px */
+  --text-4xl--line-height: 1.2;
+  --text-5xl: 2.25rem;      /* 36px - ceiling: the ICAO codes on the route header */
+  --text-5xl--line-height: 1.1;
+}
+
 :root {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color-scheme: dark;
-  font-size: 15px; /* Boost base rem size for improved legibility */
-  letter-spacing: -0.01em;
+  font-size: 16px;
+  letter-spacing: -0.005em;
+}
+
+/* iOS zooms a page in when a focused input renders below 16px. Keep fields at 16px. */
+input,
+textarea,
+select {
+  font-size: max(1rem, 100%);
 }
 
 body {
@@ -15,6 +55,27 @@ body {
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * Touch targets.
+ *
+ * This is flown on an iPad, often one-handed and not always in still air, and a
+ * good number of controls (NOTAM shade/copy, filter pills) sat at 23-30px tall.
+ * Floor every control, then go to Apple's 44pt on an actual touch pointer.
+ */
+button,
+select {
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+}
+
+@media (pointer: coarse) {
+  button,
+  select {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
 }
 
 /* Custom crisp scrollbars */
@@ -38,4 +99,7 @@ body {
 
 .font-mono {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  /* No em-based size nudge here: .font-mono nests several levels deep in these
+     cards, and a relative size would compound into arbitrary fractional pixels. */
+  letter-spacing: 0;
 }

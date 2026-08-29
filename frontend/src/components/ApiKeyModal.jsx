@@ -42,7 +42,7 @@ export default function ApiKeyModal({ isOpen, onClose, apiKey, onSaveKey }) {
               placeholder="AIzaSy..."
               className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 font-mono placeholder-slate-600 focus:outline-none focus:border-blue-500"
             />
-            <p className="text-[11px] text-slate-400 mt-1.5">
+            <p className="text-xs text-slate-400 mt-1.5">
               * 키는 브라우저 로컬 스토리지에 안전하게 보관되며 서버 환경변수(GEMINI_API_KEY)가 있을 경우 생략 가능합니다.
             </p>
           </div>

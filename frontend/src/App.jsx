@@ -31,7 +31,7 @@ export default function App() {
     currentFlight,
     apiKey,
     setApiKey,
-    serverHealth,
+    hasApiKey,
     loadSample,
     handleFileUpload,
     clearBriefing,
@@ -59,7 +59,7 @@ export default function App() {
         return <WxPage briefing={briefing} />;
       case 'notam':
       case 'wnotam':
-        return <NotamPage briefing={briefing} />;
+        return <NotamPage briefing={briefing} isSample={docMeta?.is_sample !== false} />;
       case 'rules':
         return <RulesPage briefing={briefing} />;
       case 'report':
@@ -79,7 +79,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-600 selection:text-white">
       {/* Top Header Navbar */}
       <Navbar
-        serverHealth={serverHealth}
+        hasApiKey={hasApiKey}
         onOpenApiKey={() => setIsApiKeyOpen(true)}
         currentFlight={currentFlight}
         onSelectFlight={loadSample}
@@ -146,7 +146,7 @@ export default function App() {
                   OFP 비행계획서, WX 기상 예보, NOTAM 전문 데이터를 실시간 파싱 및 브리핑 생성 중입니다.
                 </p>
                 <p className="text-xs text-slate-400">
-                  (약 5~10초 소요됩니다. 완료 시 대시보드가 자동으로 갱신됩니다.)
+                  (문서 분량에 따라 1~3분 걸릴 수 있습니다. 완료 시 대시보드가 자동으로 갱신됩니다.)
                 </p>
               </div>
             </div>
@@ -194,8 +194,8 @@ export default function App() {
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
         briefing={briefing}
-        rawText={docMeta?.raw_text || ''}
         apiKey={apiKey}
+        onOpenApiKey={() => setIsApiKeyOpen(true)}
       />
 
       <ApiKeyModal

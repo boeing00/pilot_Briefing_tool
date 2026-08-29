@@ -1,5 +1,532 @@
-[
+{
+  "flight_summary": {
+    "callsign": "AAR202",
+    "flight_number": "OZ202",
+    "aircraft_type": "A350-900 / Trent XWB (HL8382)",
+    "flight_date": "10 AUG 2026",
+    "departure": {
+      "icao": "RKSI",
+      "iata": "ICN",
+      "name": "인천국제공항 (Incheon Intl)",
+      "runways": "RWY 15L/15R, 16L/16R"
+    },
+    "destination": {
+      "icao": "KLAX",
+      "iata": "LAX",
+      "name": "로스앤젤레스 국제공항 (Los Angeles Intl)",
+      "runways": "RWY 24L/24R, 25L/25R"
+    },
+    "alternate": {
+      "icao": "KSAN",
+      "iata": "SAN",
+      "name": "샌디에이고 국제공항 (San Diego Intl)"
+    },
+    "etd_utc": "05:30Z",
+    "etd_lcl": "14:30 L",
+    "eta_utc": "16:12Z",
+    "eta_lcl": "09:12 L",
+    "arrival_date": "10 AUG (SAME DAY LCL)",
+    "flight_time": "10Hr 42Min",
+    "total_distance": "5,980 NM",
+    "cruising_altitude": "FL350 -> FL370 -> FL390",
+    "cost_index": "CI 40",
+    "route_summary": "RKSI NOPIK Y644 LANAT G597 AGASI ORENO R211 NIPPI OTR21 EMRON DCT 48N160E 50N170E 51N180E 51N170W 49N160W 46N150W 43N140W DCT CINCA DCT PIRAT PAINT2 KLAX",
+    "alternate_airports": [
+      {
+        "icao": "KSAN",
+        "iata": "SAN",
+        "name": "샌디에이고 국제공항 (San Diego Intl)",
+        "role": "FILED DEST ALTERNATE",
+        "divertStatus": "AVAILABLE",
+        "divertLabel": "DIVERT AVAILABLE (회항 가능)",
+        "visRating": "시정 10SM+ (최저치 상회)",
+        "etaZ": "17:02Z",
+        "etaL": "10:02 L",
+        "distTime": "109 NM / 28분 / 8,200 LBS",
+        "wxStatus": "GOOD",
+        "wxSummary": "Wind 270/08kt, 시정 10SM, SKC. 법정 최저치 만족, 안전 회항 가용."
+      },
+      {
+        "icao": "KONT",
+        "iata": "ONT",
+        "name": "온타리오 국제공항 (Ontario Intl)",
+        "role": "COMMERCIAL DIVERSION",
+        "divertStatus": "AVAILABLE",
+        "divertLabel": "DIVERT AVAILABLE (회항 가능)",
+        "visRating": "시정 10SM+ (최저치 상회)",
+        "etaZ": "16:45Z",
+        "etaL": "09:45 L",
+        "distTime": "45 NM / 18분 / 5,400 LBS",
+        "wxStatus": "GOOD",
+        "wxSummary": "LA 분지 내 대형 화물/여객 수용 가능, 기상 양호."
+      }
+    ]
+  },
+  "key_alerts": [
     {
+      "type": "WEATHER",
+      "title": "KLAX 도착 시 해풍(Sea Breeze) 및 아침 해무(Marine Layer) 소산 모니터링",
+      "desc": "LAX 아침 도착 시간대 해안가 저고도 층운 소산 중이며 시정 10SM 이상 양호합니다. 접근 활주로 24R/25L 정밀접근 가능.",
+      "level": "MEDIUM",
+      "target": "wx"
+    },
+    {
+      "type": "NOTAM",
+      "title": "KLAX 서측 터미널 코어 및 유도로 E 공사 NOTAM 확인",
+      "desc": "KLAX 유도로 E(E6~E7) 공사로 폐쇄 진행 중. 지상 이동 시 관제사 지시 복창 철저.",
+      "level": "HIGH",
+      "target": "notam"
+    },
+    {
+      "type": "FUEL & WEIGHT",
+      "title": "탑재 연료(RAMP 218,500 LBS) 및 이륙중량(TOW 568,200 LBS) 일치 확인",
+      "desc": "태평양 PACOTS 항로 풍향/풍속 최적화 및 회항공항(KSAN) 연료 마진 정상 반영 완료.",
+      "level": "MEDIUM",
+      "target": "fuel"
+    },
+    {
+      "type": "OPERATION",
+      "title": "북태평양(PACOTS / OTR) ETOPS 180분 구간 준수",
+      "desc": "ETP 1 (RJCC-PANC) 및 ETP 2 (PANC-KSFO) 구간 연료 소모율 모니터링.",
+      "level": "CRITICAL",
+      "target": "rules"
+    }
+  ],
+  "route_analysis": {
+    "filed_route_string": "RKSI DCT NOPIK Y644 LANAT G597 AGASI ORENO R211 NIPPI OTR21 EMRON DCT 48N160E 50N170E 51N180E 51N170W 49N160W 46N150W 43N140W DCT CINCA DCT PIRAT PAINT2 KLAX",
+    "alternate_routing": "KLAX DCT SLI V83 OCN V208 MZB KSAN",
+    "total_distance": "5,980 NM",
+    "flight_time": "10Hr 42Min",
+    "fir_crossings": [
+      {
+        "fir": "RJJJ (FUKUOKA)",
+        "fix": "LANAT",
+        "eet": "00:38Z"
+      },
+      {
+        "fir": "PAZA (ANCHORAGE)",
+        "fix": "51N180E",
+        "eet": "04:15Z"
+      },
+      {
+        "fir": "KZAK (OAKLAND OCEANIC)",
+        "fix": "46N150W",
+        "eet": "07:30Z"
+      },
+      {
+        "fir": "KZLA (LOS ANGELES)",
+        "fix": "CINCA",
+        "eet": "09:48Z"
+      }
+    ],
+    "waypoints": [
+      {
+        "name": "RKSI",
+        "dist": "0",
+        "fl": "GND",
+        "wind": "200/10kt",
+        "tas": "0",
+        "gs": "0",
+        "eet": "00:00",
+        "fuelRem": "218.5k"
+      },
+      {
+        "name": "NOPIK",
+        "dist": "48",
+        "fl": "FL240",
+        "wind": "220/18kt",
+        "tas": "420",
+        "gs": "410",
+        "eet": "00:08",
+        "fuelRem": "214.2k"
+      },
+      {
+        "name": "AGASI",
+        "dist": "285",
+        "fl": "FL350",
+        "wind": "260/45kt",
+        "tas": "485",
+        "gs": "525",
+        "eet": "00:41",
+        "fuelRem": "202.8k"
+      },
+      {
+        "name": "EMRON",
+        "dist": "1250",
+        "fl": "FL350",
+        "wind": "270/65kt",
+        "tas": "488",
+        "gs": "550",
+        "eet": "02:26",
+        "fuelRem": "165.4k"
+      },
+      {
+        "name": "51N180E",
+        "dist": "2340",
+        "fl": "FL370",
+        "wind": "280/85kt",
+        "tas": "490",
+        "gs": "572",
+        "eet": "04:18",
+        "fuelRem": "128.0k"
+      },
+      {
+        "name": "46N150W",
+        "dist": "3980",
+        "fl": "FL390",
+        "wind": "275/70kt",
+        "tas": "488",
+        "gs": "556",
+        "eet": "07:05",
+        "fuelRem": "76.5k"
+      },
+      {
+        "name": "CINCA",
+        "dist": "5420",
+        "fl": "FL390",
+        "wind": "260/35kt",
+        "tas": "485",
+        "gs": "518",
+        "eet": "09:39",
+        "fuelRem": "32.4k"
+      },
+      {
+        "name": "KLAX",
+        "dist": "5980",
+        "fl": "GND",
+        "wind": "250/08kt",
+        "tas": "0",
+        "gs": "0",
+        "eet": "10:42",
+        "fuelRem": "24.8k"
+      }
+    ]
+  },
+  "validation_check": {
+    "match_percentage": "100%",
+    "cfp_route": "RKSI NOPIK Y644 LANAT G597 AGASI ORENO R211 NIPPI OTR21 EMRON 48N160E 50N170E 51N180E 51N170W 49N160W 46N150W 43N140W CINCA PIRAT PAINT2 KLAX",
+    "ats_fpl_route": "(FPL-AAR202-IS -A359/H-SDE1E2E3FGHIJ2J3J4J5M1P2RWXYZ/LB1D1 -RKSI0530 -N0488F350 NOPIK Y644 LANAT G597 AGASI ... -KLAX1042 KSAN)",
+    "items": [
+      {
+        "category": "1. TOW / AGTOW 여유",
+        "detail": "EST TOW (568,200 LBS) vs AGTOW (617,200 LBS) - 여유 49,000 LBS ★ [3대 중량 중 최소 여유 - 유효 탑재 제한사항]",
+        "status": "여유 49,000 LBS (최소제한)",
+        "statusType": "OK",
+        "isGoverningLimit": true
+      },
+      {
+        "category": "2. ZFW / MZFW 여유",
+        "detail": "EST ZFW (361,100 LBS) vs MZFW (423,200 LBS) - 여유 62,100 LBS (충족)",
+        "status": "여유 62,100 LBS (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "3. LDW / MLDW 여유",
+        "detail": "EST LDW (385,800 LBS) vs MLDW (451,900 LBS) - 여유 66,100 LBS (충족)",
+        "status": "여유 66,100 LBS (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "4. MEL / CDL 내용",
+        "detail": "MEL 25-20-01A (PAX SEAT DEFERRAL) 반영 완료, 운항 제한 없음",
+        "status": "APPLIED (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "5. 디스패치 고려사항",
+        "detail": "KLAX 해풍 및 입항 정체 대비 추가 30분 연료(DISC 4,500 LBS) 탑재",
+        "status": "CONFIRMED (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "6. 이륙연료 합계",
+        "detail": "TRIP(182,400) + CONT(5,600) + ALTN(8,200) + FINRES(6,400) + DISC(4,500) = 207,100 LBS",
+        "status": "207,100 LBS (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "7. 램프연료 합계",
+        "detail": "TAXI (1,400 LBS) + TAKEOFF FUEL = BLOCK 218,500 LBS 탑재 확인",
+        "status": "218,500 LBS (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "8. 도착 잔여 vs 교체+최종예비",
+        "detail": "도착 예상 잔여 연료(24,800 LBS) > 법정 최저치(14,600 LBS) 여유 10,200 LBS 확보",
+        "status": "여유 +10,200 LBS",
+        "statusType": "OK"
+      },
+      {
+        "category": "9. 교체공항 연료 일치",
+        "detail": "KSAN 회항 계획(109 NM, 28분 소요, 8,200 LBS) 수치 일치",
+        "status": "8,200 LBS (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "10. CFP 항로 vs ATS FPL",
+        "detail": "비행계획서(CFP) 전 구간 42개 웨이포인트 및 FPL 전문 100% 일치",
+        "status": "100% MATCH",
+        "statusType": "OK"
+      },
+      {
+        "category": "11. RVSM 고도계 점검 요건",
+        "detail": "RVSM 공역 진입 전 주/예비 고도계 지침(허용 오차 75FT) 정상 반영",
+        "status": "VERIFIED (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "12. EDTO / ETOPS 법정 요건",
+        "detail": "EDTO 180분 적용, ERA(RJCC, PANC, KSFO, KSAN) 전 공항 기상 최저치 상회",
+        "status": "EDTO 180 VALID",
+        "statusType": "OK"
+      },
+      {
+        "category": "13. CPDLC / ADS-C 데이터링크",
+        "detail": "북태평양 관제(PAZA/KZAK) FANS-1/A CPDLC 및 ADS-C 활성화 확인",
+        "status": "ACTIVE (OK)",
+        "statusType": "OK"
+      },
+      {
+        "category": "14. RAIM / GPS 무결성 예측",
+        "detail": "출발~도착 전 구간 GPS 위성 수신 무결성(FDE) 이상 없음",
+        "status": "AVAILABLE (OK)",
+        "statusType": "OK"
+      }
+    ]
+  },
+  "weather_briefing": {
+    "departure": {
+      "icao": "RKSI",
+      "name": "인천국제공항 (Incheon Intl)",
+      "etd": "05:30Z (14:30 L)",
+      "runway": "RWY 15L/15R",
+      "wind": "200° / 10 KT",
+      "visibility": "10 KM+ (CAVOK)",
+      "ceiling": "SKC / NSC",
+      "temp_qnh": "24°C / 1012 hPa",
+      "assessment": [
+        "출발지 기상 양호, 마른 활주로(Dry) 이륙 최저치 만족하여 정시 출발 가능.",
+        "이륙 직후 400ft AGL 이하 조기 선회 금지 지침 준수."
+      ],
+      "raw_metar": "METAR RKSI 100500Z 20010KT CAVOK 24/19 Q1012 NOSIG=",
+      "raw_taf": "TAF RKSI 100500Z 1006/1112 20010KT CAVOK="
+    },
+    "destination": {
+      "icao": "KLAX",
+      "name": "로스앤젤레스 국제공항 (Los Angeles Intl)",
+      "eta": "16:12Z (09:12 L)",
+      "runway": "RWY 24L/24R, 25L/25R",
+      "wind": "250° / 08 KT",
+      "visibility": "10 SM (시정 우수)",
+      "ceiling": "FEW015 SCT200",
+      "temp_altimeter": "19°C / A2994",
+      "assessment": [
+        "도착 시간대 해안가 옅은 하층운(Marine Layer) 소산 중, 시정 10SM 이상으로 양호.",
+        "ILS 24R / 25L 표준 정밀 접근 가능, 마른 활주로 상태로 안전 착륙 보장."
+      ],
+      "raw_metar": "METAR KLAX 100553Z 25008KT 10SM FEW015 SCT200 19/14 A2994 RMK AO2=",
+      "raw_taf": "TAF KLAX 100530Z 1006/1112 25008KT P6SM FEW015 FM101600 24012KT P6SM SKC="
+    },
+    "alternate": {
+      "icao": "KSAN",
+      "name": "샌디에이고 국제공항 (San Diego Intl)",
+      "eta": "17:02Z (10:02 L)",
+      "raw_metar": "METAR KSAN 100551Z 27008KT 10SM CLR 21/15 A2993=",
+      "raw_taf": "TAF KSAN 100525Z 1006/1112 27008KT P6SM SKC=",
+      "suitability": "EXCELLENT",
+      "assessment": "KSAN 기상 맑음, 시정 10SM, 법정 교체공항 최저치 완벽 충족."
+    },
+    "turbulence_timeline": [
+      {
+        "time": "T+00:40",
+        "level": "Light Turb",
+        "segment": "[LANAT ~ AGASI / FL350]",
+        "detail": "동해안 상승 및 순항 진입 기류 요동",
+        "action": "정상 순항"
+      },
+      {
+        "time": "T+03:50",
+        "level": "Moderate Turb",
+        "segment": "[51N180E ~ 49N160W]",
+        "detail": "북태평양 제트기류(110KT) 진입에 따른 요동",
+        "action": "승객 벨트 사인 사전 점등"
+      },
+      {
+        "time": "T+09:20",
+        "level": "Light",
+        "segment": "[CINCA ~ PIRAT]",
+        "detail": "캘리포니아 해안 강하 전 약한 난류",
+        "action": "착륙 준비 통보"
+      }
+    ],
+    "sigmets": [
+      {
+        "fir": "[PAZA / KZAK FIR]",
+        "text": "SIGMET FOR MODERATE CAT FL340-FL390 OVER PACIFIC CORRIDOR."
+      }
+    ]
+  },
+  "fuel_and_weights": {
+    "block_fuel": "218,500 LBS",
+    "trip_fuel": "182,400 LBS",
+    "contingency_fuel": "5,600 LBS",
+    "alternate_fuel": "8,200 LBS",
+    "final_reserve": "6,400 LBS",
+    "extra_fuel": "4,500 LBS",
+    "extra_fuel_reason": "KLAX 아침 입항 정체 및 홀딩 대비 디스패치 권고 연료",
+    "estimated_tow": "568,200 LBS",
+    "max_tow": "617,200 LBS",
+    "tow_margin": "여유 49,000 LBS",
+    "estimated_law": "385,800 LBS",
+    "max_law": "451,900 LBS",
+    "payload": {
+      "pax_first": "0 / 0",
+      "pax_business": "28 / 28 (FULL)",
+      "pax_economy": "283 / 283 (FULL)",
+      "pax_total_weight": "70,287 LBS (311명)",
+      "cargo_weight": "24,800 LBS"
+    },
+    "fuel_stats": [
+      {
+        "label": "MEAN DIFFERENCE (ACTUAL - PLAN)",
+        "val": "+650 LBS",
+        "note": "평균 오차"
+      }
+    ]
+  },
+  "company_rules_and_mel": {
+    "company_advisories": [
+      {
+        "id": "COMPANY ADVISORY 01",
+        "title": "RKSI 표준 계기 출항(SID) 및 소음 저감 지침 준수",
+        "detail": "400FT AGL 이하 조기 선회 금지 및 초기 상승 프로파일 준수",
+        "impact": "CRITICAL"
+      },
+      {
+        "id": "COMPANY ADVISORY 02",
+        "title": "KLAX 야간 및 아침 소음 저감(Over-Ocean) 절차 주의",
+        "detail": "서측 해안가 접근 및 입항 소음 절차 숙지",
+        "impact": "CAUTION"
+      }
+    ],
+    "mel_cdl_items": [
+      {
+        "code": "MEL 25-20-01A",
+        "item": "PAX SEAT 24A RECLINE INOP",
+        "action": "DEFERRED IAW MEL 25-20-01A (좌석 고정 완료, 운항 성능 영향 없음)",
+        "status": "CONFIRMED"
+      }
+    ]
+  },
+  "flight_release_report": {
+    "flight_no": "AAR202 / 10AUG26",
+    "dispatcher": "SEONGHYUNG_LEE (TEL: 02-6101-5503 / ocws@flyasiana.com)",
+    "release_statement": "I HEREBY RELEASE THE FLIGHT AAR0202/10AUG, ICN/LAX, HL8382, ETD 0530Z AS PLAN # 1042 UNDER THE CONDITIONS SPECIFIED.",
+    "rvsm_status": "RECORDED (OK)"
+  },
+  "edto_etops": {
+    "etp_items": [
+      {
+        "sector": "ETP 1 : RJCC (신치토세) - PANC (앵커리지)",
+        "pos": "N49°12.0 E165°30.0",
+        "dist1": "1,450 NM to RJCC (03h 10m, Fuel 54,200 LBS)",
+        "dist2": "1,380 NM to PANC (03h 02m, Fuel 52,100 LBS)",
+        "wind": "RJCC M012 / PANC M004"
+      },
+      {
+        "sector": "ETP 2 : PANC (앵커리지) - KSFO (샌프란시스코)",
+        "pos": "N46°30.0 W152°20.0",
+        "dist1": "1,520 NM to PANC (03h 18m, Fuel 56,000 LBS)",
+        "dist2": "1,410 NM to KSFO (03h 05m, Fuel 53,400 LBS)",
+        "wind": "PANC M005 / KSFO P012"
+      }
+    ],
+    "designated_eras": "RKSI, RJCC, PANC, KSFO, KLAX, KSAN"
+  },
+  "ats_icao_fpl": {
+    "raw_fpl": "(FPL-AAR202-IS\n-A359/H-SDE1E2E3FGHIJ2J3J4J5M1P2RWXYZ/LB1D1\n-RKSI0530\n-N0488F350 NOPIK Y644 LANAT G597 AGASI ORENO R211 NIPPI OTR21 EMRON DCT\n 48N160E 50N170E 51N180E/N0490F370 51N170W 49N160W/N0488F390 46N150W\n 43N140W DCT CINCA DCT PIRAT PAINT2\n-KLAX1042 KSAN\n-PBN/A1B1C1D1L1O1S2 DAT/1FANSP CPDLCX SUR/RSP180 260B CANMANDATE\n DOF/260810 REG/HL8382\n EET/RJJJ0038 PAZA0415 KZAK0730 KZLA0948\n SEL/CJHM CODE/71BC32 PER/C RALT/RJCC PANC KSFO KSAN RMK/TCAS II EQUIPPED\n-E/1340 P/TBN R/VE S/M J/L D/8 311 C SILVERGRAY A/WHITE)"
+  },
+  "flight_crew_briefing": {
+    "key_focus": "태평양 PACOTS 항로 ETOPS 모니터링 및 KLAX 입항 해풍/시정 확인",
+    "briefing_topics": [
+      "출발 시 RKSI 400ft AGL 이하 조기 선회 금지 지침 준수",
+      "북태평양 제트기류(CAT) 예상 구간 사전 벨트 사인 점등",
+      "KLAX 접근 시 소음 절차 및 교체공항(KSAN) 연료 확인"
+    ],
+    "crew_coordination": [
+      "단계별 연료 소모율 및 ETP 분기점 잔여 연료 교차 점검",
+      "KLAX 입항 전 관제사 터미널 배정 및 유도로 지시 철저 복창"
+    ],
+    "checklist_action_items": [
+      "출발 전 METAR/TAF 및 NOTAM 최종 업데이트 확인",
+      "탑재 연료량(218,500 LBS)과 OFP 일치 서명 확인",
+      "MEL 25-20-01A 적용 내역 확인"
+    ]
+  },
+  "joint_briefing": {
+    "key_focus": "운항관리사 및 객실승무원 합동 브리핑 (AAR202 ICN-LAX)",
+    "flight_profile_summary": "총 비행시간 10시간 42분, 탑승객 311명 만석. 태평양 중반 약 4시간 경과 지점 터뷸런스 예상.",
+    "safety_priorities": [
+      "태평양 진입 전 객실 안전 점검 완료",
+      "승객 착석 후 벨트 착용 상태 상시 육안 확인"
+    ],
+    "cabin_crew_coordination": [
+      "이륙 후 1차 기내식 서비스는 01:30경 시작",
+      "난류 예상 15분 전 기장실에서 객실 사전 통보"
+    ],
+    "joint_checklist": [
+      {
+        "item": "비행 계획 및 기상 브리핑 공유",
+        "status": "COMPLETED"
+      },
+      {
+        "item": "비상 장구 및 구명정 상태 확인",
+        "status": "COMPLETED"
+      },
+      {
+        "item": "특이 승객 및 의료 장비 탑재 확인",
+        "status": "COMPLETED"
+      }
+    ]
+  },
+  "notam_briefing": {
+    "general_summary": {
+      "departure_hazards": "RKSI (인천): 활주로 15R/33L 스위핑 완료(마른 노면/제동 양호), 유도로 R23/R24 대형기 주기장 진입 제한. 이륙 직후 400FT AGL 이하 조기 선회 엄격 금지(FOM 6.4.4 준수), 유사 호출부호(OZ601/KE601 등) 관제 교신 복창 철저.",
+      "arrival_hazards": "KLAX (로스앤젤레스): 유도로 E 일부(E6~E7) 공사로 폐쇄 -> TWY C/D 우회 주행 요망, 활주로 24L PAPI 일시 점검. 활주로 25R 진입등(ALS) 점검 중이나 CAT II/III 정상 접근 가능, 25L ILS 점검 비행 시간대(0400-0800Z) LOC 준비, 톰 브래들리 터미널 크레인(185FT MSL) 주의. 심야/조기 해안 소음 절차(00:00-06:30L) 준수.",
+      "enroute_hazards": "PAZA/KZAK FIR & KZLA: 북태평양 PACOTS 트랙 14 FL340~FL390 고고도 제트기류 난류(CAT) 주의보, PAINT2 입항 시 10,000FT 이하 250KT 속도 제한 준수. 대양 통과 시 CPDLC/ADS-C 데이터링크 로그온 의무, 대양 비상강하 절차(ICAO Doc 7030) 준수, 스텝클라임 요청 시 20분 전 사전 통보."
+    },
+    "enroute_detailed_analysis": [
+      {
+        "title": "3.1 오클랜드/태평양 PACOTS 트랙 진입 및 비행 의무 규칙 (NOTAM KZAK A1402/26)",
+        "fir": "오클랜드 대양(KZAK) FIR 및 북태평양 공역 (PACOTS Track 14)",
+        "raw_text": "A1402/26 NOTAMN\nQ) KZAK/QARXX/IV/NBO/E/340/390/3500N16000W999\nA) KZAK B) 2608290000 C) 2608292359\nE) PACOTS TRACK 14 EASTBOUND ROUTE: BETO 3500N16000W 3600N15000W 3600N14000W PAINT. REQ SPEED M084. LVL FL340 FL360 FL380. STEP CLIMB MUST BE FILED IN FPL AND CTC ATC 20MIN PRIOR.",
+        "conditions": "동향(Eastbound) 비행편: 트랙 진입 시 지정 고도(FL350/FL370) 및 마하 0.84 유지, 지정 트랙 게이트(BETO) 정시 통과 및 양도 통신 준수.",
+        "correlation": "우리 비행(AAR202)과의 연관성: 당사 비행계획은 BETO 지점에서 PACOTS Track 14로 진입하여 M0.84 / FL350 순항 후 스텝클라임(FL370)하도록 정확히 수립 및 준수하고 있습니다."
+      },
+      {
+        "title": "3.2 앵커리지/오클랜드 FIR 대양 CPDLC / ADS-C 의무 비행 규칙 (NOTAM PAZA A0914/26)",
+        "fir": "앵커리지(PAZA) & 오클랜드(KZAK) 대양 FIR 경계선",
+        "raw_text": "A0914/26 NOTAMN\nQ) PAZA/QCSXX/IV/B/E/000/999/5500N16000W999\nA) PAZA KZAK B) 2608290000 C) 2608292359\nE) OCEANIC DATA LINK MANDATORY. ALL ACFT ENTERING PAZA/KZAK OCEANIC AIRSPACE SHALL LOGON CPDLC/ADS-C VIA ADDR PAZA/KZAK 15 TO 25 MIN PRIOR TO BOUNDARY. IN CASE OF COMM FAILURE APPLY ICAO DOC 7030 REGIONAL SUPP PROCEDURES.",
+        "conditions": "대양 공역 진입 15~25분 전 CPDLC 데이터링크(PAZA/KZAK) 자동 로그온 의무. 통신 두절 시 ICAO Doc 7030 대양 비상 강하 및 15NM 우측 오프셋(SLOP) 절차 준수.",
+        "correlation": "우리 비행과의 연관성: 당사 항로는 RJJJ 통과 후 PAZA/KZAK 진입 시 데이터링크 자동 전송 및 비상 통신/백업 HF 주파수 사전 확인을 완료하여 안전하게 규정을 준수합니다."
+      },
+      {
+        "title": "3.3 LAX 도착 공역(KZLA FIR) 표준 입항 속도/고도 제약 (NOTAM KZLA A0842/26)",
+        "fir": "로스앤젤레스 관제센터(KZLA FIR) 및 PAINT2 STAR 구간",
+        "raw_text": "A0842/26 NOTAMN\nQ) KZLA/QAPXX/IV/BO/E/000/240/3400N11824W050\nA) KZLA B) 2608290000 C) 2608292359\nE) STANDARD ARRIVAL PROCEDURE RESTRICTION: ACFT INBOUND KLAX VIA PAINT2 STAR SHALL MAINTAIN MAX SPEED 250KT AT OR BELOW 10000FT. CROSS FIM AT OR ABOVE 8000FT UNLESS OTHERWISE INSTRUCTED BY ATC.",
+        "conditions": "PAINT2 표준 계기 도착(STAR) 진입 시 10,000FT 이하 250KT 속도 제한 엄수, FIM VORTAC 인근 8,000FT 이상 유지.",
+        "correlation": "우리 비행과의 연관성: FMS 도착 절차에 PAINT2 250KT/10000FT 속도 제약이 정상 입력 수립되어 규정에 부합합니다."
+      },
+      {
+        "title": "3.4 일본/후쿠오카 FIR 해상 군사 훈련 및 임시 위험 구역 (NOTAM RJJJ A0124/26)",
+        "fir": "후쿠오카(RJJJ) FIR 동남측 해상 (280000N1450000E ~ 310000N1480000E)",
+        "raw_text": "A0124/26 NOTAMN\nQ) RJJJ/QWMLW/IV/BO/W/000/999/2930N14630E120\nA) RJJJ B) 2608290100 C) 2608290900\nE) TEMPO DANGER AREA ACT DUE TO MIL FIRING EXER WI AREA: 280000N1450000E - 310000N1450000E - 310000N1480000E - 280000N1480000E TO BEGINNING. FMS ROUTE OFFSET MAY BE ISSUED BY ATC.",
+        "conditions": "고도 SFC ~ UNL 임시 통제 위험구역(Warning Area 발효).",
+        "correlation": "우리 비행과의 연관성: 당사 계획 항로는 위험 구역 북측으로 45NM 안전 이격 우회하여 수립되었으며, 진입 단계에서 관제사 오프셋 지시 발생 시 즉시 대응 가능합니다."
+      }
+    ],
+    "notam_list": [
+      {
         "index": 1,
         "id": "RKSI COAD03/26",
         "station": "RKSI",
@@ -11,8 +538,8 @@
         "shadeReason": "",
         "rawText": "1. 10AUG26 00:00 - 31AUG26 23:59 RKSI COAD03/26\nE) SIMILAR CALL SIGNS: PAY ATTENTION TO ATC COMM OZ335/OZ3355, OZ601/KE601.\n-- Q) RKSI/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (COAD03/26) - 유사 호출부호(OZ601/KE601 등) 관제 교신 시 복창 철저."
-    },
-    {
+      },
+      {
         "index": 2,
         "id": "RKSI COAD05/26",
         "station": "RKSI",
@@ -24,8 +551,8 @@
         "shadeReason": "",
         "rawText": "2. 10AUG26 00:00 - 31AUG26 23:59 RKSI COAD05/26\nE) DO NOT COMMENCE ANY TURN BELOW 400FT AGL DURING DEPARTURE.\n-- Q) RKSI/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (COAD05/26) - 이륙 직후 400FT AGL 이하 조기 선회 엄격히 금지 (FOM 6.4.4 준수)."
-    },
-    {
+      },
+      {
         "index": 3,
         "id": "RKSI A1073/26",
         "station": "RKSI",
@@ -37,8 +564,8 @@
         "shadeReason": "",
         "rawText": "3. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1073/26\nE) TXL R23, R24 AVBL FOR ACFT UP TO ICAO CODE E WHEN TAXIING TO STAND 208R.\n-- Q) RKSI/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1073/26) - 유도로 R23/R24 ICAO 코드 E 대형기 주기장 진입 가용."
-    },
-    {
+      },
+      {
         "index": 4,
         "id": "RKSI A1124/26",
         "station": "RKSI",
@@ -50,8 +577,8 @@
         "shadeReason": "",
         "rawText": "4. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1124/26\nE) RWY 15R/33L WIP FOR ROUTINE SWEEPING COMPLETED. BRAKING ACTION GOOD.\n-- Q) RKSI/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1124/26) - 활주로 15R/33L 노면 점검 및 정기 스위핑 완료, 제동상태 양호."
-    },
-    {
+      },
+      {
         "index": 5,
         "id": "RKSI A1205/26",
         "station": "RKSI",
@@ -63,8 +590,8 @@
         "shadeReason": "",
         "rawText": "5. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1205/26\nE) RWY 16L CAT II/III TDZ LIGHTS CHECK COMPLETED.\n-- Q) RKSI/QLIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1205/26) - 활주로 16L 접지구역등 점검 완료, 정상 가동 중."
-    },
-    {
+      },
+      {
         "index": 6,
         "id": "RKSI A1288/26",
         "station": "RKSI",
@@ -76,8 +603,8 @@
         "shadeReason": "",
         "rawText": "6. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1288/26\nE) BIRD CONCENTRATION VICINITY OF RWY 15L/R DURING SUNRISE/SUNSET.\n-- Q) RKSI/QHAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1288/26) - 일출/일몰 시간대 활주로 15L/R 부근 조류 활동 주의."
-    },
-    {
+      },
+      {
         "index": 7,
         "id": "RKSI A1340/26",
         "station": "RKSI",
@@ -89,8 +616,8 @@
         "shadeReason": "",
         "rawText": "7. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1340/26\nE) DVOR/DME NCN 115.3 MHZ OPERATING NORMALLY.\n-- Q) RKSI/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1340/26) - 인천 NCN DVOR/DME 항행안전시설 정상 작동 중."
-    },
-    {
+      },
+      {
         "index": 8,
         "id": "RKSI A1390/26",
         "station": "RKSI",
@@ -102,8 +629,8 @@
         "shadeReason": "",
         "rawText": "8. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1390/26\nE) TWY N3, N4 CENTERLINE LIGHTS INTENSITY NORMAL.\n-- Q) RKSI/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1390/26) - 유도로 N3, N4 중심선등 정상 점등."
-    },
-    {
+      },
+      {
         "index": 9,
         "id": "RKSI A1420/26",
         "station": "RKSI",
@@ -115,8 +642,8 @@
         "shadeReason": "",
         "rawText": "9. 10AUG26 00:00 - 31AUG26 23:59 RKSI A1420/26\nE) DE-ICING PADS 1 TO 4 AVAILABLE UPON REQUEST.\n-- Q) RKSI/QRAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (A1420/26) - 디아이싱 패드 1~4번 요청 시 사용 가용."
-    },
-    {
+      },
+      {
         "index": 10,
         "id": "RKSI Z0286/26",
         "station": "RKSI",
@@ -128,8 +655,8 @@
         "shadeReason": "AIP SUP 발효 (차트 반영 완료)",
         "rawText": "10. 10AUG26 00:00 - 31AUG26 23:59 RKSI Z0286/26\nE) TRIGGER NOTAM AIP SUP 41/26 ACFT STAND 711 CLOSED DUE TO CONST.\n-- Q) RKSI/QRAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (Z0286/26) - 주기장 711번 임시 시설 공사로 폐쇄."
-    },
-    {
+      },
+      {
         "index": 11,
         "id": "RKSI Z0312/26",
         "station": "RKSI",
@@ -141,8 +668,8 @@
         "shadeReason": "타 기종 한정 고지",
         "rawText": "11. 10AUG26 00:00 - 31AUG26 23:59 RKSI Z0312/26\nE) NOISE ABATEMENT RESTRICTIONS FOR TURBOPROP ACFT ONLY.\n-- Q) RKSI/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (Z0312/26) - 터보프롭 항공기 대상 소음 지침 고지 (본 편 비적용)."
-    },
-    {
+      },
+      {
         "index": 12,
         "id": "RKSI Z0350/26",
         "station": "RKSI",
@@ -154,8 +681,8 @@
         "shadeReason": "야간 비운항 시간대 작업",
         "rawText": "12. 10AUG26 00:00 - 31AUG26 23:59 RKSI Z0350/26\nE) APRON FLOODLIGHT MAST 12 REPLACEMENT COMPLETED 1800-2100Z.\n-- Q) RKSI/QLIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "인천국제공항 (출발지) 발효 NOTAM (Z0350/26) - 주기장 조명탑 교체 작업 완료."
-    },
-    {
+      },
+      {
         "index": 13,
         "id": "KLAX A3421/26",
         "station": "KLAX",
@@ -167,8 +694,8 @@
         "shadeReason": "",
         "rawText": "13. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3421/26\nE) TWY E CLSD BTWN TWY E6 AND TWY E7 DUE TO CONST. PILOTS USE CAUTION WHEN TAXIING VIA TWY C.\n-- Q) KLAX/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3421/26) - 유도로 E 일부(E6~E7) 공사로 폐쇄. 유도로 C/D로 지상 이동 우회 요망."
-    },
-    {
+      },
+      {
         "index": 14,
         "id": "KLAX A3105/26",
         "station": "KLAX",
@@ -180,8 +707,8 @@
         "shadeReason": "",
         "rawText": "14. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3105/26\nE) RWY 07L/25R ALS PARTIALLY COMMISSIONED. CAT II/III OPERATIONS NORMAL.\n-- Q) KLAX/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3105/26) - 활주로 25R 진입등화시스템(ALS) 점검 중이나 CAT II/III 정밀접근 정상 운용 가능."
-    },
-    {
+      },
+      {
         "index": 15,
         "id": "KLAX A3120/26",
         "station": "KLAX",
@@ -193,8 +720,8 @@
         "shadeReason": "",
         "rawText": "15. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3120/26\nE) RWY 24L/06R PAPI U/S DUE TO ELECTRICAL REPLACEMENT.\n-- Q) KLAX/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3120/26) - 활주로 24L 정밀진입각지시등(PAPI) 교체 작업으로 일시 운용 중단."
-    },
-    {
+      },
+      {
         "index": 16,
         "id": "KLAX A3145/26",
         "station": "KLAX",
@@ -206,8 +733,8 @@
         "shadeReason": "",
         "rawText": "16. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3145/26\nE) ILS RWY 25L GP/DME FREQ 109.9 MHZ OTS FOR FLIGHT CHECK 0400-0800Z.\n-- Q) KLAX/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3145/26) - 활주로 25L ILS 글라이드패스 점검 비행(0400-0800Z) 예정, LOC 접근 준비."
-    },
-    {
+      },
+      {
         "index": 17,
         "id": "KLAX A3188/26",
         "station": "KLAX",
@@ -219,8 +746,8 @@
         "shadeReason": "",
         "rawText": "17. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3188/26\nE) OBST CRANE ERECTED AT 335630N 1182410W (TBIT EXPANSION) ELEV 185FT MSL LIGHTED.\n-- Q) KLAX/QOBXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3188/26) - 톰 브래들리 터미널 확장 공사 크레인(185FT MSL) 설치, 주야간 경고등 점등."
-    },
-    {
+      },
+      {
         "index": 18,
         "id": "KLAX A3201/26",
         "station": "KLAX",
@@ -232,8 +759,8 @@
         "shadeReason": "",
         "rawText": "18. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3201/26\nE) TWY C BTWN TWY C3 AND TWY C5 CLSD DAILY 0200-0700Z FOR REPAVING.\n-- Q) KLAX/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3201/26) - 유도로 C3~C5 구간 야간 재포장 공사로 매일 0200-0700Z 폐쇄."
-    },
-    {
+      },
+      {
         "index": 19,
         "id": "KLAX A3222/26",
         "station": "KLAX",
@@ -245,8 +772,8 @@
         "shadeReason": "",
         "rawText": "19. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3222/26\nE) TERMINAL 4 APRON STANDS 41-45 TAXILANE RESTRICTION WINGSPAN MAX 65M.\n-- Q) KLAX/QRAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3222/26) - 터미널 4 에이프런 유도로 날개폭 65M 초과 항공기 진입 제한."
-    },
-    {
+      },
+      {
         "index": 20,
         "id": "KLAX A3250/26",
         "station": "KLAX",
@@ -258,8 +785,8 @@
         "shadeReason": "",
         "rawText": "20. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3250/26\nE) BIRDS HAZARD IN VICINITY OF ARPT DUE TO COASTAL MIGRATION.\n-- Q) KLAX/QHAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3250/26) - 해안 조류 이동에 따른 공항 반경 내 조류 충돌 주의보."
-    },
-    {
+      },
+      {
         "index": 21,
         "id": "KLAX A3290/26",
         "station": "KLAX",
@@ -271,8 +798,8 @@
         "shadeReason": "",
         "rawText": "21. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3290/26\nE) OVER-OCEAN NOISE ABATEMENT PROCEDURES IN EFFECT 0000-0630L (0700-1330Z).\n-- Q) KLAX/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3290/26) - 심야/조기 해안 소음 저감 절차(00:00-06:30L) 발효, 24L/R 및 25L/R 이착륙 절차 준수."
-    },
-    {
+      },
+      {
         "index": 22,
         "id": "KLAX A3310/26",
         "station": "KLAX",
@@ -284,8 +811,8 @@
         "shadeReason": "",
         "rawText": "22. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3310/26\nE) RWY 25L TDZ LIGHTS CHECK COMPLETED. FULL INTENSITY AVAILABLE.\n-- Q) KLAX/QLIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3310/26) - 활주로 25L 접지구역등 점검 완료, 최대 광도 정상 가용."
-    },
-    {
+      },
+      {
         "index": 23,
         "id": "KLAX A3330/26",
         "station": "KLAX",
@@ -297,8 +824,8 @@
         "shadeReason": "",
         "rawText": "23. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3330/26\nE) TWY D CROSSING RWY 24L HOLD SHORT LINE RE-PAINTED.\n-- Q) KLAX/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3330/26) - 유도로 D 활주로 24L 정지대기선 도색 완료, 주간 시인성 양호."
-    },
-    {
+      },
+      {
         "index": 24,
         "id": "KLAX A3350/26",
         "station": "KLAX",
@@ -310,8 +837,8 @@
         "shadeReason": "",
         "rawText": "24. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3350/26\nE) VOR/DME LAX FREQ 113.6 MHZ CH83 OPERATING NORMALLY.\n-- Q) KLAX/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3350/26) - LAX VOR/DME 113.6 MHz 정상 운용 중."
-    },
-    {
+      },
+      {
         "index": 25,
         "id": "KLAX A3370/26",
         "station": "KLAX",
@@ -323,8 +850,8 @@
         "shadeReason": "",
         "rawText": "25. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3370/26\nE) RWY 24R/06L SURFACE CONDITIONS DRY. FRICTION COEFFICIENT GOOD.\n-- Q) KLAX/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3370/26) - 활주로 24R 노면 상태 건조, 마찰계수 양호(GOOD)."
-    },
-    {
+      },
+      {
         "index": 26,
         "id": "KLAX A3400/26",
         "station": "KLAX",
@@ -336,8 +863,8 @@
         "shadeReason": "저고도 장애물 (접근 표면 미침범)",
         "rawText": "26. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3400/26\nE) TEMPORARY LIGHT POLE 45FT AGL 1NM NORTH OF ARPT.\n-- Q) KLAX/QOBXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3400/26) - 공항 북측 1NM 지점 임시 조명주 설치 (접근 절차 비영향)."
-    },
-    {
+      },
+      {
         "index": 27,
         "id": "KLAX A3430/26",
         "station": "KLAX",
@@ -349,8 +876,8 @@
         "shadeReason": "AIP 차트 기 수록 완료",
         "rawText": "27. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3430/26\nE) TWY D7 PERMANENT RE-DESIGNATION TO TWY D8 EFFECTIVE AIRAC 2607.\n-- Q) KLAX/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3430/26) - 유도로 D7 명칭이 D8로 영구 변경 고지 완료."
-    },
-    {
+      },
+      {
         "index": 28,
         "id": "KLAX A3460/26",
         "station": "KLAX",
@@ -362,8 +889,8 @@
         "shadeReason": "소형기 전용 주기장",
         "rawText": "28. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3460/26\nE) GENERAL AVIATION STANDS GA1-GA4 RESURFACED.\n-- Q) KLAX/QRAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3460/26) - 일반 항공 소형기 전용 스탠드 포장 완료."
-    },
-    {
+      },
+      {
         "index": 29,
         "id": "KLAX A3490/26",
         "station": "KLAX",
@@ -375,8 +902,8 @@
         "shadeReason": "주간 비운항 시간대 작업",
         "rawText": "29. 10AUG26 00:00 - 31AUG26 23:59 KLAX A3490/26\nE) TAXIWAY EDGE LIGHTS BULB REPLACEMENT DAILY 1800-2000Z.\n-- Q) KLAX/QLIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 국제공항 (목적지) 발효 NOTAM (A3490/26) - 유도로 유도등 일상 전구 교체 작업."
-    },
-    {
+      },
+      {
         "index": 30,
         "id": "KSAN A0842/26",
         "station": "KSAN",
@@ -388,8 +915,8 @@
         "shadeReason": "",
         "rawText": "30. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0842/26\nE) RWY 09/27 SURFACE CONDITIONS DRY. BRAKING ACTION GOOD.\n-- Q) KSAN/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0842/26) - 샌디에이고 교체공항 활주로 09/27 노면 건조, 제동상태 양호(GOOD)."
-    },
-    {
+      },
+      {
         "index": 31,
         "id": "KSAN A0860/26",
         "station": "KSAN",
@@ -401,8 +928,8 @@
         "shadeReason": "",
         "rawText": "31. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0860/26\nE) TWY B BTWN TWY B2 AND TWY B4 CLSD FOR JOINT SEALING.\n-- Q) KSAN/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0860/26) - 유도로 B 일부 구간 줄눈 보수 작업으로 폐쇄."
-    },
-    {
+      },
+      {
         "index": 32,
         "id": "KSAN A0890/26",
         "station": "KSAN",
@@ -414,8 +941,8 @@
         "shadeReason": "",
         "rawText": "32. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0890/26\nE) ILS RWY 09 LOCALIZER IDENT ISAN FREQ 111.55 MHZ NORMAL.\n-- Q) KSAN/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0890/26) - 활주로 09 ILS 로컬라이저 정상 송출 중."
-    },
-    {
+      },
+      {
         "index": 33,
         "id": "KSAN A0910/26",
         "station": "KSAN",
@@ -427,8 +954,8 @@
         "shadeReason": "",
         "rawText": "33. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0910/26\nE) RWY 27 REIL U/S DUE TO CABLE FAULT.\n-- Q) KSAN/QLIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0910/26) - 활주로 27 말단 식별등(REIL) 일시 결함."
-    },
-    {
+      },
+      {
         "index": 34,
         "id": "KSAN A0935/26",
         "station": "KSAN",
@@ -440,8 +967,8 @@
         "shadeReason": "",
         "rawText": "34. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0935/26\nE) RNAV (GPS) RWY 27 APPROACH AUTHORIZED FOR CATEGORY C/D ACFT.\n-- Q) KSAN/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0935/26) - 활주로 27 RNAV 접근 C/D급 항공기 정상 인가."
-    },
-    {
+      },
+      {
         "index": 35,
         "id": "KSAN A0960/26",
         "station": "KSAN",
@@ -453,8 +980,8 @@
         "shadeReason": "",
         "rawText": "35. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0960/26\nE) BIRD HAZARD SAN DIEGO BAY HARBOR VICINITY.\n-- Q) KSAN/QHAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0960/26) - 샌디에이고 항만 인근 조류 주의보."
-    },
-    {
+      },
+      {
         "index": 36,
         "id": "KSAN A0980/26",
         "station": "KSAN",
@@ -466,8 +993,8 @@
         "shadeReason": "시계비행 장애물 (계기접근 미영향)",
         "rawText": "36. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0980/26\nE) CRANE 2NM EAST OF ARPT 120FT AGL LIGHTED.\n-- Q) KSAN/QOBXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0980/26) - 공항 동측 2NM 지점 크레인 설치."
-    },
-    {
+      },
+      {
         "index": 37,
         "id": "KSAN A0995/26",
         "station": "KSAN",
@@ -479,8 +1006,8 @@
         "shadeReason": "소형 주기장",
         "rawText": "37. 10AUG26 00:00 - 31AUG26 23:59 KSAN A0995/26\nE) STAND 12 APRON LINE REPAINTING COMPLETED.\n-- Q) KSAN/QRAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌디에이고 국제공항 (교체공항) 발효 NOTAM (A0995/26) - 12번 스탠드 에이프런 라인 도색 완료."
-    },
-    {
+      },
+      {
         "index": 38,
         "id": "KONT A0410/26",
         "station": "KONT",
@@ -492,8 +1019,8 @@
         "shadeReason": "",
         "rawText": "38. 10AUG26 00:00 - 31AUG26 23:59 KONT A0410/26\nE) RWY 26L/08R CAT II/III ILS AND TDZ LIGHTS NORMAL.\n-- Q) KONT/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "온타리오 국제공항 (상업 대체공항) 발효 NOTAM (A0410/26) - 온타리오 공항 활주로 26L CAT II/III 정밀접근 및 등화 정상 가동."
-    },
-    {
+      },
+      {
         "index": 39,
         "id": "KONT A0430/26",
         "station": "KONT",
@@ -505,8 +1032,8 @@
         "shadeReason": "",
         "rawText": "39. 10AUG26 00:00 - 31AUG26 23:59 KONT A0430/26\nE) TWY W FULL LENGTH AVAILABLE FOR WIDE-BODY ACFT.\n-- Q) KONT/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "온타리오 국제공항 (상업 대체공항) 발효 NOTAM (A0430/26) - 유도로 W 대형기(A350/B777) 전 구간 주행 가용."
-    },
-    {
+      },
+      {
         "index": 40,
         "id": "KONT A0460/26",
         "station": "KONT",
@@ -518,8 +1045,8 @@
         "shadeReason": "",
         "rawText": "40. 10AUG26 00:00 - 31AUG26 23:59 KONT A0460/26\nE) ONT VOR/DME 115.6 MHZ OPERATING NORMALLY.\n-- Q) KONT/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "온타리오 국제공항 (상업 대체공항) 발효 NOTAM (A0460/26) - ONT VOR/DME 115.6 MHz 정상 운용 중."
-    },
-    {
+      },
+      {
         "index": 41,
         "id": "KONT A0480/26",
         "station": "KONT",
@@ -531,8 +1058,8 @@
         "shadeReason": "화물 에이프런",
         "rawText": "41. 10AUG26 00:00 - 31AUG26 23:59 KONT A0480/26\nE) CARGO RAMP STANDS C5-C8 REFURBISHED.\n-- Q) KONT/QRAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "온타리오 국제공항 (상업 대체공항) 발효 NOTAM (A0480/26) - 화물 에이프런 스탠드 보수 완료."
-    },
-    {
+      },
+      {
         "index": 42,
         "id": "KSFO A1520/26",
         "station": "KSFO",
@@ -544,8 +1071,8 @@
         "shadeReason": "",
         "rawText": "42. 10AUG26 00:00 - 31AUG26 23:59 KSFO A1520/26\nE) RWY 28L/10R AND RWY 28R/10L SURFACE DRY, ILS NORMAL.\n-- Q) KSFO/QRUXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌프란시스코 국제공항 (항로 교체공항) 발효 NOTAM (A1520/26) - 활주로 28L/R 정밀계기접근 및 활주로 표면 건조(양호)."
-    },
-    {
+      },
+      {
         "index": 43,
         "id": "KSFO A1550/26",
         "station": "KSFO",
@@ -557,8 +1084,8 @@
         "shadeReason": "",
         "rawText": "43. 10AUG26 00:00 - 31AUG26 23:59 KSFO A1550/26\nE) TWY T TAXILANE RESTRICTIONS COMPLY WITH SFO GROUND ATC.\n-- Q) KSFO/QTAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌프란시스코 국제공항 (항로 교체공항) 발효 NOTAM (A1550/26) - 유도로 T 지상 이동 시 관제사 지시 준수."
-    },
-    {
+      },
+      {
         "index": 44,
         "id": "KSFO A1580/26",
         "station": "KSFO",
@@ -570,8 +1097,8 @@
         "shadeReason": "",
         "rawText": "44. 10AUG26 00:00 - 31AUG26 23:59 KSFO A1580/26\nE) SIMULTANEOUS CLOSE PARALLEL PRM APPROACHES IN EFFECT WHEN IMC.\n-- Q) KSFO/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌프란시스코 국제공항 (항로 교체공항) 발효 NOTAM (A1580/26) - 기상 악화 시 활주로 28L/R 평행 계기접근(PRM) 실시."
-    },
-    {
+      },
+      {
         "index": 45,
         "id": "KSFO A1610/26",
         "station": "KSFO",
@@ -583,8 +1110,8 @@
         "shadeReason": "터미널 1 공사",
         "rawText": "45. 10AUG26 00:00 - 31AUG26 23:59 KSFO A1610/26\nE) T1 RECONSTRUCTION CRANE 140FT MSL.\n-- Q) KSFO/QOBXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "샌프란시스코 국제공항 (항로 교체공항) 발효 NOTAM (A1610/26) - 터미널 1 재건축 크레인 점등."
-    },
-    {
+      },
+      {
         "index": 46,
         "id": "PAZA A0044/26",
         "station": "PAZA",
@@ -596,8 +1123,8 @@
         "shadeReason": "",
         "rawText": "46. 10AUG26 00:00 - 31AUG26 23:59 PAZA A0044/26\nE) PACIFIC CORRIDOR MODERATE TURBULENCE FL340-FL390 OVER OTR TRACKS.\n-- Q) PAZA/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "앵커리지 대양관제공역 (PAZA FIR) 발효 NOTAM (A0044/26) - 북태평양 항로 FL340~FL390 구간 제트기류 난류 주의보 발효."
-    },
-    {
+      },
+      {
         "index": 47,
         "id": "PAZA A0065/26",
         "station": "PAZA",
@@ -609,8 +1136,8 @@
         "shadeReason": "",
         "rawText": "47. 10AUG26 00:00 - 31AUG26 23:59 PAZA A0065/26\nE) CPDLC / ADS-C DATA LINK LOGON MANDATORY FOR OCEANIC CROSSING.\n-- Q) PAZA/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "앵커리지 대양관제공역 (PAZA FIR) 발효 NOTAM (A0065/26) - 대양 통과 시 CPDLC 및 ADS-C 데이터링크 로그온 의무 준수."
-    },
-    {
+      },
+      {
         "index": 48,
         "id": "PAZA A0088/26",
         "station": "PAZA",
@@ -622,8 +1149,8 @@
         "shadeReason": "",
         "rawText": "48. 10AUG26 00:00 - 31AUG26 23:59 PAZA A0088/26\nE) ETOPS PACOTS TRACK 14 DEFINED BY COORDINATES 51N180E TO 46N150W.\n-- Q) PAZA/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "앵커리지 대양관제공역 (PAZA FIR) 발효 NOTAM (A0088/26) - PACOTS 트랙 14 정의 좌표 정상 적용."
-    },
-    {
+      },
+      {
         "index": 49,
         "id": "PAZA A0115/26",
         "station": "PAZA",
@@ -635,8 +1162,8 @@
         "shadeReason": "",
         "rawText": "49. 10AUG26 00:00 - 31AUG26 23:59 PAZA A0115/26\nE) COLD BAY VOR/DME CDB 112.6 MHZ OPERATING NORMALLY.\n-- Q) PAZA/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "앵커리지 대양관제공역 (PAZA FIR) 발효 NOTAM (A0115/26) - 콜드베이 VOR 항행안전시설 정상 송출."
-    },
-    {
+      },
+      {
         "index": 50,
         "id": "PAZA A0140/26",
         "station": "PAZA",
@@ -648,8 +1175,8 @@
         "shadeReason": "극지방 비행 전용 고지",
         "rawText": "50. 10AUG26 00:00 - 31AUG26 23:59 PAZA A0140/26\nE) ARCTIC EXPEDITION AIRSPACE PROHIBITED NORTH OF 75N.\n-- Q) PAZA/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "앵커리지 대양관제공역 (PAZA FIR) 발효 NOTAM (A0140/26) - 북위 75도 이상 비행 제한 고지 (본 항로 비영향)."
-    },
-    {
+      },
+      {
         "index": 51,
         "id": "PAZA A0170/26",
         "station": "PAZA",
@@ -661,8 +1188,8 @@
         "shadeReason": "군 작전 공역 고지",
         "rawText": "51. 10AUG26 00:00 - 31AUG26 23:59 PAZA A0170/26\nE) MILITARY EXERCISE IN ALASKAN MOA FL200 AND BELOW.\n-- Q) PAZA/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "앵커리지 대양관제공역 (PAZA FIR) 발효 NOTAM (A0170/26) - 알래스카 저고도 군사훈련공역 (순항고도 미영향)."
-    },
-    {
+      },
+      {
         "index": 52,
         "id": "KZAK A0412/26",
         "station": "KZAK",
@@ -674,8 +1201,8 @@
         "shadeReason": "",
         "rawText": "52. 10AUG26 00:00 - 31AUG26 23:59 KZAK A0412/26\nE) OCEANIC CONTINGENCY PROCEDURES IN ACCORDANCE WITH ICAO DOC 7030.\n-- Q) KZAK/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "오클랜드 대양관제공역 (KZAK FIR) 발효 NOTAM (A0412/26) - 대양 비상 강하 및 우회 절차(ICAO Doc 7030) 표준 적용."
-    },
-    {
+      },
+      {
         "index": 53,
         "id": "KZAK A0435/26",
         "station": "KZAK",
@@ -687,8 +1214,8 @@
         "shadeReason": "",
         "rawText": "53. 10AUG26 00:00 - 31AUG26 23:59 KZAK A0435/26\nE) HF FREQ 8867 KHZ PRIMARY, 13288 KHZ SECONDARY OPERATIONAL.\n-- Q) KZAK/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "오클랜드 대양관제공역 (KZAK FIR) 발효 NOTAM (A0435/26) - 대양 단파통신(HF) 주/예비 주파수 정상 가용."
-    },
-    {
+      },
+      {
         "index": 54,
         "id": "KZAK A0460/26",
         "station": "KZAK",
@@ -700,8 +1227,8 @@
         "shadeReason": "",
         "rawText": "54. 10AUG26 00:00 - 31AUG26 23:59 KZAK A0460/26\nE) PACIFIC STEP CLIMB PROCEDURES: REQUEST LEVEL CHANGE 20 MIN PRIOR.\n-- Q) KZAK/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "오클랜드 대양관제공역 (KZAK FIR) 발효 NOTAM (A0460/26) - 태평양 순항 중 스텝클라임 요청 시 20분 전 사전 통보."
-    },
-    {
+      },
+      {
         "index": 55,
         "id": "KZAK A0485/26",
         "station": "KZAK",
@@ -713,8 +1240,8 @@
         "shadeReason": "하와이 남측 공역 (본 항로 비영향)",
         "rawText": "55. 10AUG26 00:00 - 31AUG26 23:59 KZAK A0485/26\nE) HAWAIIAN MILITARY EXERCISE SOUTH OF 20N.\n-- Q) KZAK/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "오클랜드 대양관제공역 (KZAK FIR) 발효 NOTAM (A0485/26) - 하와이 남측 군사 훈련 공역 설정."
-    },
-    {
+      },
+      {
         "index": 56,
         "id": "KZAK A0510/26",
         "station": "KZAK",
@@ -726,8 +1253,8 @@
         "shadeReason": "위성 통신 백업 고지",
         "rawText": "56. 10AUG26 00:00 - 31AUG26 23:59 KZAK A0510/26\nE) INMARSAT CLASSIC AERO RETIREMENT COMPLETED.\n-- Q) KZAK/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "오클랜드 대양관제공역 (KZAK FIR) 발효 NOTAM (A0510/26) - 구형 위성 통신 종료, Iridium 및 SwiftBroadband 표준 적용."
-    },
-    {
+      },
+      {
         "index": 57,
         "id": "KZLA A1150/26",
         "station": "KZLA",
@@ -739,8 +1266,8 @@
         "shadeReason": "",
         "rawText": "57. 10AUG26 00:00 - 31AUG26 23:59 KZLA A1150/26\nE) ARRIVAL TRANSITION VIA PAINT2 / PIRAT SPEED MAX 250KT AT 10000FT.\n-- Q) KZLA/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 관제공역 (KZLA FIR) 발효 NOTAM (A1150/26) - PAINT2 입항 절차 시 10,000FT 이하 250KT 속도 제한 엄수."
-    },
-    {
+      },
+      {
         "index": 58,
         "id": "KZLA A1180/26",
         "station": "KZLA",
@@ -752,8 +1279,8 @@
         "shadeReason": "",
         "rawText": "58. 10AUG26 00:00 - 31AUG26 23:59 KZLA A1180/26\nE) SOUTHERN CALIFORNIA TRACON CPDLC LOGON ID KSOK OPERATIONAL.\n-- Q) KZLA/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 관제공역 (KZLA FIR) 발효 NOTAM (A1180/26) - 남부 캘리포니아 접근관제소 데이터링크 정상 활성화."
-    },
-    {
+      },
+      {
         "index": 59,
         "id": "KZLA A1210/26",
         "station": "KZLA",
@@ -765,8 +1292,8 @@
         "shadeReason": "",
         "rawText": "59. 10AUG26 00:00 - 31AUG26 23:59 KZLA A1210/26\nE) SANTA MONICA MOUNTAINS VFR TRAFFIC CONCENTRATION BELOW 5000FT.\n-- Q) KZLA/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 관제공역 (KZLA FIR) 발효 NOTAM (A1210/26) - 산타모니카 산악 지대 저고도 시계비행 항공기 활동 주의."
-    },
-    {
+      },
+      {
         "index": 60,
         "id": "KZLA A1240/26",
         "station": "KZLA",
@@ -778,8 +1305,8 @@
         "shadeReason": "경항공기 전용 VFR 통로",
         "rawText": "60. 10AUG26 00:00 - 31AUG26 23:59 KZLA A1240/26\nE) SPECIAL VFR FLIGHT CORRIDOR LAX VFR TRANSITION 3500FT.\n-- Q) KZLA/QPRXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "로스앤젤레스 관제공역 (KZLA FIR) 발효 NOTAM (A1240/26) - 특수 VFR 전환 통로 (IFR 여객기 비영향)."
-    },
-    {
+      },
+      {
         "index": 61,
         "id": "RJJJ A0520/26",
         "station": "RJJJ",
@@ -791,8 +1318,8 @@
         "shadeReason": "",
         "rawText": "61. 10AUG26 00:00 - 31AUG26 23:59 RJJJ A0520/26\nE) Y644 / G597 ROUTE RADAR SURVEILLANCE COVERAGE NORMAL.\n-- Q) RJJJ/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "후쿠오카 관제공역 (RJJJ FIR) 발효 NOTAM (A0520/26) - 동해 및 일본 영공 통과 항로 레이더 감시 정상 운용."
-    },
-    {
+      },
+      {
         "index": 62,
         "id": "RJJJ A0550/26",
         "station": "RJJJ",
@@ -804,8 +1331,8 @@
         "shadeReason": "",
         "rawText": "62. 10AUG26 00:00 - 31AUG26 23:59 RJJJ A0550/26\nE) NIIGATA VOR GTC 115.5 MHZ OPERATING NORMALLY.\n-- Q) RJJJ/QNAXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "후쿠오카 관제공역 (RJJJ FIR) 발효 NOTAM (A0550/26) - 니가타 GTC VOR 정상 운용 중."
-    },
-    {
+      },
+      {
         "index": 63,
         "id": "RJJJ A0580/26",
         "station": "RJJJ",
@@ -817,5 +1344,35 @@
         "shadeReason": "일본 내륙 저고도 고지",
         "rawText": "63. 10AUG26 00:00 - 31AUG26 23:59 RJJJ A0580/26\nE) VOLCANIC ASH ADVISORY MT. ASO ACTIVITY LEVEL 1 (NO ENROUTE IMPACT).\n-- Q) RJJJ/QAIXX/IV/NBO/A/000/999/ --",
         "koreanSummary": "후쿠오카 관제공역 (RJJJ FIR) 발효 NOTAM (A0580/26) - 아소산 화산재 정보 (항로 비영향)."
-    }
-]
+      }
+    ]
+  },
+  "threat_and_error_management": {
+    "top_threats": [
+      {
+        "threat": "KLAX 아침 입항 해안 층운(Marine Layer) 및 활주로 시정 저하",
+        "impact": "High",
+        "mitigation": "ILS 정밀 접근 모드 조기 전환 및 결심고도(DA) 준수, KSAN 회항 연료 확보"
+      },
+      {
+        "threat": "북태평양 PACOTS 항로 FL370 제트기류 전단 난류(CAT)",
+        "impact": "Medium",
+        "mitigation": "예상 구간 진입 15분 전 객실 사전 안내 및 벨트 사인 점등"
+      },
+      {
+        "threat": "KLAX 서측 터미널 유도로 E 공사에 따른 지상 이동 혼선",
+        "impact": "Medium",
+        "mitigation": "지상 이동 차트(Airport Moving Map) 상시 대조 및 관제 지시 철저 복창"
+      }
+    ],
+    "pilot_action_items": [
+      "이륙 전 활주로 15R 마른 노면 이륙 성능 재확인",
+      "태평양 ETP 1 & 2 지점 통과 시 실제 소모량 vs 비행계획서 오차 기록",
+      "KLAX 착륙 전 최신 ATIS 청취 및 접근 활주로(24R/25L) 버그 세팅"
+    ],
+    "briefing_points": [
+      "객실 승무원과 난류 예상 구간 및 서비스 중단 프로토콜 사전 조율 완료",
+      "운항관리사 권고 추가 연료(DISC 4,500 LBS) 탑재 승인 완료"
+    ]
+  }
+}

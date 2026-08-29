@@ -256,7 +256,7 @@ export default function CheckPage({ briefing }) {
         {/* Weight Limitation Callout Notice */}
         <div className="bg-slate-950 p-3.5 rounded-xl border border-amber-500/40 flex flex-wrap items-center justify-between gap-2 text-xs shadow-inner">
           <div className="flex items-center gap-2.5">
-            <span className="px-2.5 py-1 bg-amber-400 text-slate-950 font-black rounded-lg text-[11px] tracking-wider uppercase shrink-0">
+            <span className="px-2.5 py-1 bg-amber-400 text-slate-950 font-black rounded-lg text-xs tracking-wider uppercase shrink-0">
               ★ 중량 여유 제한사항 분석
             </span>
             <span className="text-slate-200 leading-relaxed">
@@ -315,7 +315,7 @@ export default function CheckPage({ briefing }) {
                 <div className="text-sm sm:text-base text-slate-200 flex-1 leading-relaxed pl-1 font-medium flex flex-wrap items-center gap-2">
                   <span>{cleanDetail}</span>
                   {isGoverning && (
-                    <span className="text-[11px] font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/60 rounded-md shrink-0">
+                    <span className="text-xs font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/60 rounded-md shrink-0">
                       ★ 최소 여유 (탑재 제한사항)
                     </span>
                   )}

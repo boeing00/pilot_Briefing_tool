@@ -30,7 +30,7 @@ export default function AudioPlayerBar({ scriptText }) {
               <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wide">
                 Voice Briefing Player
               </h3>
-              <span className={`text-[10px] px-2 py-0.5 rounded font-mono font-semibold ${
+              <span className={`text-2xs px-2 py-0.5 rounded font-mono font-semibold ${
                 isPlaying
                   ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
                   : 'bg-slate-800 text-slate-400'
@@ -52,7 +52,7 @@ export default function AudioPlayerBar({ scriptText }) {
               <button
                 key={speed}
                 onClick={() => setRate(speed)}
-                className={`px-2 py-0.5 rounded text-[11px] font-medium transition ${
+                className={`px-2 py-0.5 rounded text-xs font-medium transition ${
                   rate === speed
                     ? 'bg-blue-600 text-white shadow'
                     : 'text-slate-400 hover:text-slate-200'

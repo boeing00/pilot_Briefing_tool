@@ -127,7 +127,7 @@ export default function EfbSidebar({ activeTab, onSelectTab, onOpenAiChat }) {
               </div>
 
               <span
-                className={`text-[9px] font-mono font-bold tracking-wider mt-1.5 uppercase ${
+                className={`text-2xs font-mono font-bold tracking-wider mt-1.5 uppercase ${
                   isActive ? 'text-amber-300' : 'text-slate-400 group-hover:text-slate-300'
                 }`}
               >

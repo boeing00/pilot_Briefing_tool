@@ -50,15 +50,15 @@ export default function ReportPage({ briefing }) {
           </span>
           <div className="grid grid-cols-3 gap-3 text-xs">
             <div className="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
-              <span className="text-slate-500 block text-[10px]">CAPT PRIMARY</span>
+              <span className="text-slate-500 block text-2xs">CAPT PRIMARY</span>
               <span className="text-slate-200 font-bold block mt-1">RECORDED (OK)</span>
             </div>
             <div className="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
-              <span className="text-slate-500 block text-[10px]">STANDBY</span>
+              <span className="text-slate-500 block text-2xs">STANDBY</span>
               <span className="text-slate-200 font-bold block mt-1">RECORDED (OK)</span>
             </div>
             <div className="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
-              <span className="text-slate-500 block text-[10px]">F/O PRIMARY</span>
+              <span className="text-slate-500 block text-2xs">F/O PRIMARY</span>
               <span className="text-slate-200 font-bold block mt-1">RECORDED (OK)</span>
             </div>
           </div>

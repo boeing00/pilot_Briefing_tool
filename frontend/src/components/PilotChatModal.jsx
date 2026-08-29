@@ -9,7 +9,7 @@ const QUICK_QUESTIONS = [
   '이 비행에서 가장 주의해야 할 3대 안전 위협 요소는?',
 ];
 
-export default function PilotChatModal({ isOpen, onClose, briefing, rawText, apiKey }) {
+export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOpenApiKey = () => {} }) {
   const [inputQuestion, setInputQuestion] = useState('');
   const { messages, isSending, askQuestion, clearChat } = usePilotChat();
   const messagesEndRef = useRef(null);
@@ -26,7 +26,6 @@ export default function PilotChatModal({ isOpen, onClose, briefing, rawText, api
     askQuestion({
       question: textToSend,
       briefingContext: briefing,
-      rawText: rawText || '',
       apiKey: apiKey || '',
     });
     setInputQuestion('');
@@ -58,7 +57,7 @@ export default function PilotChatModal({ isOpen, onClose, briefing, rawText, api
 
         {/* Quick Suggestion Pills */}
         <div className="p-3 bg-slate-950/40 border-b border-slate-800 overflow-x-auto">
-          <span className="text-[10px] text-slate-400 uppercase font-mono block mb-1.5 flex items-center gap-1">
+          <span className="text-2xs text-slate-400 uppercase font-mono block mb-1.5 flex items-center gap-1">
             <Sparkles className="w-3 h-3 text-amber-400" />
             조종사 추천 질문
           </span>
@@ -68,7 +67,7 @@ export default function PilotChatModal({ isOpen, onClose, briefing, rawText, api
                 key={idx}
                 onClick={() => handleSend(q)}
                 disabled={isSending}
-                className="text-[11px] px-2.5 py-1 bg-slate-800/90 hover:bg-slate-700 text-slate-300 rounded-full border border-slate-700 transition truncate max-w-full text-left"
+                className="text-xs px-2.5 py-1 bg-slate-800/90 hover:bg-slate-700 text-slate-300 rounded-full border border-slate-700 transition truncate max-w-full text-left"
               >
                 {q}
               </button>
@@ -107,7 +106,7 @@ export default function PilotChatModal({ isOpen, onClose, briefing, rawText, api
                   }`}
                 >
                   <p className="whitespace-pre-wrap">{msg.text}</p>
-                  <span className="text-[9px] opacity-60 block mt-1 text-right font-mono">
+                  <span className="text-2xs opacity-60 block mt-1 text-right font-mono">
                     {msg.timestamp}
                   </span>
                 </div>

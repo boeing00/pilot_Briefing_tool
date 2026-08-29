@@ -6,7 +6,7 @@ export function usePilotChat() {
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState(null);
 
-  const askQuestion = useCallback(async ({ question, briefingContext, rawText, apiKey }) => {
+  const askQuestion = useCallback(async ({ question, briefingContext, apiKey }) => {
     if (!question.trim()) return;
 
     const userMessageId = Date.now().toString();
@@ -25,7 +25,6 @@ export function usePilotChat() {
       const res = await sendPilotQuestion({
         question,
         briefingContext,
-        rawText,
         apiKey,
       });
 

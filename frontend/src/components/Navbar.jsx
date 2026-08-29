@@ -2,7 +2,7 @@ import React from 'react';
 import { Plane, Key, UploadCloud, RefreshCw } from 'lucide-react';
 
 export default function Navbar({
-  serverHealth,
+  hasApiKey,
   onOpenApiKey,
   onOpenUpload,
   currentFlight,
@@ -23,7 +23,7 @@ export default function Navbar({
               <h1 className="text-base font-bold tracking-wider text-slate-100 uppercase">
                 Pilot Briefing EFB
               </h1>
-              <span className="text-[10px] px-1.5 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded font-mono font-medium">
+              <span className="text-2xs px-1.5 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded font-mono font-medium">
                 v1.0
               </span>
             </div>
@@ -73,17 +73,17 @@ export default function Navbar({
             </button>
           )}
 
-          {/* Server status pill */}
-          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 bg-slate-800/80 rounded-full border border-slate-700/60 text-xs text-slate-300">
-            {serverHealth?.status === 'online' ? (
+          {/* AI availability pill - the app talks to Gemini directly, so this tracks the key */}
+          <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 bg-slate-800/80 rounded-full border border-slate-700/60 text-sm text-slate-300">
+            {hasApiKey ? (
               <>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>API Online</span>
+                <span>AI READY</span>
               </>
             ) : (
               <>
                 <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                <span>Connecting...</span>
+                <span>API Key 필요</span>
               </>
             )}
           </div>

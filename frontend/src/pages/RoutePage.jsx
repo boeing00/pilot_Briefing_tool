@@ -57,7 +57,7 @@ export default function RoutePage({ briefing }) {
 
         {/* Route String */}
         <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto shadow-inner">
-          <span className="text-slate-500 block text-[10px] mb-1 font-bold">FILED ROUTE STRING:</span>
+          <span className="text-slate-500 block text-2xs mb-1 font-bold">FILED ROUTE STRING:</span>
           {filedRoute}
         </div>
 
@@ -77,7 +77,7 @@ export default function RoutePage({ briefing }) {
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
           {firCrossings.map((fir, idx) => (
             <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3 rounded-xl text-center shadow-inner">
-              <span className="text-[10px] text-slate-500 block truncate">{fir.fir}</span>
+              <span className="text-2xs text-slate-500 block truncate">{fir.fir}</span>
               <span className="text-xs font-bold text-white block mt-0.5">{fir.fix}</span>
               <span className="text-xs text-amber-200 font-bold block mt-0.5">{fir.eet}</span>
             </div>
@@ -95,7 +95,7 @@ export default function RoutePage({ briefing }) {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 text-[10px] uppercase bg-slate-950/80">
+              <tr className="border-b border-slate-800 text-slate-400 text-2xs uppercase bg-slate-950/80">
                 <th className="py-2.5 px-3">WAYPOINT</th>
                 <th className="py-2.5 px-2">CUM DIST</th>
                 <th className="py-2.5 px-2">ALTITUDE</th>

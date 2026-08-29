@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, Search, Copy, Check, Eye, EyeOff } from 'lucide-react';
-import all414Notams from '../data/cfpl_all_414_notams.json';
-import klaxNotams from '../data/klax_notams.json';
+import { getFallbackNotams } from '../services/api';
 
-export default function NotamPage({ briefing }) {
+export default function NotamPage({ briefing, isSample = true }) {
   const [showAllNotams, setShowAllNotams] = useState(false);
   const [selectedAirportFilter, setSelectedAirportFilter] = useState('ALL');
   const [relevanceFilter, setRelevanceFilter] = useState('ALL');
@@ -90,8 +89,9 @@ export default function NotamPage({ briefing }) {
   const enrouteAnalysis = (nb.enroute_detailed_analysis && nb.enroute_detailed_analysis.length > 0)
     ? nb.enroute_detailed_analysis
     : getFallbackEnrouteAnalysis();
-  // The bundled 414-item package is the RKSI->KJFK release; KLAX flights have their own set.
-  const fallbackNotams = destIcao === 'KLAX' ? klaxNotams : all414Notams;
+  // Each demo flight carries its own NOTAM package. An uploaded briefing gets nothing:
+  // showing a demo airport's NOTAMs next to a real flight number is worse than showing none.
+  const fallbackNotams = isSample ? getFallbackNotams(destIcao) : [];
   const sourceNotams = (nb.notam_list && nb.notam_list.length > 0)
     ? nb.notam_list
     : fallbackNotams;
@@ -193,7 +193,7 @@ export default function NotamPage({ briefing }) {
               <span className="font-bold text-amber-300 text-xs sm:text-sm uppercase">
                 1. 출발공항 ({depIcao} / {depName})
               </span>
-              <span className="text-[10px] px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
+              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
                 DEPARTURE
               </span>
             </div>
@@ -223,7 +223,7 @@ export default function NotamPage({ briefing }) {
               <span className="font-bold text-amber-300 text-xs sm:text-sm uppercase">
                 2. 도착공항 ({destIcao} / {destName})
               </span>
-              <span className="text-[10px] px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
+              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
                 ARRIVAL
               </span>
             </div>
@@ -261,7 +261,7 @@ export default function NotamPage({ briefing }) {
               <span className="font-bold text-amber-300 text-xs sm:text-sm uppercase">
                 3. 항로 & FPL 제약사항 (항로상 경로 제약 NOTAM 상세 분석)
               </span>
-              <span className="text-[10px] px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
+              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
                 ENROUTE & FPL
               </span>
             </div>
@@ -281,7 +281,7 @@ export default function NotamPage({ briefing }) {
                       <div className="font-bold text-amber-300 text-xs sm:text-sm">
                         {displayTitle}
                       </div>
-                      <span className="text-[10px] px-1.5 py-0.5 bg-slate-950 text-slate-400 border border-slate-700 rounded font-mono font-bold">
+                      <span className="text-2xs px-1.5 py-0.5 bg-slate-950 text-slate-400 border border-slate-700 rounded font-mono font-bold">
                         {item.fir?.split(' ')[0] || 'ENROUTE'}
                       </span>
                     </div>
@@ -289,11 +289,11 @@ export default function NotamPage({ briefing }) {
                     {/* NOTAM Raw Text (ICAO format) */}
                     {item.raw_text && (
                       <div className="bg-slate-950 border border-slate-800 rounded p-2.5 space-y-1.5">
-                        <div className="flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+                        <div className="flex items-center justify-between text-xs text-slate-400 font-semibold">
                           <span className="text-amber-300/90 font-bold">◼ NOTAM 원문 (Raw ICAO Text):</span>
                           <button
                             onClick={() => handleCopyItem(`enroute-${idx}`, item.raw_text)}
-                            className="text-slate-400 hover:text-white flex items-center gap-1 text-[10px] bg-slate-900 px-2 py-0.5 rounded border border-slate-700 transition"
+                            className="text-slate-400 hover:text-white flex items-center gap-1 text-2xs bg-slate-900 px-2 py-0.5 rounded border border-slate-700 transition"
                           >
                             {copiedId === `enroute-${idx}` ? <Check className="w-2.5 h-2.5 text-emerald-400" /> : <Copy className="w-2.5 h-2.5" />}
                             <span>{copiedId === `enroute-${idx}` ? '복사됨 ✓' : '원문 복사'}</span>
@@ -438,7 +438,7 @@ export default function NotamPage({ briefing }) {
                 setCopiedId('ALL');
                 setTimeout(() => setCopiedId(null), 2000);
               }}
-              className="text-[11px] text-slate-300 hover:text-white bg-slate-900 border border-slate-800 px-2 py-1 rounded"
+              className="text-xs text-slate-300 hover:text-white bg-slate-900 border border-slate-800 px-2 py-1 rounded"
             >
               {copiedId === 'ALL' ? '복사 완료 ✓' : '현재 목록 전체 복사'}
             </button>
@@ -465,7 +465,7 @@ export default function NotamPage({ briefing }) {
                     <span className="font-bold text-white">{item.id}</span>
                     <span className="text-slate-400">[{item.category}]</span>
                     <span
-                      className={`px-1.5 py-0.5 rounded text-[11px] font-bold ${
+                      className={`px-1.5 py-0.5 rounded text-xs font-bold ${
                         item.level === 'CRITICAL'
                           ? 'text-rose-400 bg-rose-950/50 border border-rose-900'
                           : 'text-slate-300 bg-slate-950 border border-slate-700'
@@ -483,7 +483,7 @@ export default function NotamPage({ briefing }) {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleItemShading(item._uid, item.isShaded)}
-                      className="px-2 py-0.5 text-slate-400 hover:text-white bg-slate-950 rounded border border-slate-800 text-[11px] flex items-center gap-1"
+                      className="px-2 py-0.5 text-slate-400 hover:text-white bg-slate-950 rounded border border-slate-800 text-xs flex items-center gap-1"
                       title={shaded ? '음영 해제 (유효화)' : '음영 처리'}
                     >
                       {shaded ? <Eye className="w-3 h-3 text-slate-400" /> : <EyeOff className="w-3 h-3 text-amber-400" />}
@@ -513,7 +513,7 @@ export default function NotamPage({ briefing }) {
 
                 {/* Shading Reason Note */}
                 {shaded && item.shadeReason && (
-                  <div className="text-[11px] font-mono text-slate-400 mt-1 pl-1">
+                  <div className="text-xs font-mono text-slate-400 mt-1 pl-1">
                     (음영 사유: {item.shadeReason})
                   </div>
                 )}

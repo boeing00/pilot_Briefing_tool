@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { uploadFlightPdf, getSampleBriefing, checkHealth } from '../services/api';
+import { uploadFlightPdf, getSampleBriefing } from '../services/api';
 
 const STORAGE_KEY_API_KEY = 'PILOT_BRIEFING_GEMINI_KEY';
 
@@ -16,7 +16,6 @@ export function useBriefing() {
       return '';
     }
   });
-  const [serverHealth, setServerHealth] = useState(null);
 
   const setApiKey = useCallback((key) => {
     setApiKeyState(key);
@@ -31,20 +30,13 @@ export function useBriefing() {
     }
   }, []);
 
-  const loadSample = useCallback(async (flightCode = 'KLAX') => {
-    setLoading(true);
+  // Sample briefings are bundled JSON - no network, no key, no spinner worth showing.
+  const loadSample = useCallback((flightCode = 'KLAX') => {
     setError(null);
-    try {
-      const data = await getSampleBriefing(flightCode);
-      setBriefing(data.briefing);
-      setDocMeta(data.document_meta);
-      setCurrentFlight(flightCode);
-    } catch (err) {
-      console.error('Failed to load sample briefing:', err);
-      setError(err.message || '샘플 브리핑 로드 실패');
-    } finally {
-      setLoading(false);
-    }
+    const data = getSampleBriefing(flightCode);
+    setBriefing(data.briefing);
+    setDocMeta(data.document_meta);
+    setCurrentFlight(flightCode);
   }, []);
 
   const handleFileUpload = useCallback(async (file) => {
@@ -72,11 +64,6 @@ export function useBriefing() {
   }, []);
 
   useEffect(() => {
-    checkHealth()
-      .then((res) => setServerHealth(res))
-      .catch((err) => console.warn('Server health check error:', err));
-
-    // Auto load the initial flight briefing on mount
     loadSample('KLAX');
   }, [loadSample]);
 
@@ -88,7 +75,7 @@ export function useBriefing() {
     currentFlight,
     apiKey,
     setApiKey,
-    serverHealth,
+    hasApiKey: Boolean(apiKey),
     loadSample,
     handleFileUpload,
     clearBriefing,

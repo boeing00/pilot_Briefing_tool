@@ -48,7 +48,7 @@ export default function EdtoErtCard({ briefing }) {
           <div key={idx} className="bg-slate-950/80 border border-slate-800 p-4 rounded-xl space-y-2.5 shadow-inner">
             <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-bold text-slate-200">{etp.sector}</span>
-              <span className="px-2 py-0.5 bg-slate-900 text-slate-300 border border-slate-700 rounded text-[10px]">
+              <span className="px-2 py-0.5 bg-slate-900 text-slate-300 border border-slate-700 rounded text-2xs">
                 CRZ FL350
               </span>
             </div>

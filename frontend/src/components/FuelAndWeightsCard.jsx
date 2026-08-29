@@ -43,7 +43,7 @@ export default function FuelAndWeightsCard({ data }) {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 font-mono">
         {/* Block Fuel */}
         <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-700 text-center">
-          <span className="text-[10px] text-slate-400 block">BLOCK FUEL</span>
+          <span className="text-2xs text-slate-400 block">BLOCK FUEL</span>
           <span className="text-base font-bold text-white block mt-1">
             {block_fuel || 'N/A'}
           </span>
@@ -51,7 +51,7 @@ export default function FuelAndWeightsCard({ data }) {
 
         {/* Trip Fuel */}
         <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-center">
-          <span className="text-[10px] text-slate-400 block">TRIP BURN</span>
+          <span className="text-2xs text-slate-400 block">TRIP BURN</span>
           <span className="text-base font-bold text-slate-200 block mt-1">
             {trip_fuel || 'N/A'}
           </span>
@@ -59,7 +59,7 @@ export default function FuelAndWeightsCard({ data }) {
 
         {/* Contingency */}
         <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-center">
-          <span className="text-[10px] text-slate-400 block">CONTINGENCY</span>
+          <span className="text-2xs text-slate-400 block">CONTINGENCY</span>
           <span className="text-base font-bold text-slate-200 block mt-1">
             {contingency_fuel || 'N/A'}
           </span>
@@ -67,7 +67,7 @@ export default function FuelAndWeightsCard({ data }) {
 
         {/* Alternate */}
         <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-center">
-          <span className="text-[10px] text-slate-400 block">ALTERNATE</span>
+          <span className="text-2xs text-slate-400 block">ALTERNATE</span>
           <span className="text-base font-bold text-slate-200 block mt-1">
             {alternate_fuel || 'N/A'}
           </span>
@@ -75,7 +75,7 @@ export default function FuelAndWeightsCard({ data }) {
 
         {/* Final Reserve */}
         <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-center">
-          <span className="text-[10px] text-slate-400 block">FINAL RESERVE (30m)</span>
+          <span className="text-2xs text-slate-400 block">FINAL RESERVE (30m)</span>
           <span className="text-base font-bold text-amber-200 block mt-1">
             {final_reserve || 'N/A'}
           </span>
@@ -83,7 +83,7 @@ export default function FuelAndWeightsCard({ data }) {
 
         {/* Extra Fuel */}
         <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-center">
-          <span className="text-[10px] text-slate-400 block">EXTRA / TANKER</span>
+          <span className="text-2xs text-slate-400 block">EXTRA / TANKER</span>
           <span className="text-base font-bold text-slate-200 block mt-1">
             {extra_fuel || '0 lbs'}
           </span>
@@ -95,7 +95,7 @@ export default function FuelAndWeightsCard({ data }) {
         {/* Takeoff Weight */}
         <div className="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
           <div>
-            <span className="text-[11px] text-slate-400 uppercase block">ESTIMATED TAKEOFF WEIGHT (TOW)</span>
+            <span className="text-xs text-slate-400 uppercase block">ESTIMATED TAKEOFF WEIGHT (TOW)</span>
             <div className="flex items-baseline gap-2 mt-1">
               <span className="text-base font-bold text-white">{estimated_tow || 'N/A'}</span>
               <span className="text-xs text-slate-400">/ Max: {max_tow || 'N/A'}</span>
@@ -110,7 +110,7 @@ export default function FuelAndWeightsCard({ data }) {
         {/* Landing Weight */}
         <div className="bg-slate-950/60 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between">
           <div>
-            <span className="text-[11px] text-slate-400 uppercase block">ESTIMATED LANDING WEIGHT (LAW)</span>
+            <span className="text-xs text-slate-400 uppercase block">ESTIMATED LANDING WEIGHT (LAW)</span>
             <div className="flex items-baseline gap-2 mt-1">
               <span className="text-base font-bold text-white">{estimated_law || 'N/A'}</span>
               <span className="text-xs text-slate-400">/ Max: {max_law || 'N/A'}</span>
