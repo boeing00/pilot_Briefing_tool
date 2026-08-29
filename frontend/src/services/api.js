@@ -159,6 +159,9 @@ async function callGemini({ apiKey, parts, systemInstruction, jsonOutput, temper
 
   const candidate = payload?.candidates?.[0];
   const text = (candidate?.content?.parts || [])
+    // Thinking parts arrive as { text, thought: true }. Concatenating them would
+    // glue the model's reasoning prose to the front of the JSON.
+    .filter((p) => !p.thought)
     .map((p) => p.text || '')
     .join('')
     .trim();
@@ -207,7 +210,7 @@ function salvageTruncatedJson(raw) {
     }
   }
 
-  if (cut < 0 || !cutStack || cutStack.length === 0) return null;
+  if (cut < 0 || !cutStack) return null;
   const closers = cutStack.reverse().join('');
   try {
     return JSON.parse(raw.slice(0, cut) + closers);
@@ -216,32 +219,80 @@ function salvageTruncatedJson(raw) {
   }
 }
 
-/** Gemini occasionally wraps JSON in a markdown fence even in JSON mode. */
+/** The outermost {...} in a blob of text, ignoring braces inside strings. */
+function sliceOutermostObject(raw) {
+  const start = raw.indexOf('{');
+  if (start < 0) return null;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = start; i < raw.length; i += 1) {
+    const ch = raw[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; continue; }
+    if (ch === '{') depth += 1;
+    else if (ch === '}') {
+      depth -= 1;
+      if (depth === 0) return raw.slice(start, i + 1);
+    }
+  }
+  return raw.slice(start);
+}
+
+/**
+ * Turns whatever came back into a briefing object, in decreasing order of trust.
+ *
+ * The model is asked for application/json and usually obliges, but it has been
+ * seen to wrap the document in a markdown fence, to put a sentence in front of
+ * it, and - on a long release package - to run out of output budget part way
+ * through. Each of those is recoverable; give up only when none of them are.
+ */
 function parseJsonResponse(text, finishReason) {
   let cleaned = text.trim();
   if (cleaned.startsWith('```')) {
     cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
   }
+
+  // 1. Exactly what was asked for.
   try {
     return JSON.parse(cleaned);
-  } catch {
-    // Nearly always this is a document that outran the output ceiling rather
-    // than a malformed answer. Recover what completed before saying no.
-    const salvaged = salvageTruncatedJson(cleaned);
-    if (salvaged) {
+  } catch { /* fall through */ }
+
+  // 2. A complete document with something stray around it.
+  const sliced = sliceOutermostObject(cleaned);
+  if (sliced) {
+    try {
+      return JSON.parse(sliced);
+    } catch { /* fall through */ }
+
+    // 3. Cut off mid-flight: rewind to the last complete value and close up.
+    const salvaged = salvageTruncatedJson(sliced);
+    if (salvaged && typeof salvaged === 'object') {
       salvaged.__truncated = true;
       return salvaged;
     }
-    if (finishReason === 'MAX_TOKENS') {
-      throw new Error(
-        '문서가 너무 길어 브리핑이 생성 한도를 초과했습니다. NOTAM 묶음을 덜어내거나 ' +
-        '필요한 구간만 나눠서 업로드해 주세요.'
-      );
-    }
+  }
+
+  if (finishReason === 'MAX_TOKENS') {
     throw new Error(
-      `Gemini 응답을 브리핑 데이터로 해석하지 못했습니다${finishReason ? ` (${finishReason})` : ''}. 다시 시도해 주세요.`
+      '문서가 너무 길어 브리핑이 생성 한도를 초과했습니다. NOTAM 묶음을 덜어내거나 ' +
+      '필요한 구간만 나눠서 업로드해 주세요.'
     );
   }
+
+  // Nothing worked. Carry evidence rather than a shrug - the snippet is what
+  // makes the next report diagnosable instead of a guess.
+  const snippet = cleaned.replace(/\s+/g, ' ').slice(0, 180);
+  console.error('[briefing] unparseable Gemini response', { finishReason, length: cleaned.length, cleaned });
+  throw new Error(
+    `Gemini가 브리핑 JSON 대신 다른 형식을 반환했습니다${finishReason ? ` (${finishReason})` : ''}. ` +
+    `다시 시도해 주세요. 반복되면 이 내용을 알려주세요 - 응답 ${cleaned.length}자, 시작 부분: "${snippet}"`
+  );
 }
 
 export async function uploadFlightPdf(file, apiKey = '') {
