@@ -41,7 +41,7 @@ export default function RawJsonModal({ isOpen, onClose, data }) {
           </div>
         </div>
 
-        <div className="flex-1 overflow-auto bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 leading-relaxed select-all">
+        <div className="flex-1 overflow-auto bg-slate-950 p-4 rounded-xl border border-slate-800 font-code text-xs text-emerald-400 leading-relaxed select-all">
           <pre>{jsonString}</pre>
         </div>
       </div>

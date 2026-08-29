@@ -72,7 +72,7 @@ N46W080..NOVON..YODAA PUCKY1 KJFK`;
       </div>
 
       <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-96 overflow-y-auto select-all">
-        <pre className="whitespace-pre-wrap">{sampleRawText}</pre>
+        <pre className="whitespace-pre-wrap font-code">{sampleRawText}</pre>
       </div>
     </div>
   );

@@ -252,7 +252,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                             <span>{copiedId === `enroute-${idx}` ? '복사됨 ✓' : '원문 복사'}</span>
                           </button>
                         </div>
-                        <div className="text-slate-200 text-xs font-mono leading-relaxed whitespace-pre-wrap break-words pl-2 border-l-2 border-amber-500/80 bg-slate-900/40 p-2 rounded-lg">
+                        <div className="text-slate-200 text-xs font-code leading-relaxed whitespace-pre-wrap break-words pl-2 border-l-2 border-amber-500/80 bg-slate-900/40 p-2 rounded-lg">
                           {item.raw_text}
                         </div>
                       </div>
@@ -453,7 +453,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                 </div>
 
                 {/* Raw NOTAM ICAO Text */}
-                <div className="mt-2 text-slate-200 text-xs leading-relaxed whitespace-pre-wrap break-words font-mono">
+                <div className="mt-2 text-slate-200 text-xs leading-relaxed whitespace-pre-wrap break-words font-code">
                   {item.rawText}
                 </div>
 

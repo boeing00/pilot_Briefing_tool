@@ -40,7 +40,7 @@ export default function AtsFplCard({ briefing }) {
         </button>
       </div>
 
-      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto select-all font-mono">
+      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto select-all font-code">
         <pre>{rawFpl}</pre>
       </div>
     </div>
