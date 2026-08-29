@@ -24,6 +24,21 @@ export default function FuelPage({ briefing }) {
     cargo_weight: '10,142 LBS',
   };
 
+  // The composition bar used to be hard-wired to 84/6/5/5 %, so it kept claiming
+  // "TRIP (84%)" no matter what the OFP actually said. Derive it from the real figures.
+  const lbsOf = (v) => {
+    const m = String(v ?? '').replace(/,/g, '').match(/([0-9]*\.?[0-9]+)\s*(k)?/i);
+    if (!m) return null;
+    const n = parseFloat(m[1]);
+    return Number.isFinite(n) ? (m[2] ? n * 1000 : n) : null;
+  };
+  const segVals = [tripFuel, altnFuel, discFuel, finalRes].map(lbsOf);
+  const segTotal = segVals.reduce((a, b) => a + (b || 0), 0);
+  const hasSegments = segVals.every((v) => v !== null && v > 0) && segTotal > 0;
+  const segPct = hasSegments
+    ? segVals.map((v) => Math.round((v / segTotal) * 1000) / 10)
+    : [84, 6, 5, 5];
+
   const fuelStats = fw.fuel_stats && fw.fuel_stats.length > 0
     ? fw.fuel_stats
     : [
@@ -59,16 +74,16 @@ export default function FuelPage({ briefing }) {
         {/* Visual Fuel Bar */}
         <div className="space-y-2.5">
           <div className="h-6 w-full bg-slate-950 rounded-lg overflow-hidden flex border border-slate-800 text-[10px] text-white font-bold text-center">
-            <div style={{ width: '84%' }} className="bg-slate-700 flex items-center justify-center truncate" title={`Trip Fuel: ${tripFuel}`}>
-              TRIP (84%)
+            <div style={{ width: `${segPct[0]}%` }} className="bg-slate-700 flex items-center justify-center truncate" title={`Trip Fuel: ${tripFuel}`}>
+              {hasSegments ? `TRIP (${segPct[0]}%)` : 'TRIP'}
             </div>
-            <div style={{ width: '6%' }} className="bg-slate-800 border-l border-slate-700 flex items-center justify-center truncate" title={`Alternate: ${altnFuel}`}>
+            <div style={{ width: `${segPct[1]}%` }} className="bg-slate-800 border-l border-slate-700 flex items-center justify-center truncate" title={`Alternate: ${altnFuel}`}>
               ALT
             </div>
-            <div style={{ width: '5%' }} className="bg-amber-600/70 border-l border-slate-700 flex items-center justify-center truncate text-amber-100" title={`DISC: ${discFuel}`}>
+            <div style={{ width: `${segPct[2]}%` }} className="bg-amber-600/70 border-l border-slate-700 flex items-center justify-center truncate text-amber-100" title={`DISC: ${discFuel}`}>
               DISC
             </div>
-            <div style={{ width: '5%' }} className="bg-slate-800 border-l border-slate-700 flex items-center justify-center truncate" title={`Reserve: ${finalRes}`}>
+            <div style={{ width: `${segPct[3]}%` }} className="bg-slate-800 border-l border-slate-700 flex items-center justify-center truncate" title={`Reserve: ${finalRes}`}>
               RES
             </div>
           </div>

@@ -16,26 +16,54 @@ export default function CheckPage({ briefing }) {
   const atsFplRoute = briefing.validation_check?.ats_fpl_route || `N0480F350 DCT ${cfpRoute}`;
   const matchPct = briefing.validation_check?.match_percentage || '100%';
 
+  // The 여유 (margin) figures used to be literal strings that only matched the demo
+  // weights, so any real OFP showed weights and a margin that did not add up.
+  const fw = briefing.fuel_and_weights || {};
+  const lbsOf = (v) => {
+    const m = String(v ?? '').match(/([0-9][0-9,]*)/);
+    return m ? parseInt(m[1].replace(/,/g, ''), 10) : null;
+  };
+  const marginOf = (est, max) => {
+    const e = lbsOf(est);
+    const x = lbsOf(max);
+    return e !== null && x !== null ? x - e : null;
+  };
+  const fmtMargin = (est, max, fallback) => {
+    const m = marginOf(est, max);
+    return `${(m !== null ? m : fallback).toLocaleString()} LBS`;
+  };
+
+  const estTow = fw.estimated_tow || '568,200 LBS';
+  const maxTow = fw.max_tow || '617,200 LBS';
+  const estZfw = fw.estimated_zfw || '361,100 LBS';
+  const maxZfw = fw.max_zfw || '423,200 LBS';
+  const estLaw = fw.estimated_law || '385,800 LBS';
+  const maxLaw = fw.max_law || '451,900 LBS';
+
+  const towMarginTxt = fmtMargin(estTow, maxTow, 49000);
+  const zfwMarginTxt = fmtMargin(estZfw, maxZfw, 62100);
+  const ldwMarginTxt = fmtMargin(estLaw, maxLaw, 66100);
+
   const rawItems = (briefing.validation_check?.items && briefing.validation_check.items.length > 0)
     ? briefing.validation_check.items
     : [
         {
           category: 'TOW / AGTOW 여유',
-          detail: `EST TOW (${briefing.fuel_and_weights?.estimated_tow || '568,200 LBS'}) vs AGTOW (${briefing.fuel_and_weights?.max_tow || '617,200 LBS'}) - 여유 49,000 LBS`,
-          status: '여유 49,000 LBS (최소제한)',
+          detail: `EST TOW (${estTow}) vs AGTOW (${maxTow}) - 여유 ${towMarginTxt}`,
+          status: `여유 ${towMarginTxt} (최소제한)`,
           statusType: 'OK',
           isGoverningLimit: true,
         },
         {
           category: 'ZFW / MZFW 여유',
-          detail: `EST ZFW (${briefing.fuel_and_weights?.estimated_zfw || '361,100 LBS'}) vs MZFW (${briefing.fuel_and_weights?.max_zfw || '423,200 LBS'}) - 여유 62,100 LBS (충족)`,
-          status: '여유 62,100 LBS (OK)',
+          detail: `EST ZFW (${estZfw}) vs MZFW (${maxZfw}) - 여유 ${zfwMarginTxt} (충족)`,
+          status: `여유 ${zfwMarginTxt} (OK)`,
           statusType: 'OK',
         },
         {
           category: 'LDW / MLDW 여유',
-          detail: `EST LAW (${briefing.fuel_and_weights?.estimated_law || '385,800 LBS'}) vs MLDW (${briefing.fuel_and_weights?.max_law || '451,900 LBS'}) - 여유 66,100 LBS (충족)`,
-          status: '여유 66,100 LBS (OK)',
+          detail: `EST LAW (${estLaw}) vs MLDW (${maxLaw}) - 여유 ${ldwMarginTxt} (충족)`,
+          status: `여유 ${ldwMarginTxt} (OK)`,
           statusType: 'OK',
         },
         {
@@ -83,13 +111,14 @@ export default function CheckPage({ briefing }) {
       ];
 
   // Reorder items so that 1: TOW, 2: ZFW, 3: LDW, followed by remaining items
-  const towItem = rawItems.find((i) => i.category.includes('TOW') || i.category.includes('이륙중량')) || rawItems[0];
-  const zfwItem = rawItems.find((i) => i.category.includes('ZFW') || i.category.includes('무연료')) || rawItems[1];
-  const ldwItem = rawItems.find((i) => i.category.includes('LDW') || i.category.includes('LAW') || i.category.includes('착륙중량')) || rawItems[2];
+  const cat = (i) => i?.category || '';
+  const towItem = rawItems.find((i) => cat(i).includes('TOW') || cat(i).includes('이륙중량')) || rawItems[0];
+  const zfwItem = rawItems.find((i) => cat(i).includes('ZFW') || cat(i).includes('무연료')) || rawItems[1];
+  const ldwItem = rawItems.find((i) => cat(i).includes('LDW') || cat(i).includes('LAW') || cat(i).includes('착륙중량')) || rawItems[2];
 
-  const otherItems = rawItems.filter((i) => 
+  const otherItems = rawItems.filter((i) =>
     i !== towItem && i !== zfwItem && i !== ldwItem &&
-    !i.category.includes('TOW') && !i.category.includes('ZFW') && !i.category.includes('LDW') && !i.category.includes('LAW')
+    !cat(i).includes('TOW') && !cat(i).includes('ZFW') && !cat(i).includes('LDW') && !cat(i).includes('LAW')
   );
 
   const orderedItems = [towItem, zfwItem, ldwItem, ...otherItems].filter(Boolean);

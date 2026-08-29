@@ -22,8 +22,6 @@ import {
 } from 'lucide-react';
 
 export default function FlightOverviewCard({ data, weather, melItems }) {
-  if (!data) return null;
-
   const {
     callsign,
     flight_number,
@@ -40,7 +38,7 @@ export default function FlightOverviewCard({ data, weather, melItems }) {
     flight_time,
     cruising_altitude,
     alternate_airports,
-  } = data;
+  } = data || {};
 
   const planTime = flight_time || '10Hr 42Min';
   const [customTime, setCustomTime] = useState(null);
@@ -51,6 +49,9 @@ export default function FlightOverviewCard({ data, weather, melItems }) {
     setCustomTime(null);
     setInputVal(flight_time || '');
   }, [flight_time, callsign, destination?.icao]);
+
+  // Every hook above runs unconditionally; only bail out afterwards.
+  if (!data) return null;
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -78,7 +79,8 @@ export default function FlightOverviewCard({ data, weather, melItems }) {
     : [
         {
           icao: alternate?.icao || 'KBOS',
-          iata: alternate?.iata || 'BOS',
+          // Blank beats a wrong identifier: only fall back to the demo IATA when there is no real alternate.
+          iata: alternate?.iata || (alternate?.icao ? '' : 'BOS'),
           name: cleanName(alternate?.name) || '제1 지정 교체공항 (Alternate Airport)',
           role: 'FILED DEST ALTERNATE',
           divertStatus: 'AVAILABLE',

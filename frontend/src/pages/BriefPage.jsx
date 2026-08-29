@@ -102,7 +102,7 @@ export default function BriefPage({ briefing, onNavigate }) {
                 </p>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-850 flex items-center justify-between text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-200 transition">
+              <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-200 transition">
                 <span>상세 브리핑 페이지 확인</span>
                 <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-200" />
               </div>
@@ -116,7 +116,7 @@ export default function BriefPage({ briefing, onNavigate }) {
         {/* Block Fuel */}
         <div
           onClick={() => onNavigate('fuel')}
-          className="bg-slate-900 hover:bg-slate-850 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <Fuel className="w-6 h-6" />
@@ -130,7 +130,7 @@ export default function BriefPage({ briefing, onNavigate }) {
         {/* Takeoff Weight */}
         <div
           onClick={() => onNavigate('fuel')}
-          className="bg-slate-900 hover:bg-slate-850 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <CheckCircle2 className="w-6 h-6" />
@@ -144,7 +144,7 @@ export default function BriefPage({ briefing, onNavigate }) {
         {/* Flight Time */}
         <div
           onClick={() => onNavigate('route')}
-          className="bg-slate-900 hover:bg-slate-850 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <Clock className="w-6 h-6" />
@@ -158,7 +158,7 @@ export default function BriefPage({ briefing, onNavigate }) {
         {/* ETOPS / EDTO */}
         <div
           onClick={() => onNavigate('edto')}
-          className="bg-slate-900 hover:bg-slate-850 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <Navigation className="w-6 h-6" />

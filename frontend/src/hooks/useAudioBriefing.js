@@ -17,8 +17,10 @@ export function useAudioBriefing(scriptText) {
 
       // Prefer Korean voices if text is Korean, else default
       const koreanVoice = available.find(v => v.lang.includes('ko') || v.lang.includes('KR'));
-      if (koreanVoice && !selectedVoice) {
-        setSelectedVoice(koreanVoice);
+      if (koreanVoice) {
+        // Functional update: the effect runs once, so a captured `selectedVoice`
+        // would be stale and clobber a voice the user picked later.
+        setSelectedVoice((prev) => prev || koreanVoice);
       }
     };
 
@@ -27,6 +29,7 @@ export function useAudioBriefing(scriptText) {
 
     return () => {
       if (window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = null;
         window.speechSynthesis.cancel();
       }
     };

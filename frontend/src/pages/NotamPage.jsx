@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, Search, Copy, Check, Eye, EyeOff } from 'lucide-react';
 import all414Notams from '../data/cfpl_all_414_notams.json';
+import klaxNotams from '../data/klax_notams.json';
 
 export default function NotamPage({ briefing }) {
   const [showAllNotams, setShowAllNotams] = useState(false);
@@ -89,23 +90,38 @@ export default function NotamPage({ briefing }) {
   const enrouteAnalysis = (nb.enroute_detailed_analysis && nb.enroute_detailed_analysis.length > 0)
     ? nb.enroute_detailed_analysis
     : getFallbackEnrouteAnalysis();
-  const wholeNotams = (nb.notam_list && nb.notam_list.length > 0)
+  // The bundled 414-item package is the RKSI->KJFK release; KLAX flights have their own set.
+  const fallbackNotams = destIcao === 'KLAX' ? klaxNotams : all414Notams;
+  const sourceNotams = (nb.notam_list && nb.notam_list.length > 0)
     ? nb.notam_list
-    : all414Notams;
+    : fallbackNotams;
+
+  // NOTAM ids are NOT unique across stations (COAD01/21 alone appears at 9 airports),
+  // so every per-row piece of state must be keyed by position, never by id.
+  const wholeNotams = sourceNotams.map((item, i) => ({ ...item, _uid: String(i) }));
+
+  // Overrides are positional, so they must be dropped whenever the underlying
+  // package changes - otherwise row 12 of the KLAX set inherits row 12 of the KJFK set.
+  const notamScope = `${destIcao}:${sourceNotams.length}`;
+  const [shadingScope, setShadingScope] = useState(notamScope);
+  if (shadingScope !== notamScope) {
+    setShadingScope(notamScope);
+    setUserShadedOverrides({});
+  }
 
   const isItemShaded = (item) => {
-    if (userShadedOverrides[item.id] !== undefined) {
-      return userShadedOverrides[item.id];
+    if (userShadedOverrides[item._uid] !== undefined) {
+      return userShadedOverrides[item._uid];
     }
     return !!item.isShaded;
   };
 
-  const toggleItemShading = (itemId, defaultShaded) => {
+  const toggleItemShading = (uid, defaultShaded) => {
     setUserShadedOverrides((prev) => {
-      const currentVal = prev[itemId] !== undefined ? prev[itemId] : defaultShaded;
+      const currentVal = prev[uid] !== undefined ? prev[uid] : defaultShaded;
       return {
         ...prev,
-        [itemId]: !currentVal,
+        [uid]: !currentVal,
       };
     });
   };
@@ -127,10 +143,10 @@ export default function NotamPage({ briefing }) {
 
     const matchesSearch =
       searchQuery.trim() === '' ||
-      item.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.station.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.rawText.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.id || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.station || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.rawText || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.category || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
       (item.airportName && item.airportName.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (item.shadeReason && item.shadeReason.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -417,7 +433,7 @@ export default function NotamPage({ briefing }) {
             </span>
             <button
               onClick={() => {
-                const allText = filteredNotams.map((n) => `[#${n.index} ${n.station} - ${n.id}] ${n.rawText}`).join('\n\n');
+                const allText = filteredNotams.map((n) => `[#${n.index ?? Number(n._uid) + 1} ${n.station} - ${n.id}] ${n.rawText}`).join('\n\n');
                 navigator.clipboard.writeText(allText);
                 setCopiedId('ALL');
                 setTimeout(() => setCopiedId(null), 2000);
@@ -432,17 +448,17 @@ export default function NotamPage({ briefing }) {
             const shaded = isItemShaded(item);
             return (
               <div
-                key={item.index || item.id}
+                key={item._uid}
                 className={`p-3 sm:p-4 rounded-lg border transition ${
                   shaded
-                    ? 'bg-slate-950/40 border-slate-850 opacity-60'
+                    ? 'bg-slate-950/40 border-slate-800 opacity-60'
                     : 'bg-slate-900 border-slate-800'
                 }`}
               >
                 {/* Header Meta Line */}
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-800 text-xs">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-slate-500 font-bold w-7">#{item.index}</span>
+                    <span className="text-slate-500 font-bold w-7">#{item.index ?? Number(item._uid) + 1}</span>
                     <span className="font-bold text-amber-300 px-1.5 py-0.5 bg-slate-950 border border-slate-700 rounded">
                       {item.station}
                     </span>
@@ -466,7 +482,7 @@ export default function NotamPage({ briefing }) {
 
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => toggleItemShading(item.id, item.isShaded)}
+                      onClick={() => toggleItemShading(item._uid, item.isShaded)}
                       className="px-2 py-0.5 text-slate-400 hover:text-white bg-slate-950 rounded border border-slate-800 text-[11px] flex items-center gap-1"
                       title={shaded ? '음영 해제 (유효화)' : '음영 처리'}
                     >
@@ -474,11 +490,11 @@ export default function NotamPage({ briefing }) {
                       <span>{shaded ? '음영 해제' : '음영'}</span>
                     </button>
                     <button
-                      onClick={() => handleCopyItem(item.id, item.rawText)}
+                      onClick={() => handleCopyItem(item._uid, item.rawText)}
                       className="p-1 text-slate-400 hover:text-white bg-slate-950 rounded border border-slate-800"
                       title="원문 복사"
                     >
-                      {copiedId === item.id ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      {copiedId === item._uid ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                     </button>
                   </div>
                 </div>

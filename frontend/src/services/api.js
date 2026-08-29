@@ -34,7 +34,8 @@ export async function getSampleBriefing(flight = 'KLAX') {
       origin: 'RKSI',
       destination: flight,
       aircraft: flight === 'KLAX' ? 'A350-900 (HL8078)' : 'A380-800 (HL7625)',
-      pages_analyzed: 42,
+      page_count: 42,
+      is_sample: true,
     },
     briefing: {
       flight_summary: {
