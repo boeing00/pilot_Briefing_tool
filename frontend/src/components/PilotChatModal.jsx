@@ -33,11 +33,11 @@ export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOp
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-end bg-slate-950/70 backdrop-blur-sm animate-fade-in">
-      <div className="bg-slate-900 border-l border-slate-800 w-full max-w-lg h-full flex flex-col shadow-2xl">
+      <div className="bg-slate-900 border-l border-slate-800 w-full max-w-lg h-full flex flex-col shadow-lg">
         {/* Header */}
         <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-indigo-500/20 text-indigo-400 rounded-lg border border-indigo-500/30">
+            <div className="p-2 bg-amber-500/20 text-amber-400 rounded-lg border border-amber-500/30">
               <Bot className="w-5 h-5" />
             </div>
             <div>
@@ -78,10 +78,10 @@ export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOp
         {/* Message Log */}
         <div className="flex-1 p-4 overflow-y-auto space-y-4">
           {messages.length === 0 ? (
-            <div className="h-full flex flex-col items-center justify-center text-center text-slate-500 p-6">
+            <div className="h-full flex flex-col items-center justify-center text-center text-slate-400 p-6">
               <Bot className="w-12 h-12 mb-3 text-slate-600" />
               <p className="text-sm font-medium text-slate-300">비행 문서에 대해 무엇이든 질문하세요</p>
-              <p className="text-xs text-slate-500 mt-1 max-w-xs">
+              <p className="text-xs text-slate-400 mt-1 max-w-xs">
                 목적지 기상 최저치, 윈드시어, 활주로 노탐, 대체공항 및 연료 여유량 등에 대해 신속히 답변해 드립니다.
               </p>
             </div>
@@ -92,17 +92,17 @@ export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOp
                 className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {msg.role === 'assistant' && (
-                  <div className="p-1.5 bg-indigo-900/40 text-indigo-300 border border-indigo-800/50 rounded-lg h-7 w-7 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="p-1.5 bg-amber-900/40 text-amber-300 border border-amber-800/50 rounded-lg h-7 w-7 flex items-center justify-center shrink-0 mt-0.5">
                     <Bot className="w-4 h-4" />
                   </div>
                 )}
                 <div
                   className={`max-w-[82%] rounded-xl p-3 text-xs leading-relaxed ${
                     msg.role === 'user'
-                      ? 'bg-blue-600 text-white shadow-md'
+                      ? 'bg-amber-600 text-white shadow-sm'
                       : msg.isError
                       ? 'bg-rose-950/60 text-rose-200 border border-rose-800/60'
-                      : 'bg-slate-800 text-slate-200 border border-slate-700/80 shadow-md'
+                      : 'bg-slate-800 text-slate-200 border border-slate-700/80 shadow-sm'
                   }`}
                 >
                   <p className="whitespace-pre-wrap">{msg.text}</p>
@@ -111,7 +111,7 @@ export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOp
                   </span>
                 </div>
                 {msg.role === 'user' && (
-                  <div className="p-1.5 bg-blue-900/40 text-blue-300 border border-blue-800/50 rounded-lg h-7 w-7 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="p-1.5 bg-amber-900/40 text-amber-300 border border-amber-800/50 rounded-lg h-7 w-7 flex items-center justify-center shrink-0 mt-0.5">
                     <User className="w-4 h-4" />
                   </div>
                 )}
@@ -121,11 +121,11 @@ export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOp
 
           {isSending && (
             <div className="flex gap-3 justify-start">
-              <div className="p-1.5 bg-indigo-900/40 text-indigo-300 border border-indigo-800/50 rounded-lg h-7 w-7 flex items-center justify-center shrink-0">
+              <div className="p-1.5 bg-amber-900/40 text-amber-300 border border-amber-800/50 rounded-lg h-7 w-7 flex items-center justify-center shrink-0">
                 <Bot className="w-4 h-4" />
               </div>
               <div className="bg-slate-800 border border-slate-700/80 rounded-xl p-3 text-xs text-slate-300 flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
+                <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
                 <span>운항 문서를 대조하여 답변을 생성 중입니다...</span>
               </div>
             </div>
@@ -148,12 +148,12 @@ export default function PilotChatModal({ isOpen, onClose, briefing, apiKey, onOp
               onChange={(e) => setInputQuestion(e.target.value)}
               placeholder="조종사용 질문 입력 (예: 목적지 24R ILS 가능 여부)"
               disabled={isSending}
-              className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition"
+              className="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
             />
             <button
               type="submit"
               disabled={isSending || !inputQuestion.trim()}
-              className="p-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition disabled:opacity-50"
+              className="p-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
             </button>

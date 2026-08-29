@@ -7,7 +7,7 @@ export default function ThreatManagementCard({ data }) {
   const { top_threats, pilot_action_items, briefing_points } = data;
 
   return (
-    <div id="section-tem" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-6 font-mono">
+    <div id="section-tem" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800">
         <div className="flex items-center gap-3.5">
@@ -15,7 +15,7 @@ export default function ThreatManagementCard({ data }) {
             <ShieldAlert className="w-7 h-7" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
               THREAT & ERROR MANAGEMENT (TEM)
             </h3>
           </div>
@@ -37,7 +37,7 @@ export default function ThreatManagementCard({ data }) {
               {top_threats.map((t, idx) => (
                 <div
                   key={idx}
-                  className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3.5 shadow-inner"
+                  className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3.5"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-start gap-3">
@@ -79,7 +79,7 @@ export default function ThreatManagementCard({ data }) {
             </span>
 
             {pilot_action_items && pilot_action_items.length > 0 ? (
-              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-inner">
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-3">
                 {pilot_action_items.map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-sm sm:text-base text-slate-200">
                     <CheckSquare className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
@@ -88,7 +88,7 @@ export default function ThreatManagementCard({ data }) {
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-slate-500 italic">표준 절차(SOP) 준수 요망</p>
+              <p className="text-sm text-slate-400 italic">표준 절차(SOP) 준수 요망</p>
             )}
           </div>
 
@@ -98,10 +98,10 @@ export default function ThreatManagementCard({ data }) {
               <span className="text-xs sm:text-sm font-bold text-slate-200 bg-slate-950 border border-slate-700 px-3 py-1.5 rounded-lg uppercase tracking-wider inline-block">
                 COCKPIT DUAL BRIEFING FOCUS
               </span>
-              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-2.5 text-sm sm:text-base text-slate-300 leading-relaxed shadow-inner">
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-2.5 text-sm sm:text-base text-slate-300 leading-relaxed">
                 {briefing_points.map((bp, idx) => (
                   <p key={idx} className="flex items-start gap-3">
-                    <span className="text-slate-500 font-bold">•</span>
+                    <span className="text-slate-400 font-bold">•</span>
                     <span>{bp}</span>
                   </p>
                 ))}

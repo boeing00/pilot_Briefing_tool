@@ -77,10 +77,10 @@ export default function WxPage({ briefing }) {
       return <CloudLightning className={`${size} text-amber-400 stroke-[2.2] animate-pulse`} title="뇌우/적란운 주의" />;
     }
     if (s.includes('RA') || s.includes('RAIN') || s.includes('SH') || s.includes('DRIZZLE')) {
-      return <CloudRain className={`${size} text-cyan-400 stroke-[2.2]`} title="비/강수" />;
+      return <CloudRain className={`${size} text-slate-300 stroke-[2.2]`} title="비/강수" />;
     }
     if (s.includes('SN') || s.includes('SNOW')) {
-      return <Snowflake className={`${size} text-sky-200 stroke-[2.2]`} title="강설" />;
+      return <Snowflake className={`${size} text-slate-300 stroke-[2.2]`} title="강설" />;
     }
     if (s.includes('FG') || s.includes('FOG') || s.includes('BR') || s.includes('MIST') || s.includes('HZ')) {
       return <CloudFog className={`${size} text-slate-300 stroke-[2.2]`} title="안개/박무" />;
@@ -164,9 +164,9 @@ export default function WxPage({ briefing }) {
   };
 
   return (
-    <div className="space-y-7 animate-fade-in font-mono">
+    <div className="space-y-7 animate-fade-in">
       {/* 1. Departure Weather Card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
@@ -175,7 +175,7 @@ export default function WxPage({ briefing }) {
             <div>
               <div className="flex items-center gap-3">
                 {renderWxIcon(dep.condition_summary || depMetar, 'w-7 h-7')}
-                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+                <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                   출발지 기상: {depIcao} ({depName})
                 </h3>
               </div>
@@ -191,25 +191,25 @@ export default function WxPage({ briefing }) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">WIND</span>
             <span className="font-bold text-lg text-white mt-1 block">{depWind}</span>
           </div>
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">VISIBILITY</span>
             <span className="font-bold text-lg text-white mt-1 block">{depVis}</span>
           </div>
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">CEILING / CLOUD</span>
             <span className="font-bold text-lg text-white mt-1 block">{depCeil}</span>
           </div>
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">TEMP / QNH</span>
             <span className="font-bold text-lg text-white mt-1 block">{depTemp}</span>
           </div>
         </div>
 
-        <div className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 space-y-2 shadow-inner">
+        <div className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 space-y-2">
           <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
             [운항 승무원 기상 판단 요약]
           </span>
@@ -225,18 +225,18 @@ export default function WxPage({ briefing }) {
 
         <div className="space-y-2 text-xs">
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 break-words">
-            <span className="text-slate-500 font-bold block mb-1">METAR:</span>
+            <span className="text-slate-400 font-bold block mb-1">METAR:</span>
             <code>{depMetar}</code>
           </div>
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 break-words">
-            <span className="text-slate-500 font-bold block mb-1">TAF:</span>
+            <span className="text-slate-400 font-bold block mb-1">TAF:</span>
             <code>{depTaf}</code>
           </div>
         </div>
       </div>
 
       {/* 2. Destination Weather Card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
@@ -245,7 +245,7 @@ export default function WxPage({ briefing }) {
             <div>
               <div className="flex items-center gap-3">
                 {renderWxIcon(dest.forecast || dest.condition_summary || destMetar, 'w-7 h-7')}
-                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+                <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                   목적지 기상: {destIcao} ({destName})
                 </h3>
               </div>
@@ -261,25 +261,25 @@ export default function WxPage({ briefing }) {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">WIND</span>
             <span className="font-bold text-lg text-white mt-1 block">{destWind}</span>
           </div>
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">VISIBILITY</span>
             <span className="font-bold text-lg text-amber-200 mt-1 block">{destVis}</span>
           </div>
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">CEILING / CLOUD</span>
             <span className="font-bold text-lg text-white mt-1 block">{destCeil}</span>
           </div>
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 shadow-inner">
+          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800">
             <span className="text-xs text-slate-400 font-bold block uppercase">TEMP / ALTIMETER</span>
             <span className="font-bold text-lg text-white mt-1 block">{destTemp}</span>
           </div>
         </div>
 
-        <div className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 space-y-2 shadow-inner">
+        <div className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 space-y-2">
           <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
             [운항 승무원 기상 판단 요약]
           </span>
@@ -295,18 +295,18 @@ export default function WxPage({ briefing }) {
 
         <div className="space-y-2 text-xs">
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 break-words">
-            <span className="text-slate-500 font-bold block mb-1">METAR:</span>
+            <span className="text-slate-400 font-bold block mb-1">METAR:</span>
             <code>{destMetar}</code>
           </div>
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 break-words">
-            <span className="text-slate-500 font-bold block mb-1">TAF:</span>
+            <span className="text-slate-400 font-bold block mb-1">TAF:</span>
             <code>{destTaf}</code>
           </div>
         </div>
       </div>
 
       {/* 3. Filed Alternate Weather Card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
@@ -315,7 +315,7 @@ export default function WxPage({ briefing }) {
             <div>
               <div className="flex items-center gap-3">
                 {renderWxIcon(altnAssess || altnMetar, 'w-7 h-7')}
-                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+                <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                   지정 교체공항: {altnIcao} ({altnName})
                 </h3>
               </div>
@@ -330,7 +330,7 @@ export default function WxPage({ briefing }) {
           </span>
         </div>
 
-        <div className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 space-y-2 shadow-inner">
+        <div className="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 space-y-2">
           <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
             [교체공항 법정 최저치 적합성 판단]
           </span>
@@ -341,11 +341,11 @@ export default function WxPage({ briefing }) {
 
         <div className="space-y-2 text-xs">
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 break-words">
-            <span className="text-slate-500 font-bold block mb-1">METAR:</span>
+            <span className="text-slate-400 font-bold block mb-1">METAR:</span>
             <code>{altnMetar}</code>
           </div>
           <div className="bg-slate-950 p-3 rounded-lg border border-slate-850 text-slate-300 break-words">
-            <span className="text-slate-500 font-bold block mb-1">TAF:</span>
+            <span className="text-slate-400 font-bold block mb-1">TAF:</span>
             <code>{altnTaf}</code>
           </div>
         </div>

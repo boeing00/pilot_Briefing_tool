@@ -98,25 +98,25 @@ export default function NotamPage({ briefing, isSample = true }) {
   };
 
   return (
-    <div className="space-y-4 font-mono text-slate-100 text-xs sm:text-sm">
+    <div className="space-y-4 text-slate-100 text-xs sm:text-sm">
       {/* 1. Clean Information Bar */}
       <div className="bg-slate-900 border border-slate-800 rounded-lg p-3 sm:p-4 flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-bold text-amber-300 uppercase tracking-wider text-sm sm:text-base">
             NOTAM BRIEFING & PACKAGE
           </span>
-          <span className="text-slate-500">|</span>
+          <span className="text-slate-400">|</span>
           <span className="text-slate-300 font-semibold">
             {flightNo} ({depIcao} → {destIcao})
           </span>
-          <span className="text-slate-500">|</span>
+          <span className="text-slate-400">|</span>
           <span className="text-slate-400">
             TOTAL {wholeNotams.length} (ACTIVE: {activeCount} / SHADED: {shadedCount})
           </span>
           {isSample && (
             <>
-              <span className="text-slate-500">|</span>
-              <span className="px-2 py-0.5 bg-amber-950/70 border border-amber-600/70 text-amber-300 rounded font-bold">
+              <span className="text-slate-400">|</span>
+              <span className="px-2 py-0.5 bg-amber-950/70 border border-amber-600/70 text-amber-300 rounded-lg font-bold">
                 예시 데이터 · 실제 운항에 사용 금지
               </span>
             </>
@@ -125,21 +125,21 @@ export default function NotamPage({ briefing, isSample = true }) {
       </div>
 
       {/* General Summary Card (3 Core Operational Pillars) */}
-      <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 sm:p-5 space-y-4 shadow-md">
+      <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 sm:p-5 space-y-4 shadow-sm">
         <div className="pb-2.5 border-b border-slate-800">
-          <span className="text-amber-300 font-black uppercase tracking-wider text-base sm:text-lg lg:text-xl">
+          <span className="text-amber-300 font-bold uppercase tracking-wider text-base sm:text-lg lg:text-xl">
             GENERAL SUMMARY
           </span>
         </div>
 
         <div className="space-y-3">
           {/* 1. 출발 공항 */}
-          <div className="bg-slate-950 p-3.5 sm:p-4 rounded border border-slate-800 space-y-2.5">
+          <div className="bg-slate-950 p-3.5 sm:p-4 rounded-lg border border-slate-800 space-y-2.5">
             <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
               <span className="font-bold text-amber-300 text-xs sm:text-sm uppercase">
                 1. 출발공항 ({depIcao} / {depName})
               </span>
-              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
+              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded-lg font-bold">
                 DEPARTURE
               </span>
             </div>
@@ -164,12 +164,12 @@ export default function NotamPage({ briefing, isSample = true }) {
           </div>
 
           {/* 2. 도착 공항 */}
-          <div className="bg-slate-950 p-3.5 sm:p-4 rounded border border-slate-800 space-y-2.5">
+          <div className="bg-slate-950 p-3.5 sm:p-4 rounded-lg border border-slate-800 space-y-2.5">
             <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
               <span className="font-bold text-amber-300 text-xs sm:text-sm uppercase">
                 2. 도착공항 ({destIcao} / {destName})
               </span>
-              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
+              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded-lg font-bold">
                 ARRIVAL
               </span>
             </div>
@@ -202,12 +202,12 @@ export default function NotamPage({ briefing, isSample = true }) {
           </div>
 
           {/* 3. 항로 및 비행계획서(FPL) 제약사항 */}
-          <div className="bg-slate-950 p-3.5 sm:p-4 rounded border border-slate-800 space-y-3">
+          <div className="bg-slate-950 p-3.5 sm:p-4 rounded-lg border border-slate-800 space-y-3">
             <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
               <span className="font-bold text-amber-300 text-xs sm:text-sm uppercase">
                 3. 항로 & FPL 제약사항 (항로상 경로 제약 NOTAM 상세 분석)
               </span>
-              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded font-bold">
+              <span className="text-2xs px-2 py-0.5 bg-slate-900 text-slate-400 border border-slate-700 rounded-lg font-bold">
                 ENROUTE & FPL
               </span>
             </div>
@@ -218,7 +218,7 @@ export default function NotamPage({ briefing, isSample = true }) {
               </p>
 
               {enrouteAnalysis.length === 0 && (
-                <p className="text-slate-400 text-xs bg-slate-900/70 border border-slate-800 rounded p-3">
+                <p className="text-slate-400 text-xs bg-slate-900/70 border border-slate-800 rounded-lg p-3">
                   이 브리핑에는 항로 제약 NOTAM 상세 분석 항목이 없습니다. 항로상 제한사항은
                   아래 전체 NOTAM 목록과 제출된 ATS FPL에서 직접 확인하십시오.
                 </p>
@@ -234,25 +234,25 @@ export default function NotamPage({ briefing, isSample = true }) {
                       <div className="font-bold text-amber-300 text-xs sm:text-sm">
                         {displayTitle}
                       </div>
-                      <span className="text-2xs px-1.5 py-0.5 bg-slate-950 text-slate-400 border border-slate-700 rounded font-mono font-bold">
+                      <span className="text-2xs px-1.5 py-0.5 bg-slate-950 text-slate-400 border border-slate-700 rounded-lg font-mono font-bold">
                         {item.fir?.split(' ')[0] || 'ENROUTE'}
                       </span>
                     </div>
 
                     {/* NOTAM Raw Text (ICAO format) */}
                     {item.raw_text && (
-                      <div className="bg-slate-950 border border-slate-800 rounded p-2.5 space-y-1.5">
+                      <div className="bg-slate-950 border border-slate-800 rounded-lg p-2.5 space-y-1.5">
                         <div className="flex items-center justify-between text-xs text-slate-400 font-semibold">
                           <span className="text-amber-300/90 font-bold">◼ NOTAM 원문 (Raw ICAO Text):</span>
                           <button
                             onClick={() => handleCopyItem(`enroute-${idx}`, item.raw_text)}
-                            className="text-slate-400 hover:text-white flex items-center gap-1 text-2xs bg-slate-900 px-2 py-0.5 rounded border border-slate-700 transition"
+                            className="text-slate-400 hover:text-white flex items-center gap-1 text-2xs bg-slate-900 px-2 py-0.5 rounded-lg border border-slate-700 transition"
                           >
                             {copiedId === `enroute-${idx}` ? <Check className="w-2.5 h-2.5 text-emerald-400" /> : <Copy className="w-2.5 h-2.5" />}
                             <span>{copiedId === `enroute-${idx}` ? '복사됨 ✓' : '원문 복사'}</span>
                           </button>
                         </div>
-                        <div className="text-slate-200 text-xs font-mono leading-relaxed whitespace-pre-wrap break-words pl-2 border-l-2 border-amber-500/80 bg-slate-900/40 p-2 rounded">
+                        <div className="text-slate-200 text-xs font-mono leading-relaxed whitespace-pre-wrap break-words pl-2 border-l-2 border-amber-500/80 bg-slate-900/40 p-2 rounded-lg">
                           {item.raw_text}
                         </div>
                       </div>
@@ -260,7 +260,7 @@ export default function NotamPage({ briefing, isSample = true }) {
 
                     {/* 해당 지점 / 공역 */}
                     <div className="text-slate-400 text-xs">
-                      <span className="text-slate-500 font-semibold">◼ 해당 지점 / 공역: </span>
+                      <span className="text-slate-400 font-semibold">◼ 해당 지점 / 공역: </span>
                       <span className="text-slate-300">{item.fir}</span>
                     </div>
 
@@ -271,7 +271,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                     </div>
 
                     {/* 우리 비행과의 연관성 */}
-                    <div className="text-amber-100/95 text-xs leading-relaxed pl-2 border-l-2 border-amber-500/60 bg-amber-950/20 p-2 rounded">
+                    <div className="text-amber-100/95 text-xs leading-relaxed pl-2 border-l-2 border-amber-500/60 bg-amber-950/20 p-2 rounded-lg">
                       <span className="text-amber-300 font-bold block mb-0.5">◼ 우리 비행({flightNo})과의 연관성:</span>
                       <span>{item.correlation}</span>
                     </div>
@@ -297,7 +297,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                 setSelectedAirportFilter(e.target.value);
                 setShowAllNotams(true);
               }}
-              className="appearance-none bg-slate-950 text-amber-300 font-bold border border-slate-700 hover:border-amber-400 rounded-lg pl-3 pr-8 py-1.5 sm:py-2 text-xs sm:text-sm focus:outline-none focus:border-amber-400 cursor-pointer shadow-inner font-mono"
+              className="appearance-none bg-slate-950 text-amber-300 font-bold border border-slate-700 hover:border-amber-400 rounded-lg pl-3 pr-8 py-1.5 sm:py-2 text-xs sm:text-sm focus:outline-none focus:border-amber-400 cursor-pointer font-mono"
             >
               <option value="ALL" className="bg-slate-950 text-slate-100 font-mono">
                 ALL ({wholeNotams.length})
@@ -319,13 +319,13 @@ export default function NotamPage({ briefing, isSample = true }) {
         <div className="flex flex-wrap items-center gap-2.5">
           {showAllNotams && (
             <div className="relative min-w-[160px] sm:min-w-[200px]">
-              <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500" />
+              <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="NOTAM 번호, 키워드..."
-                className="w-full bg-slate-950 border border-slate-800 rounded pl-7 pr-2.5 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-7 pr-2.5 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400"
               />
             </div>
           )}
@@ -334,7 +334,7 @@ export default function NotamPage({ briefing, isSample = true }) {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setRelevanceFilter('ACTIVE')}
-                className={`px-2.5 py-1 rounded text-xs transition ${
+                className={`px-2.5 py-1 rounded-lg text-xs transition ${
                   relevanceFilter === 'ACTIVE'
                     ? 'bg-slate-800 text-amber-300 border border-slate-700 font-bold'
                     : 'text-slate-400 hover:text-white bg-slate-950 border border-slate-800'
@@ -344,7 +344,7 @@ export default function NotamPage({ briefing, isSample = true }) {
               </button>
               <button
                 onClick={() => setRelevanceFilter('SHADED')}
-                className={`px-2.5 py-1 rounded text-xs transition ${
+                className={`px-2.5 py-1 rounded-lg text-xs transition ${
                   relevanceFilter === 'SHADED'
                     ? 'bg-slate-800 text-slate-300 border border-slate-700 font-bold'
                     : 'text-slate-400 hover:text-white bg-slate-950 border border-slate-800'
@@ -391,7 +391,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                 setCopiedId('ALL');
                 setTimeout(() => setCopiedId(null), 2000);
               }}
-              className="text-xs text-slate-300 hover:text-white bg-slate-900 border border-slate-800 px-2 py-1 rounded"
+              className="text-xs text-slate-300 hover:text-white bg-slate-900 border border-slate-800 px-2 py-1 rounded-lg"
             >
               {copiedId === 'ALL' ? '복사 완료 ✓' : '현재 목록 전체 복사'}
             </button>
@@ -411,14 +411,14 @@ export default function NotamPage({ briefing, isSample = true }) {
                 {/* Header Meta Line */}
                 <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-800 text-xs">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-slate-500 font-bold w-7">#{item.index ?? Number(item._uid) + 1}</span>
-                    <span className="font-bold text-amber-300 px-1.5 py-0.5 bg-slate-950 border border-slate-700 rounded">
+                    <span className="text-slate-400 font-bold w-7">#{item.index ?? Number(item._uid) + 1}</span>
+                    <span className="font-bold text-amber-300 px-1.5 py-0.5 bg-slate-950 border border-slate-700 rounded-lg">
                       {item.station}
                     </span>
                     <span className="font-bold text-white">{item.id}</span>
                     <span className="text-slate-400">[{item.category}]</span>
                     <span
-                      className={`px-1.5 py-0.5 rounded text-xs font-bold ${
+                      className={`px-1.5 py-0.5 rounded-lg text-xs font-bold ${
                         item.level === 'CRITICAL'
                           ? 'text-rose-400 bg-rose-950/50 border border-rose-900'
                           : 'text-slate-300 bg-slate-950 border border-slate-700'
@@ -436,7 +436,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleItemShading(item._uid, item.isShaded)}
-                      className="px-2 py-0.5 text-slate-400 hover:text-white bg-slate-950 rounded border border-slate-800 text-xs flex items-center gap-1"
+                      className="px-2 py-0.5 text-slate-400 hover:text-white bg-slate-950 rounded-lg border border-slate-800 text-xs flex items-center gap-1"
                       title={shaded ? '음영 해제 (유효화)' : '음영 처리'}
                     >
                       {shaded ? <Eye className="w-3 h-3 text-slate-400" /> : <EyeOff className="w-3 h-3 text-amber-400" />}
@@ -444,7 +444,7 @@ export default function NotamPage({ briefing, isSample = true }) {
                     </button>
                     <button
                       onClick={() => handleCopyItem(item._uid, item.rawText)}
-                      className="p-1 text-slate-400 hover:text-white bg-slate-950 rounded border border-slate-800"
+                      className="p-1 text-slate-400 hover:text-white bg-slate-950 rounded-lg border border-slate-800"
                       title="원문 복사"
                     >
                       {copiedId === item._uid ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
@@ -459,7 +459,7 @@ export default function NotamPage({ briefing, isSample = true }) {
 
                 {/* Korean Summary Line */}
                 {item.koreanSummary && (
-                  <div className="mt-2 text-xs font-mono text-amber-200/90 bg-slate-950/70 px-2.5 py-1.5 rounded border border-slate-800/80">
+                  <div className="mt-2 text-xs font-mono text-amber-200/90 bg-slate-950/70 px-2.5 py-1.5 rounded-lg border border-slate-800/80">
                     [요약] {item.koreanSummary}
                   </div>
                 )}

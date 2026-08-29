@@ -36,14 +36,14 @@ N46W080..NOVON..YODAA PUCKY1 KJFK`;
   };
 
   return (
-    <div id="section-raw" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5 font-mono">
+    <div id="section-raw" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
             <Code2 className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
               RAW FLIGHT RELEASE & OFP DOCUMENT
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">비행계획서 및 디스패치 원문 텍스트 뷰어</p>
@@ -52,18 +52,18 @@ N46W080..NOVON..YODAA PUCKY1 KJFK`;
 
         <div className="flex items-center gap-2">
           <div className="relative">
-            <Search className="w-3.5 h-3.5 text-slate-500 absolute left-2.5 top-2.5" />
+            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="OFP 원문 검색 (예: FUEL)"
-              className="bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 w-48 font-mono"
+              className="bg-slate-950 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 w-full sm:w-48 min-w-0 font-mono"
             />
           </div>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-950 hover:bg-slate-800 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 transition"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-950 hover:bg-slate-800 text-slate-200 text-xs font-bold rounded-lg border border-slate-700 transition shrink-0"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-slate-300" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
             <span>{copied ? '복사 완료' : '전체 복사'}</span>
@@ -71,7 +71,7 @@ N46W080..NOVON..YODAA PUCKY1 KJFK`;
         </div>
       </div>
 
-      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-96 overflow-y-auto select-all shadow-inner">
+      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-96 overflow-y-auto select-all">
         <pre className="whitespace-pre-wrap">{sampleRawText}</pre>
       </div>
     </div>

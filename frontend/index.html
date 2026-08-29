@@ -5,12 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pilot Briefing EFB</title>
-    <!-- Pretendard Korean Font -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <!-- JetBrains Mono Code Font -->
+    <meta name="theme-color" content="#080c14" />
+    <!-- UI / Korean: Pretendard Variable, unicode-range subset so only the glyphs
+         actually used are fetched. Matters on a tablet over cellular. -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <!-- Data / numerals: IBM Plex Mono. Built for technical readouts - unambiguous
+         0/O and 1/l, even stroke weight, and it reads cleanly at 13px on glass. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-slate-950 text-slate-100 antialiased selection:bg-amber-500/30 selection:text-amber-100">
     <div id="root"></div>

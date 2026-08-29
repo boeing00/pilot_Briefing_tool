@@ -11,16 +11,16 @@ export default function ReportPage({ briefing }) {
   const releaseStmt = rep.release_statement || `I HEREBY RELEASE THE FLIGHT ${briefing?.flight_summary?.callsign || 'FLIGHT'}, ${briefing?.flight_summary?.departure?.icao || 'RKSI'}/${briefing?.flight_summary?.destination?.icao || 'DEST'}, ${briefing?.flight_summary?.aircraft_type || 'AIRCRAFT'}, ETD ${briefing?.flight_summary?.etd_utc || 'ETD'} UNDER THE CONDITIONS SPECIFIED.`;
 
   return (
-    <div className="space-y-6 animate-fade-in font-mono">
+    <div className="space-y-6 animate-fade-in">
       {/* Dispatch Release Document */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
               <FileSpreadsheet className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                 OFFICIAL FLIGHT RELEASE REPORT
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">FLIGHT {flightNo} - DISPATCHER: {dispatcher}</p>
@@ -32,7 +32,7 @@ export default function ReportPage({ briefing }) {
         </div>
 
         {/* Certificate Text Box */}
-        <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2 leading-relaxed shadow-inner">
+        <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2 leading-relaxed">
           <p className="text-slate-100 font-bold">
             {releaseStmt}
           </p>
@@ -44,28 +44,28 @@ export default function ReportPage({ briefing }) {
         </div>
 
         {/* RVSM Altimeter Log Table */}
-        <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 space-y-2.5 shadow-inner">
+        <div className="bg-slate-950/80 p-4 rounded-xl border border-slate-800 space-y-2.5">
           <span className="text-xs font-bold text-slate-200 uppercase tracking-wider block">
             RVSM Altimeter Crosscheck Log (고도계 점검 기록)
           </span>
           <div className="grid grid-cols-3 gap-3 text-xs">
             <div className="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
-              <span className="text-slate-500 block text-2xs">CAPT PRIMARY</span>
+              <span className="text-slate-400 block text-2xs">CAPT PRIMARY</span>
               <span className="text-slate-200 font-bold block mt-1">RECORDED (OK)</span>
             </div>
             <div className="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
-              <span className="text-slate-500 block text-2xs">STANDBY</span>
+              <span className="text-slate-400 block text-2xs">STANDBY</span>
               <span className="text-slate-200 font-bold block mt-1">RECORDED (OK)</span>
             </div>
             <div className="bg-slate-900 p-3 rounded-xl border border-slate-800 text-center">
-              <span className="text-slate-500 block text-2xs">F/O PRIMARY</span>
+              <span className="text-slate-400 block text-2xs">F/O PRIMARY</span>
               <span className="text-slate-200 font-bold block mt-1">RECORDED (OK)</span>
             </div>
           </div>
         </div>
 
         {/* Pilot in Command Sign-off */}
-        <div className="bg-slate-950/80 p-4 sm:p-5 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner">
+        <div className="bg-slate-950/80 p-4 sm:p-5 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-xs">
             <span className="font-bold text-slate-200 block">PILOT IN COMMAND (기장 서명 및 수락)</span>
             <p className="text-slate-400">

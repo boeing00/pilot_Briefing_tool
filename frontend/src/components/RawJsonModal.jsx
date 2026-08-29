@@ -16,10 +16,10 @@ export default function RawJsonModal({ isOpen, onClose, data }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full h-[85vh] flex flex-col p-6 shadow-2xl space-y-4">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full h-[85vh] flex flex-col p-6 shadow-lg space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-lg">
+            <div className="p-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-lg">
               <FileJson className="w-5 h-5" />
             </div>
             <div>

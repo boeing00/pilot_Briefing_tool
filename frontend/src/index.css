@@ -1,73 +1,143 @@
 @import "tailwindcss";
 
-/*
- * Typography scale.
+/* ==========================================================================
+ * Pilot Briefing EFB - design system
  *
- * The screen this runs on is an iPad, held at arm's length in a cockpit, and the
- * default scale was pulling in two directions at once: micro labels bottomed out
- * at 9px while section headings ran to 37px on the same card. This compresses the
- * whole range into 12-32px so nothing is unreadable and nothing shouts.
+ * Read on an iPad, at arm's length, in a cockpit, often in bright light.
+ * Three rules hold the whole thing together:
  *
- * `text-2xs` is the floor - badges, pill captions, table meta. Never go below it.
- */
+ *   1. TYPE     One 12-36px scale. Pretendard for language, IBM Plex Mono for
+ *               anything a pilot reads as a number.
+ *   2. COLOR    Slate carries the interface. Amber is the only brand accent.
+ *               Emerald and rose are reserved for status and mean nothing else.
+ *   3. SURFACE  Depth comes from borders, not shadows - a drop shadow barely
+ *               registers on a near-black ground and only adds noise.
+ * ========================================================================== */
+
 @theme {
-  --text-2xs: 0.75rem;      /* 12px */
+  /* --- Type scale -------------------------------------------------------
+   * Compressed deliberately. The old scale bottomed out at 9px and ran to
+   * 37px on the same card; micro labels were unreadable while headings shouted.
+   * `text-2xs` is the floor. Nothing goes below it.
+   */
+  --text-2xs: 0.75rem;      /* 12px - badges, pill captions, table meta */
   --text-2xs--line-height: 1.45;
-  --text-xs: 0.8125rem;     /* 13px */
+  --text-xs: 0.8125rem;     /* 13px - dense data rows, secondary copy */
   --text-xs--line-height: 1.55;
-  --text-sm: 0.9375rem;     /* 15px */
+  --text-sm: 0.9375rem;     /* 15px - body */
   --text-sm--line-height: 1.6;
-  --text-base: 1rem;        /* 16px */
+  --text-base: 1rem;        /* 16px - emphasised body */
   --text-base--line-height: 1.65;
-  --text-lg: 1.125rem;      /* 18px */
+  --text-lg: 1.125rem;      /* 18px - card subtitles */
   --text-lg--line-height: 1.5;
-  --text-xl: 1.25rem;       /* 20px */
+  --text-xl: 1.25rem;       /* 20px - card titles */
   --text-xl--line-height: 1.4;
-  --text-2xl: 1.5rem;       /* 24px */
+  --text-2xl: 1.5rem;       /* 24px - section titles */
   --text-2xl--line-height: 1.3;
-  --text-3xl: 1.75rem;      /* 28px */
+  --text-3xl: 1.75rem;      /* 28px - primary figures */
   --text-3xl--line-height: 1.25;
   --text-4xl: 2rem;         /* 32px */
   --text-4xl--line-height: 1.2;
-  --text-5xl: 2.25rem;      /* 36px - ceiling: the ICAO codes on the route header */
+  --text-5xl: 2.25rem;      /* 36px - ceiling: ICAO codes on the route header */
   --text-5xl--line-height: 1.1;
+
+  /* --- Families ---------------------------------------------------------
+   * Pretendard: the best-fitting Korean UI face - even colour across Hangul
+   * and Latin, so mixed sentences do not visually break apart.
+   * IBM Plex Mono: drawn for technical readouts. Unambiguous 0/O and 1/l,
+   * even stroke weight, holds up at 13px. It caps at 700, which is a feature -
+   * it stops the interface reaching for 900-weight shouting.
+   *
+   * Pretendard sits second in the mono stack on purpose. IBM Plex Mono carries
+   * no Hangul, so without it a Korean word inside a data block would drop to
+   * whatever the OS happened to pick. This way Latin and digits get Plex, Hangul
+   * gets Pretendard, and the two were chosen to sit at the same optical weight.
+   */
+  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Pretendard Variable', ui-monospace,
+    SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* --- Ground ----------------------------------------------------------- */
+  --color-ground: #080c14;
 }
 
 :root {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   color-scheme: dark;
   font-size: 16px;
   letter-spacing: -0.005em;
-}
-
-/* iOS zooms a page in when a focused input renders below 16px. Keep fields at 16px. */
-input,
-textarea,
-select {
-  font-size: max(1rem, 100%);
+  /* Figures line up even outside a .font-mono block. */
+  font-variant-numeric: tabular-nums;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #020617;
-  color: #f8fafc;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: var(--color-ground);
+  color: #f1f5f9;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/*
- * Touch targets.
- *
- * This is flown on an iPad, often one-handed and not always in still air, and a
- * good number of controls (NOTAM shade/copy, filter pills) sat at 23-30px tall.
- * Floor every control, then go to Apple's 44pt on an actual touch pointer.
+/* --- Numerals -------------------------------------------------------------
+ * Every figure here is one a pilot compares against another figure: fuel
+ * against fuel, weight against limit, time against time. Tabular digits keep
+ * the columns aligned so the eye can run down them, and a slashed zero removes
+ * the one ambiguity that actually matters in an ICAO readout.
+ */
+.font-mono {
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  /* No em-based size nudge: .font-mono nests several levels deep inside these
+     cards and a relative size would compound into fractional pixels. */
+  letter-spacing: 0;
+}
+
+/* --- Korean line breaking -------------------------------------------------
+ * Korean has no inter-word spaces inside a compound, so the default break rule
+ * happily sets a squeezed column one character per line - "인천국제공항" became
+ * six stacked glyphs. keep-all breaks at real word boundaries instead; the
+ * anywhere fallback keeps a single very long token from overflowing the card.
+ */
+body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+
+/* --- Form fields ----------------------------------------------------------
+ * iOS zooms the page in when a focused field renders below 16px.
+ */
+input,
+textarea,
+select {
+  font-size: max(1rem, 100%);
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7c8ba1;
+}
+
+/* --- Touch targets --------------------------------------------------------
+ * Flown one-handed, not always in still air. A good number of controls
+ * (NOTAM shade/copy, filter pills) sat at 23-30px tall. Floor every control,
+ * then go to Apple's 44pt on an actual touch pointer.
  */
 button,
 select {
   min-height: 2.25rem;
   min-width: 2.25rem;
+}
+
+/* A short Korean button label must never break one character per line when the
+   row gets tight. Let the neighbouring field give way instead. */
+button {
+  white-space: nowrap;
 }
 
 @media (pointer: coarse) {
@@ -78,28 +148,47 @@ select {
   }
 }
 
-/* Custom crisp scrollbars */
+/* --- Focus ----------------------------------------------------------------
+ * One visible focus ring in the brand accent, so keyboard and switch-control
+ * users get the same affordance everywhere.
+ */
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* --- Scrollbars ----------------------------------------------------------- */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #293548;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #3d4c63;
+  background-clip: content-box;
 }
 
-.font-mono {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
-  /* No em-based size nudge here: .font-mono nests several levels deep in these
-     cards, and a relative size would compound into arbitrary fractional pixels. */
-  letter-spacing: 0;
+/* --- Motion ---------------------------------------------------------------
+ * Respect the system setting; a spinning loader is not worth a headache.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

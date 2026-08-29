@@ -97,7 +97,7 @@ export default function EfbSidebar({ activeTab, onSelectTab, onOpenAiChat }) {
   };
 
   return (
-    <aside className="fixed left-0 top-[57px] bottom-0 z-40 w-16 bg-[#080d19] border-r border-slate-800/80 flex flex-col justify-start py-2 select-none shadow-xl overflow-y-auto">
+    <aside className="fixed left-0 top-[57px] bottom-0 z-40 w-16 bg-[#080d19] border-r border-slate-800/80 flex flex-col justify-start py-2 select-none shadow-lg overflow-y-auto">
       <div className="flex flex-col w-full">
         {navItems.map((item) => {
           const Icon = item.icon;

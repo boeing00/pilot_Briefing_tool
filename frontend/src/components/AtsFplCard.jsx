@@ -17,14 +17,14 @@ export default function AtsFplCard({ briefing }) {
   };
 
   return (
-    <div id="section-fpl" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5 font-mono">
+    <div id="section-fpl" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
             <ClipboardList className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
               SUBMITTED ATS FLIGHT PLAN (ICAO FPL)
             </h3>
             <p className="text-xs text-slate-400 mt-0.5">항공교통관제소(ATS) 공식 제출 비행계획 전문</p>
@@ -40,7 +40,7 @@ export default function AtsFplCard({ briefing }) {
         </button>
       </div>
 
-      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto select-all shadow-inner">
+      <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto select-all font-mono">
         <pre>{rawFpl}</pre>
       </div>
     </div>

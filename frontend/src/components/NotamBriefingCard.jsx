@@ -5,20 +5,20 @@ function ImpactBadge({ impact }) {
   const imp = (impact || 'low').toLowerCase();
   if (imp === 'high') {
     return (
-      <span className="px-2 py-0.5 bg-rose-950 text-rose-300 border border-rose-800 rounded text-2xs font-bold uppercase font-mono">
+      <span className="px-2 py-0.5 bg-rose-950 text-rose-300 border border-rose-800 rounded-lg text-2xs font-bold uppercase font-mono">
         CRITICAL
       </span>
     );
   }
   if (imp === 'medium') {
     return (
-      <span className="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded text-2xs font-bold uppercase font-mono">
+      <span className="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded-lg text-2xs font-bold uppercase font-mono">
         CAUTION
       </span>
     );
   }
   return (
-    <span className="px-2 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded text-2xs font-mono">
+    <span className="px-2 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded-lg text-2xs font-mono">
       INFO
     </span>
   );
@@ -62,7 +62,7 @@ export default function NotamBriefingCard({ data }) {
                         {item.item}
                       </span>
                       {item.id && (
-                        <span className="text-2xs text-slate-500 font-mono">[{item.id}]</span>
+                        <span className="text-2xs text-slate-400 font-mono">[{item.id}]</span>
                       )}
                     </div>
                     <p className="text-xs text-slate-300">{item.detail}</p>
@@ -74,7 +74,7 @@ export default function NotamBriefingCard({ data }) {
               ))}
             </div>
           ) : (
-            <p className="text-xs text-slate-500 italic bg-slate-950/40 p-3 rounded-lg border border-slate-800">
+            <p className="text-xs text-slate-400 italic bg-slate-950/40 p-3 rounded-lg border border-slate-800">
               특이 활주로/유도로 폐쇄 노탐 없음
             </p>
           )}
@@ -82,7 +82,7 @@ export default function NotamBriefingCard({ data }) {
 
         {/* NAVAIDS / Airspace */}
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">
+          <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">
             <Radio className="w-4 h-4" />
             <span>NAVAIDs & Airspace Procedures (항법/절차)</span>
           </div>
@@ -100,7 +100,7 @@ export default function NotamBriefingCard({ data }) {
                         {item.item}
                       </span>
                       {item.id && (
-                        <span className="text-2xs text-slate-500 font-mono">[{item.id}]</span>
+                        <span className="text-2xs text-slate-400 font-mono">[{item.id}]</span>
                       )}
                     </div>
                     <p className="text-xs text-slate-400">{item.detail}</p>
@@ -112,7 +112,7 @@ export default function NotamBriefingCard({ data }) {
               ))}
             </div>
           ) : (
-            <p className="text-xs text-slate-500 italic bg-slate-950/40 p-3 rounded-lg border border-slate-800">
+            <p className="text-xs text-slate-400 italic bg-slate-950/40 p-3 rounded-lg border border-slate-800">
               항법 장비 및 공역 제한사항 없음
             </p>
           )}

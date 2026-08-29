@@ -140,9 +140,9 @@ export default function CheckPage({ briefing }) {
   const governingMarginFormatted = minMarginVal.toLocaleString() + ' LBS';
 
   return (
-    <div className="space-y-7 animate-fade-in font-mono">
+    <div className="space-y-7 animate-fade-in">
       {/* 1. Single Unified Card: Top/Bottom Route Comparison */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-5">
         {/* Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
@@ -150,12 +150,12 @@ export default function CheckPage({ briefing }) {
               <Navigation className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                 ROUTE COMPARISON: CFP ROUTE vs ATS ICAO FPL
               </h3>
             </div>
           </div>
-          <span className="text-sm sm:text-base lg:text-lg font-black px-4 sm:px-5 py-2 sm:py-2.5 bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 rounded-xl shadow-lg shadow-emerald-950/60 shrink-0 flex items-center gap-2.5 tracking-wider">
+          <span className="text-sm sm:text-base lg:text-lg font-bold px-4 sm:px-5 py-2 sm:py-2.5 bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 rounded-xl shadow-lg shrink-0 flex items-center gap-2.5 tracking-wider">
             <Check className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 stroke-[3.5]" />
             {matchPct} WAYPOINT & AIRWAY MATCH
           </span>
@@ -166,14 +166,14 @@ export default function CheckPage({ briefing }) {
           {/* Left Vertical Glowing Connector Spine */}
           <div className="absolute left-2.5 sm:left-3.5 top-6 bottom-6 w-1 bg-gradient-to-b from-emerald-400 via-emerald-500 to-emerald-400 rounded-full shadow-[0_0_12px_rgba(52,211,153,0.6)]">
             {/* Center Junction Node */}
-            <div className="absolute top-1/2 -translate-y-1/2 -left-1 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900 shadow-md shadow-emerald-400" />
+            <div className="absolute top-1/2 -translate-y-1/2 -left-1 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900 shadow-sm" />
           </div>
 
           {/* Top: CFP Route Box (Card 1) */}
           <div className="relative group">
             {/* Top Node */}
-            <div className="absolute -left-6 sm:-left-8 top-6 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-900 shadow-md shadow-emerald-400" />
-            <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-inner group-hover:border-emerald-500/40 transition-all">
+            <div className="absolute -left-6 sm:-left-8 top-6 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-900 shadow-sm" />
+            <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-5 space-y-3 group-hover:border-emerald-500/40 transition-all">
               <div className="flex items-center justify-between">
                 <span className="text-xs sm:text-sm font-bold text-slate-200 bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-lg uppercase tracking-wider flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -182,8 +182,8 @@ export default function CheckPage({ briefing }) {
                 <span className="text-xs sm:text-sm font-bold text-slate-400">OFP ROUTE</span>
               </div>
 
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 text-sm sm:text-base leading-relaxed text-slate-200 font-bold break-words tracking-wide">
-                <span className="text-amber-200 font-black">{depIcao}</span> → {cfpRoute} → <span className="text-amber-200 font-black">{destIcao}</span>
+              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 text-sm sm:text-base leading-relaxed text-slate-200 font-bold break-words tracking-wide font-mono">
+                <span className="text-amber-200 font-bold">{depIcao}</span> → {cfpRoute} → <span className="text-amber-200 font-bold">{destIcao}</span>
               </div>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function CheckPage({ briefing }) {
             </div>
 
             {/* Floating Comparison Match Pill */}
-            <div className="relative bg-slate-900 border-2 border-emerald-400/90 px-4 sm:px-6 py-2 rounded-full shadow-xl shadow-emerald-950/90 flex items-center gap-2.5 text-xs sm:text-sm font-black text-emerald-300 z-10 tracking-wide">
+            <div className="relative bg-slate-900 border-2 border-emerald-400/90 px-4 sm:px-6 py-2 rounded-full shadow-lg flex items-center gap-2.5 text-xs sm:text-sm font-bold text-emerald-300 z-10 tracking-wide">
               <ArrowDownUp className="w-4 h-4 text-emerald-400 stroke-[3]" />
               <span>1번 CFP 항로 ⟷ 2번 ATS FPL 항로 웨이포인트 100% 완전 일치 대조</span>
               <Check className="w-4 h-4 text-emerald-400 stroke-[3.5]" />
@@ -206,8 +206,8 @@ export default function CheckPage({ briefing }) {
           {/* Bottom: ATS ICAO FPL Field 15 Box (Card 2) */}
           <div className="relative group">
             {/* Bottom Node */}
-            <div className="absolute -left-6 sm:-left-8 top-6 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-900 shadow-md shadow-emerald-400" />
-            <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-inner group-hover:border-emerald-500/40 transition-all">
+            <div className="absolute -left-6 sm:-left-8 top-6 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-slate-900 shadow-sm" />
+            <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-5 space-y-3 group-hover:border-emerald-500/40 transition-all">
               <div className="flex items-center justify-between">
                 <span className="text-xs sm:text-sm font-bold text-slate-200 bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-lg uppercase tracking-wider flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -216,7 +216,7 @@ export default function CheckPage({ briefing }) {
                 <span className="text-xs sm:text-sm font-bold text-slate-400">FIELD 15 ROUTE</span>
               </div>
 
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 text-sm sm:text-base leading-relaxed text-slate-200 font-bold break-words tracking-wide">
+              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 text-sm sm:text-base leading-relaxed text-slate-200 font-bold break-words tracking-wide font-mono">
                 {atsFplRoute}
               </div>
             </div>
@@ -225,16 +225,16 @@ export default function CheckPage({ briefing }) {
 
         {/* Bottom Key Flight Metrics Bar */}
         <div className="border-t border-slate-800 pt-4 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm text-slate-300">
-          <span>총 비행거리: <strong className="text-white font-bold">{totalDist}</strong></span>
-          <span>예상 비행시간: <strong className="text-white font-bold">{fltTime}</strong></span>
-          <span>순항고도: <strong className="text-amber-200 font-bold">{crzAlt}</strong></span>
-          <span>기체등록: <strong className="text-white font-bold">{actType}</strong></span>
-          <span>목적지/교체: <strong className="text-amber-200 font-bold">{destIcao} / {altnIcao}</strong></span>
+          <span>총 비행거리: <strong className="text-white font-bold font-mono">{totalDist}</strong></span>
+          <span>예상 비행시간: <strong className="text-white font-bold font-mono">{fltTime}</strong></span>
+          <span>순항고도: <strong className="text-amber-200 font-bold font-mono">{crzAlt}</strong></span>
+          <span>기체등록: <strong className="text-white font-bold font-mono">{actType}</strong></span>
+          <span>목적지/교체: <strong className="text-amber-200 font-bold font-mono">{destIcao} / {altnIcao}</strong></span>
         </div>
       </div>
 
       {/* 2. Flight Plan Cross-Check & Operational Validation Section */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-5">
         {/* Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
@@ -242,7 +242,7 @@ export default function CheckPage({ briefing }) {
               <CheckCheck className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                 FLIGHT PLAN CROSS-CHECK & OPERATIONAL VALIDATION
               </h3>
             </div>
@@ -254,9 +254,9 @@ export default function CheckPage({ briefing }) {
         </div>
 
         {/* Weight Limitation Callout Notice */}
-        <div className="bg-slate-950 p-3.5 rounded-xl border border-amber-500/40 flex flex-wrap items-center justify-between gap-2 text-xs shadow-inner">
+        <div className="bg-slate-950 p-3.5 rounded-xl border border-amber-500/40 flex flex-wrap items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-2.5">
-            <span className="px-2.5 py-1 bg-amber-400 text-slate-950 font-black rounded-lg text-xs tracking-wider uppercase shrink-0">
+            <span className="px-2.5 py-1 bg-amber-400 text-slate-950 font-bold rounded-lg text-xs tracking-wider uppercase shrink-0">
               ★ 중량 여유 제한사항 분석
             </span>
             <span className="text-slate-200 leading-relaxed">
@@ -264,7 +264,7 @@ export default function CheckPage({ briefing }) {
             </span>
           </div>
           <div className="text-amber-300 font-bold text-xs bg-amber-950/60 border border-amber-500/50 px-3 py-1 rounded-lg">
-            유효 탑재 제한: <span className="text-amber-200 underline decoration-amber-400 underline-offset-2">{governingItemName} (+{governingMarginFormatted})</span>
+            유효 탑재 제한: <span className="text-amber-200 underline decoration-amber-400 underline-offset-2 font-mono">{governingItemName} (+{governingMarginFormatted})</span>
           </div>
         </div>
 
@@ -295,11 +295,11 @@ export default function CheckPage({ briefing }) {
                 key={idx}
                 className={`bg-slate-950/80 border ${
                   isGoverning ? 'border-amber-500/60 bg-amber-950/10' : 'border-slate-800/90'
-                } px-4 sm:px-5 py-3 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 shadow-inner transition-all`}
+                } px-4 sm:px-5 py-3 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3.5 transition-all`}
               >
                 {/* Left: Category Badge */}
                 <div className="flex items-center gap-3 shrink-0">
-                  <span className="text-xs sm:text-sm font-bold text-slate-500 w-6 text-right">
+                  <span className="text-xs sm:text-sm font-bold text-slate-400 w-6 text-right">
                     {idx + 1}.
                   </span>
                   <span className={`text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg min-w-[210px] text-center md:text-left border ${
@@ -315,7 +315,7 @@ export default function CheckPage({ briefing }) {
                 <div className="text-sm sm:text-base text-slate-200 flex-1 leading-relaxed pl-1 font-medium flex flex-wrap items-center gap-2">
                   <span>{cleanDetail}</span>
                   {isGoverning && (
-                    <span className="text-xs font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/60 rounded-md shrink-0">
+                    <span className="text-xs font-bold px-2 py-0.5 bg-amber-500/20 text-amber-300 border border-amber-500/60 rounded-lg shrink-0">
                       ★ 최소 여유 (탑재 제한사항)
                     </span>
                   )}

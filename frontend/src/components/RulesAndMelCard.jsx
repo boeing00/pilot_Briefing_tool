@@ -36,14 +36,14 @@ export default function RulesAndMelCard({ briefing }) {
   const actType = briefing?.flight_summary?.aircraft_type || 'AIRCRAFT';
 
   return (
-    <div id="section-rules" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+    <div id="section-rules" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
             <Shield className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white font-mono uppercase tracking-wide">
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-mono uppercase tracking-wide">
               COMPANY RULES & MEL / CDL DEFERRALS
             </h3>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
@@ -57,16 +57,16 @@ export default function RulesAndMelCard({ briefing }) {
       </div>
 
       {/* Advisories Grid */}
-      <div className="space-y-3 font-mono">
-        <span className="text-xs font-bold text-slate-200 bg-slate-950 border border-slate-700 px-2.5 py-1 rounded uppercase tracking-wider inline-block">
+      <div className="space-y-3">
+        <span className="text-xs font-bold text-slate-200 bg-slate-950 border border-slate-700 px-2.5 py-1 rounded-lg uppercase tracking-wider inline-block">
           COMPANY OPERATIONAL ADVISORIES
         </span>
         <div className="space-y-2">
           {companyAdvisories.map((adv, idx) => (
-            <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl space-y-1.5 shadow-inner">
+            <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl space-y-1.5">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-xs sm:text-sm font-bold text-slate-200">{adv.id} : {adv.title}</span>
-                <span className={`text-2xs px-2 py-0.5 rounded border font-mono font-bold shrink-0 ${
+                <span className={`text-2xs px-2 py-0.5 rounded-lg border font-mono font-bold shrink-0 ${
                   adv.impact === 'CRITICAL'
                     ? 'bg-slate-900 text-rose-300 border-rose-600/50'
                     : adv.impact === 'CAUTION'
@@ -83,18 +83,18 @@ export default function RulesAndMelCard({ briefing }) {
       </div>
 
       {/* MEL / CDL Table */}
-      <div className="pt-2 border-t border-slate-800 space-y-3 font-mono">
-        <span className="text-xs font-bold text-slate-200 bg-slate-950 border border-slate-700 px-2.5 py-1 rounded uppercase tracking-wider inline-block">
+      <div className="pt-2 border-t border-slate-800 space-y-3">
+        <span className="text-xs font-bold text-slate-200 bg-slate-950 border border-slate-700 px-2.5 py-1 rounded-lg uppercase tracking-wider inline-block">
           APPLIED MEL / CDL ITEMS ({actType})
         </span>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {melCdlItems.map((item, idx) => (
-            <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl flex items-start gap-3 shadow-inner">
+            <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3.5 rounded-xl flex items-start gap-3">
               <Wrench className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs font-bold text-amber-200">{item.code}</span>
-                  <span className="text-2xs px-1.5 py-0.5 bg-slate-900 text-slate-400 rounded border border-slate-800 font-mono">
+                  <span className="text-2xs px-1.5 py-0.5 bg-slate-900 text-slate-400 rounded-lg border border-slate-800 font-mono">
                     {item.status}
                   </span>
                 </div>

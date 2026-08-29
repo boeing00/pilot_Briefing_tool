@@ -33,16 +33,16 @@ export default function RoutePage({ briefing }) {
       ];
 
   return (
-    <div className="space-y-6 animate-fade-in font-mono">
+    <div className="space-y-6 animate-fade-in">
       {/* Route Header Banner */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
               <Navigation className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                 FLIGHT ROUTE & NAVIGATION LOG
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
@@ -56,8 +56,8 @@ export default function RoutePage({ briefing }) {
         </div>
 
         {/* Route String */}
-        <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto shadow-inner">
-          <span className="text-slate-500 block text-2xs mb-1 font-bold">FILED ROUTE STRING:</span>
+        <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-200 leading-relaxed overflow-x-auto">
+          <span className="text-slate-400 block text-2xs mb-1 font-bold">FILED ROUTE STRING:</span>
           {filedRoute}
         </div>
 
@@ -69,15 +69,15 @@ export default function RoutePage({ briefing }) {
       </div>
 
       {/* FIR Crossing Schedule */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
         <div className="flex items-center gap-2 text-xs font-bold text-slate-200 uppercase tracking-wider pb-2 border-b border-slate-800">
           <Globe className="w-4 h-4 text-slate-400" />
           <span>FIR Boundary Crossing Times (관제구역 진입 시간)</span>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
           {firCrossings.map((fir, idx) => (
-            <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3 rounded-xl text-center shadow-inner">
-              <span className="text-2xs text-slate-500 block truncate">{fir.fir}</span>
+            <div key={idx} className="bg-slate-950/80 border border-slate-800 p-3 rounded-xl text-center">
+              <span className="text-2xs text-slate-400 block truncate">{fir.fir}</span>
               <span className="text-xs font-bold text-white block mt-0.5">{fir.fix}</span>
               <span className="text-xs text-amber-200 font-bold block mt-0.5">{fir.eet}</span>
             </div>
@@ -86,14 +86,14 @@ export default function RoutePage({ briefing }) {
       </div>
 
       {/* Full Waypoint Log Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-4">
         <div className="flex items-center gap-2 text-xs font-bold text-slate-200 uppercase tracking-wider pb-2 border-b border-slate-800">
           <Table className="w-4 h-4 text-slate-400" />
           <span>Waypoint Navigation Log & Fuel Burn Progression</span>
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs">
+          <table className="w-full text-left border-collapse text-xs font-mono">
             <thead>
               <tr className="border-b border-slate-800 text-slate-400 text-2xs uppercase bg-slate-950/80">
                 <th className="py-2.5 px-3">WAYPOINT</th>

@@ -50,19 +50,19 @@ export default function BriefPage({ briefing, onNavigate }) {
   const edtoEras = briefing.edto_etops?.designated_eras || `${depIcao}, ${altnIcao}, ${destIcao}`;
 
   return (
-    <div className="space-y-7 animate-fade-in font-mono">
+    <div className="space-y-7 animate-fade-in">
       {/* Flight Summary Card */}
       <FlightOverviewCard data={briefing.flight_summary} />
 
       {/* Critical Operational Briefing Alerts */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-3 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
               <ShieldAlert className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                 KEY OPERATIONAL BRIEFING HIGHLIGHTS
               </h3>
             </div>
@@ -77,7 +77,7 @@ export default function BriefPage({ briefing, onNavigate }) {
             <div
               key={idx}
               onClick={() => onNavigate(alert.target || 'wx')}
-              className="bg-slate-950/80 p-5 sm:p-6 rounded-2xl border border-slate-800 flex flex-col justify-between cursor-pointer transition hover:border-slate-700 hover:bg-slate-900/90 shadow-md group"
+              className="bg-slate-950/80 p-5 sm:p-6 rounded-2xl border border-slate-800 flex flex-col justify-between cursor-pointer transition hover:border-slate-700 hover:bg-slate-900/90 shadow-sm group"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
@@ -104,7 +104,7 @@ export default function BriefPage({ briefing, onNavigate }) {
 
               <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-200 transition">
                 <span>상세 브리핑 페이지 확인</span>
-                <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-slate-200" />
+                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-slate-200" />
               </div>
             </div>
           ))}
@@ -116,56 +116,56 @@ export default function BriefPage({ briefing, onNavigate }) {
         {/* Block Fuel */}
         <div
           onClick={() => onNavigate('fuel')}
-          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-sm group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <Fuel className="w-6 h-6" />
           </div>
           <div>
             <span className="text-xs sm:text-sm text-slate-400 uppercase font-bold block">BLOCK FUEL</span>
-            <span className="text-base sm:text-lg font-black text-white">{blockFuel}</span>
+            <span className="text-base sm:text-lg font-bold text-white">{blockFuel}</span>
           </div>
         </div>
 
         {/* Takeoff Weight */}
         <div
           onClick={() => onNavigate('fuel')}
-          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-sm group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <CheckCircle2 className="w-6 h-6" />
           </div>
           <div>
             <span className="text-xs sm:text-sm text-slate-400 uppercase font-bold block">EST TOW</span>
-            <span className="text-base sm:text-lg font-black text-white">{estTow}{towMargin}</span>
+            <span className="text-base sm:text-lg font-bold text-white">{estTow}{towMargin}</span>
           </div>
         </div>
 
         {/* Flight Time */}
         <div
           onClick={() => onNavigate('route')}
-          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-sm group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <Clock className="w-6 h-6" />
           </div>
           <div>
             <span className="text-xs sm:text-sm text-slate-400 uppercase font-bold block">EST FLIGHT TIME</span>
-            <span className="text-base sm:text-lg font-black text-white">{fltTime}</span>
+            <span className="text-base sm:text-lg font-bold text-white">{fltTime}</span>
           </div>
         </div>
 
         {/* ETOPS / EDTO */}
         <div
           onClick={() => onNavigate('edto')}
-          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-md group"
+          className="bg-slate-900 hover:bg-slate-800 border border-slate-800 p-5 rounded-2xl cursor-pointer transition flex items-center gap-4 shadow-sm group"
         >
           <div className="p-3 bg-slate-800 border border-slate-700 text-slate-300 rounded-xl group-hover:text-amber-300 transition">
             <Navigation className="w-6 h-6" />
           </div>
           <div>
             <span className="text-xs sm:text-sm text-slate-400 uppercase font-bold block">EDTO ERAS</span>
-            <span className="text-base sm:text-lg font-black text-white">{edtoEras}</span>
+            <span className="text-base sm:text-lg font-bold text-white">{edtoEras}</span>
           </div>
         </div>
       </div>

@@ -23,15 +23,15 @@ export default function JointBriefPage({ briefing }) {
   };
 
   return (
-    <div className="space-y-6 animate-fade-in font-mono">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-xl space-y-6">
+    <div className="space-y-6 animate-fade-in">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-7 shadow-lg space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-slate-800">
           <div className="flex items-center gap-3.5">
             <div className="p-3 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
               <UserCheck className="w-7 h-7" />
             </div>
             <div>
-              <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wide">
+              <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
                 JOINT OPERATIONAL BRIEFING
               </h3>
               <p className="text-sm text-slate-400 mt-1">
@@ -39,7 +39,7 @@ export default function JointBriefPage({ briefing }) {
               </p>
             </div>
           </div>
-          <span className="text-xs sm:text-sm font-bold px-3.5 py-1.5 bg-slate-950 border border-cyan-500/40 text-cyan-300 rounded-lg shadow-sm shrink-0">
+          <span className="text-xs sm:text-sm font-bold px-3.5 py-1.5 bg-slate-950 border border-amber-500/40 text-amber-300 rounded-lg shadow-sm shrink-0">
             JOINT CREW
           </span>
         </div>
@@ -67,13 +67,13 @@ export default function JointBriefPage({ briefing }) {
 
           <div className="bg-slate-950/80 p-5 rounded-xl border border-slate-800 space-y-3">
             <span className="text-xs font-bold text-slate-300 uppercase block pb-2 border-b border-slate-800 flex items-center gap-2">
-              <Users className="w-4 h-4 text-cyan-400" />
+              <Users className="w-4 h-4 text-slate-300" />
               PASSENGER & CABIN NOTES
             </span>
             <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
               {jb.passenger_cabin_notes?.map((item, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="text-cyan-400 font-bold mt-0.5">•</span>
+                  <span className="text-slate-300 font-bold mt-0.5">•</span>
                   <span>{item}</span>
                 </li>
               ))}

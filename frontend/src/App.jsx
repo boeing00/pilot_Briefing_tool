@@ -28,13 +28,10 @@ export default function App() {
     docMeta,
     loading,
     error,
-    currentFlight,
     apiKey,
     setApiKey,
     hasApiKey,
-    loadSample,
     handleFileUpload,
-    clearBriefing,
   } = useBriefing();
 
   const [activeTab, setActiveTab] = useState('flight_crew');
@@ -76,15 +73,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-cyan-600 selection:text-white">
+    <div className="min-h-screen text-slate-100 flex flex-col selection:bg-amber-600 selection:text-white">
       {/* Top Header Navbar */}
       <Navbar
         hasApiKey={hasApiKey}
         onOpenApiKey={() => setIsApiKeyOpen(true)}
-        currentFlight={currentFlight}
-        onSelectFlight={loadSample}
-        loading={loading}
-        hasBriefing={Boolean(briefing)}
       />
 
       {/* Main EFB Layout with Left Sidebar */}
@@ -130,7 +123,6 @@ export default function App() {
               onFileUpload={handleFileUpload}
               loading={loading}
               docMeta={docMeta}
-              onClear={clearBriefing}
             />
           </section>
 
@@ -139,7 +131,7 @@ export default function App() {
             <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center space-y-5 font-mono animate-fade-in">
               <div className="w-16 h-16 border-4 border-amber-400 border-t-transparent rounded-full animate-spin shadow-[0_0_25px_rgba(245,158,11,0.4)]"></div>
               <div className="space-y-2">
-                <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider">
+                <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider">
                   GEMINI 2.5 FLASH AI 비행 문서 분석 중...
                 </h3>
                 <p className="text-sm text-amber-300 font-bold">
@@ -164,7 +156,7 @@ export default function App() {
             </div>
           ) : (
             <div className="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-8 sm:p-12 text-center max-w-2xl mx-auto my-8 space-y-4">
-              <div className="w-16 h-16 bg-cyan-600/10 text-cyan-400 border border-cyan-500/20 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+              <div className="w-16 h-16 bg-amber-600/10 text-slate-300 border border-amber-500/20 rounded-2xl flex items-center justify-center mx-auto">
                 <Sparkles className="w-8 h-8" />
               </div>
               <h2 className="text-xl font-bold text-slate-100">
@@ -182,7 +174,7 @@ export default function App() {
       {briefing && (
         <button
           onClick={() => setIsChatOpen(true)}
-          className="fixed bottom-6 right-6 z-30 flex items-center gap-2.5 px-4 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white rounded-full shadow-2xl shadow-cyan-600/40 transition-all transform hover:scale-105 active:scale-95 text-xs font-bold"
+          className="fixed bottom-6 right-6 z-30 flex items-center gap-2.5 px-4 py-3 bg-gradient-to-r from-amber-600 to-amber-600 hover:from-amber-500 hover:to-amber-500 text-white rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95 text-xs font-bold"
         >
           <MessageSquare className="w-4 h-4" />
           <span>조종사 AI 질의응답 (Q&A)</span>

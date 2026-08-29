@@ -19,14 +19,14 @@ export default function FuelAndWeightsCard({ data }) {
   } = data;
 
   return (
-    <div id="section-fuel" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+    <div id="section-fuel" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
             <Fuel className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white font-mono uppercase tracking-wide">
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-mono uppercase tracking-wide">
               FUEL & PERFORMANCE WEIGHTS
             </h3>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
@@ -101,7 +101,7 @@ export default function FuelAndWeightsCard({ data }) {
               <span className="text-xs text-slate-400">/ Max: {max_tow || 'N/A'}</span>
             </div>
           </div>
-          <div className="flex items-center gap-1 text-xs text-slate-300 font-bold bg-slate-900 border border-slate-700 px-2.5 py-1 rounded">
+          <div className="flex items-center gap-1 text-xs text-slate-300 font-bold bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg">
             <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />
             <span>{tow_margin || 'OK'}</span>
           </div>
@@ -116,7 +116,7 @@ export default function FuelAndWeightsCard({ data }) {
               <span className="text-xs text-slate-400">/ Max: {max_law || 'N/A'}</span>
             </div>
           </div>
-          <div className="flex items-center gap-1 text-xs text-slate-300 font-bold bg-slate-900 border border-slate-700 px-2.5 py-1 rounded">
+          <div className="flex items-center gap-1 text-xs text-slate-300 font-bold bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg">
             <CheckCircle2 className="w-3.5 h-3.5 text-slate-400" />
             <span>Limits Valid</span>
           </div>

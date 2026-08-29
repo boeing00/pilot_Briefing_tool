@@ -1,21 +1,13 @@
 import React from 'react';
-import { Plane, Key, UploadCloud, RefreshCw } from 'lucide-react';
+import { Plane, Key, UploadCloud } from 'lucide-react';
 
-export default function Navbar({
-  hasApiKey,
-  onOpenApiKey,
-  onOpenUpload,
-  currentFlight,
-  onSelectFlight,
-  loading,
-  hasBriefing,
-}) {
+export default function Navbar({ hasApiKey, onOpenApiKey, onOpenUpload }) {
   return (
     <header className="bg-slate-900/90 backdrop-blur border-b border-slate-800 sticky top-0 z-30 px-4 py-3">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         {/* Brand & Status */}
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-slate-800 text-amber-300 border border-slate-700 rounded-lg flex items-center justify-center shadow-inner">
+          <div className="p-2 bg-slate-800 text-amber-300 border border-slate-700 rounded-lg flex items-center justify-center">
             <Plane className="w-5 h-5" />
           </div>
           <div>
@@ -23,7 +15,7 @@ export default function Navbar({
               <h1 className="text-base font-bold tracking-wider text-slate-100 uppercase">
                 Pilot Briefing EFB
               </h1>
-              <span className="text-2xs px-1.5 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded font-mono font-medium">
+              <span className="text-2xs px-1.5 py-0.5 bg-slate-800 text-slate-400 border border-slate-700 rounded-lg font-mono font-medium">
                 v1.0
               </span>
             </div>
@@ -33,34 +25,7 @@ export default function Navbar({
           </div>
         </div>
 
-        {/* Flight Preset Selector & Tools */}
         <div className="flex items-center gap-2 font-mono">
-          {/* Preset Buttons */}
-          <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
-            <button
-              onClick={() => onSelectFlight('KLAX')}
-              disabled={loading}
-              className={`px-3 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 ${
-                currentFlight === 'KLAX'
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <span>✈️ RKSI ➔ KLAX (AAR202)</span>
-            </button>
-            <button
-              onClick={() => onSelectFlight('KJFK')}
-              disabled={loading}
-              className={`px-3 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5 ${
-                currentFlight === 'KJFK'
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-400/40 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <span>✈️ RKSI ➔ KJFK (AAR224)</span>
-            </button>
-          </div>
-
           {/* Upload PDF Button */}
           {onOpenUpload && (
             <button

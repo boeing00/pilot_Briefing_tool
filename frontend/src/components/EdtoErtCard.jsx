@@ -23,14 +23,14 @@ export default function EdtoErtCard({ briefing }) {
   const eras = edto.designated_eras || 'RKSI, RJCC, PANC, KORD, CYEG, CYWG, KBOS';
 
   return (
-    <div id="section-edto" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+    <div id="section-edto" className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-lg space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
         <div className="flex items-center gap-3.5">
           <div className="p-2.5 bg-slate-800 border border-slate-700 rounded-xl text-amber-300 shadow-sm">
             <Clock className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-black text-white font-mono uppercase tracking-wide">
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-mono uppercase tracking-wide">
               EDTO / ETOPS & EQUAL TIME POINTS (ETP)
             </h3>
             <p className="text-xs text-slate-400 font-mono mt-0.5">
@@ -45,26 +45,26 @@ export default function EdtoErtCard({ briefing }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono">
         {etpData.map((etp, idx) => (
-          <div key={idx} className="bg-slate-950/80 border border-slate-800 p-4 rounded-xl space-y-2.5 shadow-inner">
+          <div key={idx} className="bg-slate-950/80 border border-slate-800 p-4 rounded-xl space-y-2.5">
             <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-bold text-slate-200">{etp.sector}</span>
-              <span className="px-2 py-0.5 bg-slate-900 text-slate-300 border border-slate-700 rounded text-2xs">
+              <span className="px-2 py-0.5 bg-slate-900 text-slate-300 border border-slate-700 rounded-lg text-2xs">
                 CRZ FL350
               </span>
             </div>
             <div className="bg-slate-900/80 p-3 rounded-lg border border-slate-800 text-xs space-y-1.5 leading-relaxed">
               <p className="text-slate-300">
-                <span className="text-slate-500 font-bold">ETP POSITION:</span> {etp.pos}
+                <span className="text-slate-400 font-bold">ETP POSITION:</span> {etp.pos}
               </p>
               <p className="text-slate-300">
-                <span className="text-slate-500 font-bold">DIVERT 1:</span> {etp.dist1}
+                <span className="text-slate-400 font-bold">DIVERT 1:</span> {etp.dist1}
               </p>
               <p className="text-slate-300">
-                <span className="text-slate-500 font-bold">DIVERT 2:</span> {etp.dist2}
+                <span className="text-slate-400 font-bold">DIVERT 2:</span> {etp.dist2}
               </p>
               {etp.wind && (
                 <p className="text-slate-400">
-                  <span className="text-slate-500 font-bold">WIND FACTOR:</span> {etp.wind}
+                  <span className="text-slate-400 font-bold">WIND FACTOR:</span> {etp.wind}
                 </p>
               )}
             </div>
@@ -75,10 +75,10 @@ export default function EdtoErtCard({ briefing }) {
       {/* Enroute Alternates (ERA) */}
       <div className="pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400">
         <div>
-          <span className="text-slate-500 font-bold">DESIGNATED ERAs:</span>{' '}
+          <span className="text-slate-400 font-bold">DESIGNATED ERAs:</span>{' '}
           <span className="text-slate-200">{eras}</span>
         </div>
-        <div className="text-slate-300 flex items-center gap-1.5 bg-slate-950 px-2.5 py-1 rounded border border-slate-700">
+        <div className="text-slate-300 flex items-center gap-1.5 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-700">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
           <span>3% CONTINGENCY ERA VALIDATED</span>
         </div>
