@@ -39,7 +39,7 @@ export default function PdfUploader({ onFileUpload, loading, docMeta }) {
   return (
     <div className="w-full">
       {docMeta ? (
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-lg">
+        <div className="relative bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col lg:flex-row items-center justify-between gap-4 shadow-lg">
           <div className="flex items-center gap-3 w-full lg:w-auto">
             <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-400 shrink-0">
               <FileCheck className="w-6 h-6" />
@@ -82,7 +82,8 @@ export default function PdfUploader({ onFileUpload, loading, docMeta }) {
             ref={fileInputRef}
             onChange={handleFileInputChange}
             accept=".pdf,application/pdf"
-            className="hidden"
+            onClick={(e) => e.stopPropagation()}
+            className="absolute w-px h-px opacity-0 -z-10 overflow-hidden"
           />
         </div>
       ) : (
@@ -91,7 +92,7 @@ export default function PdfUploader({ onFileUpload, loading, docMeta }) {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200 ${
+          className={`relative border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200 ${
             isDragOver
               ? 'border-amber-500 bg-amber-950/20 shadow-lg'
               : 'border-slate-700/80 bg-slate-900/60 hover:border-slate-600 hover:bg-slate-900'
@@ -102,7 +103,8 @@ export default function PdfUploader({ onFileUpload, loading, docMeta }) {
             ref={fileInputRef}
             onChange={handleFileInputChange}
             accept=".pdf,application/pdf"
-            className="hidden"
+            onClick={(e) => e.stopPropagation()}
+            className="absolute w-px h-px opacity-0 -z-10 overflow-hidden"
           />
           {loading ? (
             <div className="flex flex-col items-center justify-center gap-3">

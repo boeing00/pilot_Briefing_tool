@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, AlertTriangle, Sparkles } from 'lucide-react';
 import { useBriefing } from './hooks/useBriefing';
 
@@ -35,6 +35,14 @@ export default function App() {
   } = useBriefing();
 
   const [activeTab, setActiveTab] = useState('flight_crew');
+  const errorRef = useRef(null);
+
+  // Bring a failure into view. The alert renders at the top of the page and the
+  // pilot may well have scrolled away during a two-minute analysis.
+  useEffect(() => {
+    if (error) errorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [error]);
+
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isApiKeyOpen, setIsApiKeyOpen] = useState(false);
 
@@ -93,7 +101,7 @@ export default function App() {
         <main className="flex-1 max-w-[1400px] w-full mx-auto p-4 sm:p-7 pb-28 sm:pb-28 space-y-7">
           {/* Error Alert */}
           {error && (
-            <div className="bg-rose-950/80 border border-rose-800 text-rose-200 px-4 py-3 rounded-xl flex items-center gap-3 text-sm shadow-lg">
+            <div ref={errorRef} className="bg-rose-950/80 border border-rose-800 text-rose-200 px-4 py-3 rounded-xl flex items-start gap-3 text-sm shadow-lg">
               <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0" />
               <span>{error}</span>
             </div>

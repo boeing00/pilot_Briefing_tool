@@ -16,8 +16,15 @@ import kjfkSample from '../data/sample_aar224_kjfk.json';
 const GEMINI_ENDPOINT =
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
-/** Gemini rejects PDFs over 50MB / 1000 pages; keep well clear and fail early. */
-const MAX_PDF_BYTES = 40 * 1024 * 1024;
+/**
+ * Gemini itself allows 50MB / 1000 pages, but the browser has to hold the file,
+ * its base64 expansion (+33%) and the JSON request body at once. On a tablet
+ * that is the binding limit, not the API's.
+ */
+const MAX_PDF_BYTES = 20 * 1024 * 1024;
+
+/** A long OFP takes 1-3 minutes; fail with a message rather than spin forever. */
+const REQUEST_TIMEOUT_MS = 5 * 60 * 1000;
 
 const SAMPLES = {
   KLAX: {
@@ -42,7 +49,10 @@ export function getSampleBriefing(flight = 'KLAX') {
   const key = String(flight || '').toUpperCase();
   const sample = SAMPLES[key] || SAMPLES.KLAX;
   // Deep copy so a page that mutates the briefing cannot poison the bundled sample.
-  return structuredClone(sample);
+  // structuredClone is Safari 15.4+; an older iPad would otherwise fail on load.
+  return typeof structuredClone === 'function'
+    ? structuredClone(sample)
+    : JSON.parse(JSON.stringify(sample));
 }
 
 /** Fallback NOTAM package for a flight, used when a parsed briefing carries no notam_list. */
@@ -98,15 +108,37 @@ async function callGemini({ apiKey, parts, systemInstruction, jsonOutput, temper
       : {}),
   };
 
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  let wentHidden = false;
+  const onHide = () => { if (document.hidden) wentHidden = true; };
+  document.addEventListener('visibilitychange', onHide);
+
   let res;
   try {
     res = await fetch(`${GEMINI_ENDPOINT}?key=${encodeURIComponent(apiKey)}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
+      signal: controller.signal,
     });
-  } catch {
+  } catch (err) {
+    if (wentHidden) {
+      throw new Error(
+        '분석 중 화면이 꺼지거나 다른 앱으로 전환되어 요청이 중단되었습니다. ' +
+        '분석이 끝날 때까지 화면을 켠 채로 이 탭에 머물러 주세요.'
+      );
+    }
+    if (err?.name === 'AbortError') {
+      throw new Error(
+        `응답이 ${Math.round(REQUEST_TIMEOUT_MS / 60000)}분 안에 오지 않아 중단했습니다. ` +
+        '문서가 매우 길면 페이지 수를 줄여 다시 시도해 주세요.'
+      );
+    }
     throw new Error('Gemini에 연결하지 못했습니다. 네트워크 상태를 확인해 주세요.');
+  } finally {
+    clearTimeout(timer);
+    document.removeEventListener('visibilitychange', onHide);
   }
 
   const payload = await res.json().catch(() => null);
@@ -145,13 +177,22 @@ function parseJsonResponse(text) {
 }
 
 export async function uploadFlightPdf(file, apiKey = '') {
+  // Fail before reading the file, not after. The key lives in this browser's
+  // localStorage, so a key entered on another device is not present here.
+  if (!apiKey) {
+    throw new Error(
+      'Gemini API Key가 이 기기에 등록되어 있지 않습니다. 키는 기기마다 따로 저장되므로 ' +
+      '우측 상단 [API Key]에서 이 기기에도 입력해 주세요.'
+    );
+  }
+
   const name = file?.name || '';
   if (!/\.pdf$/i.test(name) && file?.type !== 'application/pdf') {
     throw new Error('PDF 파일만 분석할 수 있습니다.');
   }
   if (file.size > MAX_PDF_BYTES) {
     throw new Error(
-      `PDF 용량이 너무 큽니다 (${(file.size / 1024 / 1024).toFixed(1)}MB). 40MB 이하 파일을 사용해 주세요.`
+      `PDF 용량이 너무 큽니다 (${(file.size / 1024 / 1024).toFixed(1)}MB). 20MB 이하 파일을 사용해 주세요.`
     );
   }
 
