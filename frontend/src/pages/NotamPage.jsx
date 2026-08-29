@@ -19,76 +19,14 @@ export default function NotamPage({ briefing, isSample = true }) {
 
   const nb = briefing?.notam_briefing || {};
   const genSum = nb.general_summary || {};
-  const getFallbackEnrouteAnalysis = () => {
-    if (destIcao === 'KJFK') {
-      return [
-        {
-          title: "3.1 에드먼턴 FIR 의무 계기 비행 규칙 (NOTAM CZEG F4091/26)",
-          fir: "캐나다 에드먼턴(CZEG) FIR 내 공역 통과 시",
-          raw_text: "F4091/26 NOTAMN\nQ) CZEG/QARXX/IV/NBO/E/280/430/6200N11500W999\nA) CZEG B) 2608290000 C) 2608292359\nE) WESTBOUND FLIGHTS ENTERING CZEG FIR FROM CZWG FIR TRANSITING TO CZVR FIR SHALL ROUTE ON OR NORTH OF TRACK: VINKO - RABOX - NOVAR UNLESS OTHERWISE APPROVED BY EDMONTON ACC.",
-          conditions: "서향 비행편 (Westbound): 위니펙 FIR에서 에드먼턴 FIR을 거쳐 밴쿠버 FIR로 진입하는 비행편은 반드시 VINKO-RABOX-NOVAR 트랙상 또는 그 북쪽(On or North of)으로 항로를 설정해야 합니다.",
-          correlation: `우리 비행(${flightNo})과의 연관성: 당사 항로는 위니펙 공역을 지나 북위 62도에서 68도까지 극단적인 북단 트랙(62N100W -> 68N130W)을 경유하여 POTAT으로 비행하므로, 본 서향 비행 규정을 안전하게 우회 준수하고 있습니다.`
-        },
-        {
-          title: "3.2 앵커리지 FIR UPR 비행 규칙 (NOTAM PAZA A2352/26)",
-          fir: "CZEG FIR과 PAZA FIR 경계선 통과 및 일본 후쿠오카 FIR 진입 구간",
-          raw_text: "A2352/26 NOTAMN\nQ) PAZA/QARXX/IV/NBO/E/280/450/5800N17000W999\nA) PAZA B) 2608290000 C) 2608292359\nE) UPR GATEWAY RESTRICTION: ACFT CROSSING CZEG/PAZA BOUNDARY BTN TAYTA AND DEEJA SHALL CROSS DESIGNATED FIX POTAT. WESTBOUND FLIGHTS ENTERING RJJJ FIR SHALL JOIN R220 EAST OF NIKLL OR M523 EAST OF HIXOR.",
-          conditions: "CZEG FIR과 PAZA FIR의 경계선 통과 시 TAYTA에서 DEEJA 사이 구간은 반드시 지정된 게이트 포인트를 통과해야 하며, 서향 UPR 비행편이 일본 후쿠오카 FIR로 진입할 시 반드시 R220 항로의 NIKLL 지점 동쪽 상공 또는 M523 항로의 HIXOR 지점 동쪽 상공에서 조인해야 합니다.",
-          correlation: `우리 비행과의 연관성: 당사 항공기는 이에 부합하여 POTAT 지점을 통과하고, 항로상 NIKLL 지점을 정상 통과하도록 계획되어 수립되었습니다.`
-        },
-        {
-          title: "3.3 알래스카 북위 62도 경계 진입 제한 (NOTAM PAZA A0176/26)",
-          fir: "서경 141도 기준, 북위 62도 이북 (N62 00 00 W141 00 00) 구역",
-          raw_text: "A0176/26 NOTAMN\nQ) PAZA/QARXX/IV/NBO/E/280/410/6200N14100W100\nA) PAZA B) 2608290000 C) 2608292359\nE) AIRSPACE ENTRY RESTRICTION: ACFT ENTERING ANCHORAGE FIR NORTH OF N620000 W1410000 SHALL ROUTE DIRECT BTT ON OR NORTH OF GOATS DCT BTT DCT OME.",
-          conditions: "앵커리지 FIR에 진입하는 비행편은 반드시 GOATS 지점 상공 혹은 그 북쪽(On or North of GOATS)에서 BTT로 직행해야 합니다.",
-          correlation: `우리 비행과의 연관성: 당사 항로는 알래스카 진입 후 POTAT에서 BTT로 직행한 다음 OME VORTAC으로 조인하도록 구성되어 있으므로 안전하게 규정을 준수합니다.`
-        },
-        {
-          title: "3.4 러시아 해군 미사일/로켓 낙하 충격 구역 (NOTAM P3698/26)",
-          fir: "캄차카반도 남서측 및 쿠릴 열도 인근 (494248N1581138E - 473000N1590000E - 474603N1543020E)",
-          raw_text: "P3698/26 NOTAMN\nQ) UHPP/QWELW/IV/BO/W/000/999/4836N15620E150\nA) UHPP B) 2608290200 C) 2608291000\nE) TEMPO DANGEROUS AREA ESTABLISHED DUE TO RUSSIAN NAVAL MISSILE IMPACT TEST WI AREA: 494248N1581138E - 473000N1590000E - 474603N1543020E. SFC TO 98430FT AMSL. AVOID AIRSPACE OR COMPLY WITH ATC TACTICAL RADAR VECTOR/OFFSET INSTRUCTIONS.",
-          conditions: "고도 SFC ~ 98,430FT AMSL 무제한 통제.",
-          correlation: `우리 비행과의 연관성: 당사 비행 경로상의 OPULO-OMOTO-OPHET 구간에 걸쳐 있어, 진입 단계에서 관제사로부터 항로 오프셋 지시가 있을 수 있습니다.`
-        }
-      ];
-    }
-
-    // Default for KLAX and Pacific routes
-    return [
-      {
-        title: "3.1 오클랜드/태평양 PACOTS 트랙 진입 및 비행 의무 규칙 (NOTAM KZAK A1402/26)",
-        fir: "오클랜드 대양(KZAK) FIR 및 북태평양 공역 (PACOTS Track 14)",
-        raw_text: "A1402/26 NOTAMN\nQ) KZAK/QARXX/IV/NBO/E/340/390/3500N16000W999\nA) KZAK B) 2608290000 C) 2608292359\nE) PACOTS TRACK 14 EASTBOUND ROUTE: BETO 3500N16000W 3600N15000W 3600N14000W PAINT. REQ SPEED M084. LVL FL340 FL360 FL380. STEP CLIMB MUST BE FILED IN FPL AND CTC ATC 20MIN PRIOR.",
-        conditions: "동향(Eastbound) 비행편: 트랙 진입 시 지정 고도(FL350/FL370) 및 마하 0.84 유지, 지정 트랙 게이트(BETO) 정시 통과 및 양도 통신 준수.",
-        correlation: `우리 비행(${flightNo})과의 연관성: 당사 비행계획은 BETO 지점에서 PACOTS Track 14로 진입하여 M0.84 / FL350 순항 후 스텝클라임(FL370)하도록 정확히 수립 및 준수하고 있습니다.`
-      },
-      {
-        title: "3.2 앵커리지/오클랜드 FIR 대양 CPDLC / ADS-C 의무 비행 규칙 (NOTAM PAZA A0914/26)",
-        fir: "앵커리지(PAZA) & 오클랜드(KZAK) 대양 FIR 경계선",
-        raw_text: "A0914/26 NOTAMN\nQ) PAZA/QCSXX/IV/B/E/000/999/5500N16000W999\nA) PAZA KZAK B) 2608290000 C) 2608292359\nE) OCEANIC DATA LINK MANDATORY. ALL ACFT ENTERING PAZA/KZAK OCEANIC AIRSPACE SHALL LOGON CPDLC/ADS-C VIA ADDR PAZA/KZAK 15 TO 25 MIN PRIOR TO BOUNDARY. IN CASE OF COMM FAILURE APPLY ICAO DOC 7030 REGIONAL SUPP PROCEDURES.",
-        conditions: "대양 공역 진입 15~25분 전 CPDLC 데이터링크(PAZA/KZAK) 자동 로그온 의무. 통신 두절 시 ICAO Doc 7030 대양 비상 강하 및 15NM 우측 오프셋(SLOP) 절차 준수.",
-        correlation: `우리 비행과의 연관성: 당사 항로는 RJJJ 통과 후 PAZA/KZAK 진입 시 데이터링크 자동 전송 및 비상 통신/백업 HF 주파수 사전 확인을 완료하여 안전하게 규정을 준수합니다.`
-      },
-      {
-        title: "3.3 LAX 도착 공역(KZLA FIR) 표준 입항 속도/고도 제약 (NOTAM KZLA A0842/26)",
-        fir: "로스앤젤레스 관제센터(KZLA FIR) 및 PAINT2 STAR 구간",
-        raw_text: "A0842/26 NOTAMN\nQ) KZLA/QAPXX/IV/BO/E/000/240/3400N11824W050\nA) KZLA B) 2608290000 C) 2608292359\nE) STANDARD ARRIVAL PROCEDURE RESTRICTION: ACFT INBOUND KLAX VIA PAINT2 STAR SHALL MAINTAIN MAX SPEED 250KT AT OR BELOW 10000FT. CROSS FIM AT OR ABOVE 8000FT UNLESS OTHERWISE INSTRUCTED BY ATC.",
-        conditions: "PAINT2 표준 계기 도착(STAR) 진입 시 10,000FT 이하 250KT 속도 제한 엄수, FIM VORTAC 인근 8,000FT 이상 유지.",
-        correlation: `우리 비행과의 연관성: FMS 도착 절차에 PAINT2 250KT/10000FT 속도 제약이 정상 입력 수립되어 규정에 부합합니다.`
-      },
-      {
-        title: "3.4 일본/후쿠오카 FIR 해상 군사 훈련 및 임시 위험 구역 (NOTAM RJJJ A0124/26)",
-        fir: "후쿠오카(RJJJ) FIR 동남측 해상 (280000N1450000E ~ 310000N1480000E)",
-        raw_text: "A0124/26 NOTAMN\nQ) RJJJ/QWMLW/IV/BO/W/000/999/2930N14630E120\nA) RJJJ B) 2608290100 C) 2608290900\nE) TEMPO DANGER AREA ACT DUE TO MIL FIRING EXER WI AREA: 280000N1450000E - 310000N1450000E - 310000N1480000E - 280000N1480000E TO BEGINNING. FMS ROUTE OFFSET MAY BE ISSUED BY ATC.",
-        conditions: "고도 SFC ~ UNL 임시 통제 위험구역(Warning Area 발효).",
-        correlation: `우리 비행과의 연관성: 당사 계획 항로는 위험 구역 북측으로 45NM 안전 이격 우회하여 수립되었으며, 진입 단계에서 관제사 오프셋 지시 발생 시 즉시 대응 가능합니다.`
-      }
-    ];
-  };
-
-  const enrouteAnalysis = (nb.enroute_detailed_analysis && nb.enroute_detailed_analysis.length > 0)
+  // NEVER synthesize this section. It renders under a "NOTAM 원문 (Raw ICAO Text)"
+  // heading with a copy button, so anything placed here reads as a real NOTAM. The
+  // previous hardcoded fallback invented NOTAM numbers (PAZA A0914/26, KZAK A1402/26,
+  // CZEG F4091/26 ...) with B)/C) validity dates that did not even match the flight
+  // date, and it attached them to uploaded briefings. Show nothing instead.
+  const enrouteAnalysis = Array.isArray(nb.enroute_detailed_analysis)
     ? nb.enroute_detailed_analysis
-    : getFallbackEnrouteAnalysis();
+    : [];
   // Each demo flight carries its own NOTAM package. An uploaded briefing gets nothing:
   // showing a demo airport's NOTAMs next to a real flight number is worse than showing none.
   const fallbackNotams = isSample ? getFallbackNotams(destIcao) : [];
@@ -175,6 +113,14 @@ export default function NotamPage({ briefing, isSample = true }) {
           <span className="text-slate-400">
             TOTAL {wholeNotams.length} (ACTIVE: {activeCount} / SHADED: {shadedCount})
           </span>
+          {isSample && (
+            <>
+              <span className="text-slate-500">|</span>
+              <span className="px-2 py-0.5 bg-amber-950/70 border border-amber-600/70 text-amber-300 rounded font-bold">
+                예시 데이터 · 실제 운항에 사용 금지
+              </span>
+            </>
+          )}
         </div>
       </div>
 
@@ -270,6 +216,13 @@ export default function NotamPage({ briefing, isSample = true }) {
               <p className="text-slate-400 text-xs font-semibold">
                 북태평양 및 주요 통과 공역 수립 최신 항로 제한 규칙 및 당사 비행 연관성 분석:
               </p>
+
+              {enrouteAnalysis.length === 0 && (
+                <p className="text-slate-400 text-xs bg-slate-900/70 border border-slate-800 rounded p-3">
+                  이 브리핑에는 항로 제약 NOTAM 상세 분석 항목이 없습니다. 항로상 제한사항은
+                  아래 전체 NOTAM 목록과 제출된 ATS FPL에서 직접 확인하십시오.
+                </p>
+              )}
 
               {enrouteAnalysis.map((item, idx) => {
                 const cleanTitle = item.title ? item.title.replace(/^[0-9]+\.[0-9]+\s*/, '') : '';
