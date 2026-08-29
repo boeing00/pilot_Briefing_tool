@@ -26,6 +26,10 @@ const MAX_PDF_BYTES = 20 * 1024 * 1024;
 /** A long OFP takes 1-3 minutes; fail with a message rather than spin forever. */
 const REQUEST_TIMEOUT_MS = 5 * 60 * 1000;
 
+/** models/gemini-2.5-flash reports outputTokenLimit 65536. Thinking shares it. */
+const MAX_OUTPUT_TOKENS = 65536;
+const THINKING_BUDGET = 4096;
+
 const SAMPLES = {
   KLAX: {
     briefing: klaxSample,
@@ -101,6 +105,13 @@ async function callGemini({ apiKey, parts, systemInstruction, jsonOutput, temper
     contents: [{ role: 'user', parts }],
     generationConfig: {
       temperature,
+      // The model's ceiling, asked for explicitly. A full OFP briefing runs to
+      // thousands of tokens of JSON and the default cap is lower than this.
+      maxOutputTokens: MAX_OUTPUT_TOKENS,
+      // Thinking is on by default and its tokens come out of the same budget -
+      // a real OFP was spending ~4k of it before a single character of JSON.
+      // Bounded rather than disabled: some reasoning helps on a dense document.
+      thinkingConfig: { thinkingBudget: THINKING_BUDGET },
       ...(jsonOutput ? { responseMimeType: 'application/json' } : {}),
     },
     ...(systemInstruction
@@ -160,11 +171,53 @@ async function callGemini({ apiKey, parts, systemInstruction, jsonOutput, temper
         : 'Gemini가 빈 응답을 반환했습니다.'
     );
   }
-  return text;
+  return { text, finishReason: candidate?.finishReason };
+}
+
+/**
+ * Closes a JSON document that was cut off mid-flight.
+ *
+ * A long release package can outrun the output ceiling part way through
+ * notam_list, and throwing all of it away leaves the pilot with nothing. Walk to
+ * the last structurally complete value, then shut the open containers. Anything
+ * recovered is flagged so the UI can say the briefing is partial.
+ */
+function salvageTruncatedJson(raw) {
+  const stack = [];
+  let inString = false;
+  let escaped = false;
+  let cut = -1;
+  let cutStack = null;
+
+  for (let i = 0; i < raw.length; i += 1) {
+    const ch = raw[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; continue; }
+    if (ch === '{' || ch === '[') { stack.push(ch === '{' ? '}' : ']'); continue; }
+    if (ch === '}' || ch === ']') {
+      stack.pop();
+      // A complete container: everything up to here can stand on its own.
+      cut = i + 1;
+      cutStack = stack.slice();
+    }
+  }
+
+  if (cut < 0 || !cutStack || cutStack.length === 0) return null;
+  const closers = cutStack.reverse().join('');
+  try {
+    return JSON.parse(raw.slice(0, cut) + closers);
+  } catch {
+    return null;
+  }
 }
 
 /** Gemini occasionally wraps JSON in a markdown fence even in JSON mode. */
-function parseJsonResponse(text) {
+function parseJsonResponse(text, finishReason) {
   let cleaned = text.trim();
   if (cleaned.startsWith('```')) {
     cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
@@ -172,7 +225,22 @@ function parseJsonResponse(text) {
   try {
     return JSON.parse(cleaned);
   } catch {
-    throw new Error('Gemini 응답을 브리핑 데이터로 해석하지 못했습니다. 다시 시도해 주세요.');
+    // Nearly always this is a document that outran the output ceiling rather
+    // than a malformed answer. Recover what completed before saying no.
+    const salvaged = salvageTruncatedJson(cleaned);
+    if (salvaged) {
+      salvaged.__truncated = true;
+      return salvaged;
+    }
+    if (finishReason === 'MAX_TOKENS') {
+      throw new Error(
+        '문서가 너무 길어 브리핑이 생성 한도를 초과했습니다. NOTAM 묶음을 덜어내거나 ' +
+        '필요한 구간만 나눠서 업로드해 주세요.'
+      );
+    }
+    throw new Error(
+      `Gemini 응답을 브리핑 데이터로 해석하지 못했습니다${finishReason ? ` (${finishReason})` : ''}. 다시 시도해 주세요.`
+    );
   }
 }
 
@@ -200,7 +268,7 @@ export async function uploadFlightPdf(file, apiKey = '') {
 
   // The PDF goes to Gemini as-is. Extracting text first (as the old FastAPI backend did)
   // loses the table and column structure that an OFP is almost entirely made of.
-  const text = await callGemini({
+  const { text, finishReason } = await callGemini({
     apiKey,
     systemInstruction: BRIEFING_SYSTEM_PROMPT,
     jsonOutput: true,
@@ -215,7 +283,7 @@ export async function uploadFlightPdf(file, apiKey = '') {
     ],
   });
 
-  const briefing = parseJsonResponse(text);
+  const briefing = parseJsonResponse(text, finishReason);
 
   return {
     success: true,
@@ -234,7 +302,7 @@ export async function sendPilotQuestion({ question, briefingContext, apiKey = ''
     briefingContext?.flight_summary?.flight_number ||
     'FLIGHT';
 
-  const answer = await callGemini({
+  const { text: answer } = await callGemini({
     apiKey,
     temperature: 0.3,
     parts: [

@@ -107,6 +107,18 @@ export default function App() {
             </div>
           )}
 
+          {/* Partial-briefing warning: the document outran the model's output
+              ceiling and what follows is only the part that completed. */}
+          {briefing?.__truncated && (
+            <div className="bg-amber-950/80 border border-amber-600 text-amber-200 px-4 py-3 rounded-xl flex items-start gap-3 text-sm shadow-lg">
+              <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+              <span>
+                문서가 길어 브리핑 생성이 도중에 잘렸습니다. <strong>아래 내용은 일부입니다</strong> —
+                뒤쪽 항목(특히 NOTAM 목록 후반)이 누락되었을 수 있으니 원문을 반드시 함께 확인하십시오.
+              </span>
+            </div>
+          )}
+
           {/* API Key Warning Alert */}
           {briefing?._api_warning && (
             <div className="bg-amber-950/80 border border-amber-600 text-amber-200 px-4 py-3 rounded-xl flex items-center justify-between gap-3 text-sm shadow-lg">
